@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashu - Agartha</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("https://cdn.pixabay.com/photo/2016/11/22/23/41/buildings-1853687_1280.jpg"); /* Replace with any building img you prefer */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: grayscale(100%);   /* Makes image black & white */
+            height: 100vh;
+        }
+
+        /* Overlay so text stands out */
+        .overlay {
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        /* City Name Top-Left */
+        .city {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* Your name in center */
+        .name {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        /* Project responsibilities */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 20px;
+            font-weight: 300;
+        }
+
+        ul li {
+            margin: 6px 0;
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay">
+        <div class="city">Agartha</div>
+
+        <div class="name">Ashu</div>
+
+        <ul>
+            <li>Road Hierarchy</li>
+            <li>Housing</li>
+            <li>Revenue Allocation</li>
+            <li>Tax Collection</li>
+            <li>Sewage Management</li>
+        </ul>
+    </div>
+</body>
+</html>
