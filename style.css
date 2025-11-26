@@ -6,16 +6,19 @@
 }
 
 :root {
-    --primary-color: #6366f1;
-    --secondary-color: #8b5cf6;
-    --text-dark: #1e293b;
-    --text-light: #64748b;
-    --bg-light: #f8fafc;
-    --bg-white: #ffffff;
-    --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --primary-color: #0ea5e9;
+    --secondary-color: #38bdf8;
+    --accent-color: #06b6d4;
+    --text-dark: #ffffff;
+    --text-light: #94a3b8;
+    --bg-dark: #0f172a;
+    --bg-darker: #020617;
+    --bg-card: #1e293b;
+    --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.3);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -23,7 +26,7 @@ body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
-    background: var(--bg-light);
+    background: var(--bg-darker);
     overflow-x: hidden;
 }
 
@@ -36,26 +39,27 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
     z-index: -1;
     animation: gradientShift 15s ease infinite;
 }
 
 @keyframes gradientShift {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
+    50% { opacity: 0.6; }
 }
 
 /* Header Styles */
 header {
-    background: var(--bg-white);
+    background: var(--bg-dark);
     padding: 4rem 2rem 3rem;
     text-align: center;
     box-shadow: var(--shadow-md);
     position: relative;
     overflow: hidden;
     animation: slideDown 0.8s ease-out;
+    border-bottom: 2px solid var(--primary-color);
 }
 
 header::after {
@@ -67,6 +71,7 @@ header::after {
     height: 4px;
     background: var(--accent-gradient);
     animation: expandWidth 1.2s ease-out;
+    box-shadow: var(--shadow-glow);
 }
 
 @keyframes slideDown {
@@ -94,6 +99,12 @@ header h1 {
     background-clip: text;
     margin-bottom: 1rem;
     animation: fadeInUp 0.8s ease-out 0.2s both;
+    text-shadow: 0 0 30px rgba(14, 165, 233, 0.5);
+}
+
+header h1 b {
+    font-weight: 700;
+    -webkit-text-fill-color: transparent;
 }
 
 header p {
@@ -108,7 +119,7 @@ header a {
     display: inline-block;
     padding: 0.75rem 1.5rem;
     margin: 0.5rem;
-    background: var(--bg-white);
+    background: var(--bg-card);
     color: var(--primary-color);
     text-decoration: none;
     border-radius: 8px;
@@ -135,7 +146,8 @@ header a::before {
 header a:hover {
     color: white;
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--secondary-color);
 }
 
 header a:hover::before {
@@ -158,16 +170,18 @@ section {
     max-width: 900px;
     margin: 3rem auto;
     padding: 2rem;
-    background: var(--bg-white);
+    background: var(--bg-dark);
     border-radius: 16px;
     box-shadow: var(--shadow-md);
     animation: fadeIn 1s ease-out 0.3s both;
     transition: var(--transition);
+    border: 1px solid rgba(14, 165, 233, 0.2);
 }
 
 section:hover {
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-glow);
     transform: translateY(-4px);
+    border-color: var(--primary-color);
 }
 
 @keyframes fadeIn {
@@ -195,6 +209,7 @@ section h2::before {
     height: 3px;
     background: var(--accent-gradient);
     animation: expandWidthShort 0.8s ease-out 0.3s both;
+    box-shadow: 0 0 10px var(--primary-color);
 }
 
 @keyframes slideInLeft {
@@ -222,7 +237,7 @@ ul {
 ul li {
     padding: 1rem;
     margin-bottom: 0.75rem;
-    background: var(--bg-light);
+    background: var(--bg-card);
     border-radius: 8px;
     border-left: 4px solid var(--primary-color);
     transition: var(--transition);
@@ -237,9 +252,9 @@ ul li:nth-child(4) { --item-index: 4; }
 ul li:nth-child(5) { --item-index: 5; }
 
 ul li:hover {
-    background: white;
+    background: rgba(14, 165, 233, 0.1);
     transform: translateX(8px);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-glow);
     border-left-color: var(--secondary-color);
 }
 
@@ -278,7 +293,7 @@ ul li a:hover::after {
 
 /* Definition List Styles */
 dl {
-    background: var(--bg-light);
+    background: var(--bg-card);
     border-radius: 12px;
     padding: 2rem;
     margin-top: 1.5rem;
@@ -286,8 +301,51 @@ dl {
     display: flex;
     flex-direction: column;
     gap: 0;
+    border: 1px solid rgba(14, 165, 233, 0.2);
 }
 
+/* Team Member Cards */
+.team-member {
+    background: var(--bg-dark);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid var(--primary-color);
+    transition: var(--transition);
+    animation: fadeInUp 0.5s ease-out;
+    box-shadow: var(--shadow-sm);
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--secondary-color);
+}
+
+.team-member dt {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.3rem;
+}
+
+.team-member dd {
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0 0 1rem 0;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.team-member dd:last-child {
+    margin-bottom: 0;
+}
+
+/* Regular dt/dd for non-team info */
 dt {
     font-weight: 600;
     color: var(--primary-color);
@@ -311,24 +369,26 @@ dd {
     font-weight: 400;
     margin: 0 0 0 0;
     padding: 0.75rem 1.5rem;
-    background: white;
+    background: var(--bg-dark);
     border-radius: 8px;
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
     animation: fadeInUp 0.5s ease-out;
+    border: 1px solid rgba(14, 165, 233, 0.1);
 }
 
 dd:hover {
     transform: translateX(8px);
-    box-shadow: var(--shadow-md);
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+    box-shadow: var(--shadow-glow);
+    background: rgba(14, 165, 233, 0.1);
+    border-color: var(--primary-color);
 }
 
 /* Blockquote Styles */
 blockquote {
     margin: 2rem 0;
     padding: 1.5rem 2rem;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
     border-left: 5px solid var(--primary-color);
     border-radius: 8px;
     font-style: italic;
@@ -336,6 +396,7 @@ blockquote {
     font-size: 1.1rem;
     position: relative;
     animation: fadeIn 1s ease-out 0.5s both;
+    box-shadow: var(--shadow-sm);
 }
 
 blockquote::before {
@@ -345,7 +406,7 @@ blockquote::before {
     left: 10px;
     font-size: 4rem;
     color: var(--primary-color);
-    opacity: 0.2;
+    opacity: 0.3;
     font-family: Georgia, serif;
 }
 
@@ -368,13 +429,8 @@ blockquote::before {
         font-size: 1.5rem;
     }
     
-    dl {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-    }
-    
-    dt {
-        margin-top: 0.5rem;
+    .team-member {
+        padding: 1rem;
     }
     
     header a {
