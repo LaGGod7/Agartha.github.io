@@ -278,30 +278,50 @@ ul li a:hover::after {
 
 /* Definition List Styles */
 dl {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
-    padding: 1.5rem;
     background: var(--bg-light);
     border-radius: 12px;
+    padding: 2rem;
     margin-top: 1.5rem;
     animation: fadeIn 0.8s ease-out;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 
 dt {
     font-weight: 600;
     color: var(--primary-color);
-    padding: 0.5rem 0;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 1.25rem;
+    margin-bottom: 0.4rem;
+    padding-left: 0.5rem;
+    border-left: 3px solid var(--primary-color);
+    animation: slideInLeft 0.5s ease-out;
+}
+
+dt:first-of-type {
+    margin-top: 0;
 }
 
 dd {
-    color: var(--text-light);
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #e2e8f0;
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin: 0 0 0 0;
+    padding: 0.75rem 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    animation: fadeInUp 0.5s ease-out;
 }
 
-dd:last-child {
-    border-bottom: none;
+dd:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-md);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
 }
 
 /* Blockquote Styles */
