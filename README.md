@@ -1,4 +1,3 @@
-# Agartha
 
 
 ### Hello, I'm [Your Name] 👋
@@ -20,6 +19,15 @@ I am passionate about technology and problem-solving. Here's a glimpse of my wor
 
 ## Portfolio Topic
 
+![Project Screenshot](assets/image.jpg)
+
+[Check out my Google](https://www.google.com/)<br>
+[Check out a sample Portfolio](https://jiyapalrecha35.github.io/Google.github.io/)<br>
+[Check out this repo](https://github.com/hiteshchoudhary/apihub)<br>
+
+
+[About Me](about.md)
+
 <dl>
 <dt>Course Name</dt>
 <dd>Algorithmic Problem Solving</dd>
@@ -39,4 +47,4 @@ I am passionate about technology and problem-solving. Here's a glimpse of my wor
 
 <br> 
 > “The only way to do great work is to love what you do.” – Steve Jobs
-[About Me](about.md)
+>
