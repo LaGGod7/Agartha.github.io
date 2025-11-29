@@ -1,3 +1,155 @@
+/* --- ABOUT PAGE LAYOUT STYLES --- */
+
+/* Centers the primary mission statement block */
+.mission-statement {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: var(--bg-card); /* Dark card background */
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    text-align: center;
+}
+
+.mission-statement h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    border-bottom: none; /* Override section h2 style */
+}
+
+.mission-statement p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.section-heading {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 2rem;
+}
+
+/* Container for all team cards (enables horizontal layout) */
+.team-roster {
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
+    gap: 20px;
+    justify-content: center; /* Centers the cards horizontally */
+    margin: 3rem auto;
+    max-width: 1200px;
+}
+
+/* Styling for an individual team member card */
+.team-member-card {
+    flex: 1 1 200px; /* Allows cards to grow/shrink, minimum width 200px */
+    max-width: 250px;
+    background: var(--bg-dark); /* Slightly darker card */
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    border: 2px solid var(--bg-card);
+    transition: var(--transition);
+}
+
+.team-member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--primary-color);
+}
+
+.team-member-card h3 {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.team-member-card .srn {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.team-member-card hr {
+    border: 0;
+    height: 1px;
+    background: var(--text-light);
+    opacity: 0.1;
+    margin: 1rem 0;
+}
+
+.team-member-card h4 {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.team-member-card ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.team-member-card ul li {
+    padding: 0.3rem 0;
+    margin-bottom: 0;
+    background: transparent;
+    border-left: none;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    transition: none;
+    animation: none;
+}
+
+/* Link Styles */
+.team-member-card .linkedin-link,
+.team-member-card .profile-link {
+    display: block;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.team-member-card .linkedin-link {
+    background: var(--primary-color);
+    color: var(--bg-dark);
+}
+
+.team-member-card .linkedin-link:hover {
+    background: var(--secondary-color);
+    box-shadow: var(--shadow-glow);
+}
+
+.team-member-card .profile-link {
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.team-member-card .profile-link:hover {
+    background: rgba(14, 165, 233, 0.1);
+}
+
+
+/* Responsive adjustment for small screens */
+@media (max-width: 900px) {
+    .team-member-card {
+        flex: 1 1 45%; /* Two cards per row */
+    }
+}
+
+@media (max-width: 500px) {
+    .team-member-card {
+        flex: 1 1 100%; /* One card per row */
+        max-width: 90%;
+    }
+}
+
 /* ... (Existing CSS code for Reset and Base Styles, Animated Background, Header Styles, Section Styles, List Styles) ... */
 /* Reset and Base Styles */
 * {
