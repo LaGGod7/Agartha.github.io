@@ -1,3 +1,4 @@
+/* ... (Existing CSS code for Reset and Base Styles, Animated Background, Header Styles, Section Styles, List Styles) ... */
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -463,4 +464,73 @@ section h2:hover {
         opacity: 1;
         transform: translateX(0);
     }
+}
+/* --- Custom Navigation Bar Styles (New Addition) --- */
+/* The nav was missing explicit styling for layout */
+nav {
+    background: var(--bg-dark); /* Match header/section background */
+    padding: 1rem 2rem;
+    box-shadow: var(--shadow-md);
+    text-align: center; /* Center the links */
+    position: sticky; /* Keep it at the top when scrolling */
+    top: 0;
+    z-index: 1000; /* Ensure it stays above other content */
+    border-bottom: 1px solid var(--primary-color);
+}
+
+nav a {
+    color: var(--text-dark); /* Start color for links */
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    font-weight: 500;
+    display: inline-block;
+    transition: var(--transition);
+    border-radius: 6px;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: var(--accent-gradient);
+    transition: var(--transition);
+}
+
+nav a:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+/* ... (Rest of existing CSS code) ... */
+
+/* Additional Hover Animation for Consistency */
+section:hover, dl:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-4px);
+    border-color: var(--primary-color);
+    /* Ensuring consistency with the float effect on h2:hover */
+    animation: float 0.6s ease-in-out;
+}
+
+/* Definition List Styles */
+dl {
+    /* ... (Existing DL styles) ... */
+    gap: 1.5rem; /* Added gap for better spacing between DT/DD groups */
+}
+
+/* Team Members Header Style (to replace inline h3 style) */
+.team-header {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin: 2rem 0 1rem 0;
+    font-weight: 600;
 }
