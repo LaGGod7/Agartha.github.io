@@ -4,8 +4,284 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Agartha Project</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        nav {
+            background: #1e293b;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid #06b6d4;
+        }
+
+        nav a {
+            color: #e2e8f0;
+            text-decoration: none;
+            padding: 12px 25px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: #334155;
+            color: #06b6d4;
+        }
+
+        .about-header {
+            background: #1e293b;
+            color: #06b6d4;
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 3px solid #06b6d4;
+        }
+
+        .about-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .about-project {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .mission-statement {
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid #334155;
+        }
+
+        .mission-statement h2 {
+            font-size: 2.5rem;
+            color: #06b6d4;
+            margin-bottom: 20px;
+        }
+
+        .mission-statement h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: #06b6d4;
+            margin-top: 10px;
+        }
+
+        .mission-statement p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+
+        .team-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 40px 20px;
+        }
+
+        .section-heading {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #06b6d4;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .team-roster {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member-card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #334155;
+        }
+
+        .team-member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+            border-color: #06b6d4;
+        }
+
+        .team-member-card h3 {
+            font-size: 1.8rem;
+            color: #06b6d4;
+            margin-bottom: 10px;
+        }
+
+        .srn {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .team-member-card hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 2px solid #334155;
+        }
+
+        .team-member-card h4 {
+            font-size: 1.2rem;
+            color: #e2e8f0;
+            margin-bottom: 10px;
+        }
+
+        .team-member-card ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .team-member-card li {
+            padding: 5px 0;
+            color: #94a3b8;
+        }
+
+        .profile-link, .linkedin-link {
+            display: inline-block;
+            margin: 5px 5px 5px 0;
+            padding: 10px 20px;
+            background: #06b6d4;
+            color: #0f172a;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .linkedin-link {
+            background: #0077b5;
+            color: white;
+        }
+
+        .profile-link:hover {
+            background: #0891b2;
+            transform: translateY(-2px);
+        }
+
+        .linkedin-link:hover {
+            background: #005885;
+            transform: translateY(-2px);
+        }
+
+        /* Business Ideas Section */
+        .business-ideas-section {
+            max-width: 1400px;
+            margin: 60px auto 40px;
+            padding: 40px 20px;
+        }
+
+        .business-ideas-section .section-heading {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #06b6d4;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .ideas-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .member-ideas-card {
+            background: #1e293b;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid #334155;
+            transition: all 0.3s ease;
+        }
+
+        .member-ideas-card:hover {
+            border-color: #06b6d4;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+        }
+
+        .member-ideas-card h3 {
+            font-size: 1.8rem;
+            color: #e2e8f0;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .ideas-subtitle {
+            font-size: 1.1rem;
+            color: #06b6d4;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .member-ideas-card ol {
+            list-style-position: inside;
+            color: #94a3b8;
+        }
+
+        .member-ideas-card li {
+            padding: 8px 0;
+            font-size: 1rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .member-ideas-card li::marker {
+            color: #06b6d4;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .ideas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-header h1 {
+                font-size: 2rem;
+            }
+
+            .mission-statement h2 {
+                font-size: 2rem;
+            }
+
+            .section-heading {
+                font-size: 2rem;
+            }
+
+            .member-ideas-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .member-ideas-card {
+                padding: 25px;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -91,6 +367,84 @@
                 </ul>
                 <a href="Aditya.html" class="profile-link">Aditya's Profile</a>
                 <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" class="linkedin-link">LinkedIn Profile</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="business-ideas-section">
+        <h2 class="section-heading">Innovative Business Ideas 💼</h2>
+        
+        <div class="ideas-grid">
+            <!-- Yashwant's Business Cases -->
+            <div class="member-ideas-card">
+                <h3>Yashwant P</h3>
+                <p class="ideas-subtitle">Business Cases</p>
+                <ol>
+                    <li>EV Charging Network</li>
+                    <li>Waste Collection and Management System</li>
+                    <li>Car Parking and Management Solutions</li>
+                    <li>Smart Street Lighting System</li>
+                    <li>Emergency Response and Safety Infrastructure</li>
+                    <li>Digital and Eco-Friendly Advertisement Billboards</li>
+                    <li>Industrial Worker Support Hub</li>
+                    <li>Urban Green Parks and Riverfront Development</li>
+                    <li>Mobile Network and City-Wide Connectivity Infrastructure</li>
+                    <li>Gas Distribution Through Pipeline Network</li>
+                </ol>
+            </div>
+
+            <!-- Goureesh's Business Cases -->
+            <div class="member-ideas-card">
+                <h3>Goureesh D</h3>
+                <p class="ideas-subtitle">Business Cases</p>
+                <ol>
+                    <li>Business Case 1</li>
+                    <li>Business Case 2</li>
+                    <li>Business Case 3</li>
+                    <li>Business Case 4</li>
+                    <li>Business Case 5</li>
+                    <li>Business Case 6</li>
+                    <li>Business Case 7</li>
+                    <li>Business Case 8</li>
+                    <li>Business Case 9</li>
+                    <li>Business Case 10</li>
+                </ol>
+            </div>
+
+            <!-- Ashutosh's Business Cases -->
+            <div class="member-ideas-card">
+                <h3>Ashutosh K</h3>
+                <p class="ideas-subtitle">Business Cases</p>
+                <ol>
+                    <li>Business Case 1</li>
+                    <li>Business Case 2</li>
+                    <li>Business Case 3</li>
+                    <li>Business Case 4</li>
+                    <li>Business Case 5</li>
+                    <li>Business Case 6</li>
+                    <li>Business Case 7</li>
+                    <li>Business Case 8</li>
+                    <li>Business Case 9</li>
+                    <li>Business Case 10</li>
+                </ol>
+            </div>
+
+            <!-- Aditya's Business Cases -->
+            <div class="member-ideas-card">
+                <h3>Aditya H</h3>
+                <p class="ideas-subtitle">Business Cases</p>
+                <ol>
+                    <li>Business Case 1</li>
+                    <li>Business Case 2</li>
+                    <li>Business Case 3</li>
+                    <li>Business Case 4</li>
+                    <li>Business Case 5</li>
+                    <li>Business Case 6</li>
+                    <li>Business Case 7</li>
+                    <li>Business Case 8</li>
+                    <li>Business Case 9</li>
+                    <li>Business Case 10</li>
+                </ol>
             </div>
         </div>
     </section>
