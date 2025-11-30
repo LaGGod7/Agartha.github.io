@@ -1,5 +1,103 @@
 /* --- ABOUT PAGE LAYOUT STYLES --- */
+/* --- PROJECT DETAILS SECTION STYLES --- */
 
+.project-details-section {
+    padding: 2rem;
+    max-width: 1000px; /* Wider section for images */
+    margin: 3rem auto;
+    background: var(--bg-dark);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+}
+
+.project-asset {
+    margin: 2rem 0;
+    text-align: center;
+    background: var(--bg-card);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+.project-asset h3 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.project-asset img {
+    max-width: 100%;
+    height: 50%;
+    display: block;
+    margin: 1rem auto;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+}
+
+.project-asset img:hover {
+    box-shadow: var(--shadow-glow);
+}
+
+.asset-description {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.project-analysis h3 {
+    color: var(--primary-color);
+    margin: 2rem 0 1rem 0;
+    font-size: 1.5rem;
+}
+
+.analysis-blocks {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 2rem;
+}
+
+.data-block {
+    flex: 1;
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.data-block h4 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.data-block ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.data-block ul li {
+    background: transparent;
+    padding: 0.2rem 0;
+    border-left: none;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-bottom: 0;
+}
+
+/* For the second (wide) image */
+.wide-asset img {
+    max-height: 500px; /* Set a max height for the document photo */
+    object-fit: contain;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+    .analysis-blocks {
+        flex-direction: column;
+    }
+}
 /* Centers the primary mission statement block */
 .mission-statement {
     max-width: 800px;
@@ -149,6 +247,7 @@
         max-width: 90%;
     }
 }
+
 
 /* ... (Existing CSS code for Reset and Base Styles, Animated Background, Header Styles, Section Styles, List Styles) ... */
 /* Reset and Base Styles */
