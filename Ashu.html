@@ -3,33 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashu - Agartha</title>
+    <title>Ashutosh Kulkarni - Sustainable City Initiatives</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Linking External CSS -->
-    <link rel="stylesheet" href="ashu.css">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2940 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+
+        nav {
+            background-color: rgba(10, 22, 40, 0.95);
+            padding: 20px 0;
+            border-bottom: 2px solid #00a8cc;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(180deg, rgba(10, 22, 40, 0.8) 0%, rgba(26, 41, 64, 0.6) 100%);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: #00d4ff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .hero-divider {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            margin: 30px auto;
+        }
+
+        .content-container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .main-card {
+            background: rgba(30, 45, 70, 0.6);
+            border-radius: 20px;
+            padding: 60px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 168, 204, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            font-size: 36px;
+            color: #00d4ff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .title-divider {
+            width: 60px;
+            height: 3px;
+            background: #00d4ff;
+            margin: 0 auto 40px;
+        }
+
+        .initiative {
+            margin-bottom: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(0, 168, 204, 0.2);
+        }
+
+        .initiative:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .initiative h3 {
+            font-size: 28px;
+            color: #00d4ff;
+            margin-bottom: 20px;
+        }
+
+        .initiative p {
+            color: #b8c5d6;
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .initiative ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .initiative li {
+            color: #b8c5d6;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        .initiative li:before {
+            content: "•";
+            color: #00d4ff;
+            font-size: 24px;
+            position: absolute;
+            left: 10px;
+            top: -2px;
+        }
+
+        .sdg-tag {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .main-card {
+                padding: 30px 20px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            nav a {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <div class="city">Agartha</div>
-
-    <div class="container">
-        <div class="name">Ashu</div>
-
-        <div class="info-box">
-            I am responsible for managing navigation, resource tracking, and urban
-            mapping systems in Agartha. My role covers sewage network planning,
-            road hierarchy mapping, housing grid design, revenue distribution,
-            and tax collection pipelines — ensuring smooth and structured city
-            growth and infrastructure efficiency.
-        </div>
-
+    <nav>
         <ul>
-            <li>Road Hierarchy</li>
-            <li>Housing</li>
-            <li>Revenue Allocation</li>
-            <li>Tax Collection</li>
-            <li>Sewage Management</li>
+            <li><a href="javascript:history.back()">← Back</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
         </ul>
-    </div>
-</body>
-</html>
+    </nav>
+
+    <div class="content-container">
+        <div class="main-card">
+            <h2 class="section-title">Comprehensive Sustainable City Initiatives 🏙️</h2>
+            <div class="title-divider"></div>
+            
+            <p style="color: #b8c5d6; line-height: 1.8; font-size: 16px; margin-bottom: 40px; text-align: center;">
+                Hi, I am Ashutosh. This document outlines the full scope of business cases developed for <strong>Agartha</strong> — a new, self-sufficient, and sustainable city with a population of 4 million, located between Pune and Nashik near the banks of the Pravara River. These initiatives are designed to support the city's long-term growth, improve quality of life, and align with global Sustainable Development Goals (SDGs).
+            </p>
+
+            <div style="background: rgba(0, 212, 255, 0.05); border-left: 4px solid #00d4ff; padding: 30px; margin-bottom: 50px; border-radius: 10px;">
+                <h3 style="color: #00d4ff; font-size: 24px; margin-bottom: 20px;"> Business Cases:</h3>
+                <ol style="color: #b8c5d6; line-height: 2; font-size: 16px; padding-left: 25px;">
+                    <li>**Allocation of Funds to Industries**</li>
+                    <li>**Electricity Substation Monitoring System**</li>
+                    <li>**Theatre Allocation and Management System**</li>
+                    <li>**Integrated Tax Management System**</li>
+                    <li>**City-wide Hygiene and Sanitation Monitoring**</li>
+                    <li>**Municipal Vehicle Allocation and Optimization (CO)**</li>
+                    <li>**Sector-wise Construction Planning and Coordination (CO)**</li>
+                    <li>**Crime Management and Police Workforce Optimization**</li>
+                    <li>**Integrated Tourism Promotion and Visitor Services**</li>
+                    <li>**Government Schemes Awareness and Beneficiary Tracking System**</li>
+                </ol>
+                <p style="color: #b8c5d6; margin-top: 20px; font-style: italic;">
+                    These initiatives form the blueprint for a modern, sustainable, efficient, and inclusive urban ecosystem for the future of Agartha.
+                </p>
+            </div>
+
+            <h2 class="section-title">Governance and Service Management Initiatives (1–10)</h2>
+            <div class="title-divider"></div>
+
+            <!-- 1. Allocation of Funds to Industries -->
+            <div class="initiative">
+                <h3>1. Allocation
