@@ -218,116 +218,275 @@
             <h2 class="section-title">Advanced Planning and Resource Management Initiatives (0-10)</h2>
             <div class="title-divider"></div>
 
-            <div class="initiative">
-                <h3>1. Road Hierarchy and Proper Classification of City Roads</h3>
-                <span class="sdg-tag">SDG 9.1 & SDG 11.2</span>
-                <p>This initiative supports **SDG 9.1** (Develop Quality, Reliable, Sustainable, and Resilient Infrastructure) by structuring the city's transport network for optimal function and safety.</p>
-                <p>Proper classification—from expressways to neighborhood streets—is crucial for managing the heavy traffic flow between Pune, Nashik, and the inner city areas.</p>
-                <ul>
-                    <li>Optimizing traffic movement and reducing commute times across the metropolitan area.</li>
-                    <li>Enabling better allocation of maintenance and safety resources for each road type.</li>
-                    <li>Supporting the future integration of smart traffic management systems.</li>
-                    <li>Minimizing accident risk by clearly defining speed limits and road usage.</li>
-                </ul>
-            </div>
+           <div class="initiative">
+    <h3>1. Road Hierarchy and Proper Classification of City Roads</h3>
+    <span class="sdg-tag">SDG 9.1 & SDG 11.2</span>
 
-            <div class="initiative">
-                <h3>2. Sewage Network Monitoring and Maintenance System</h3>
-                <span class="sdg-tag">SDG 6.3 & SDG 11.6</span>
-                <p>This system directly supports **SDG 6.3** (Improve Water Quality, Wastewater Treatment) and **SDG 11.6** (Reduce Environmental Impact). Effective sewage management is critical for public health and protecting the Pravara River.</p>
-                <p>Implementing a smart monitoring system prevents overflows, leaks, and untreated discharge, which is vital in a river-side city.</p>
-                <ul>
-                    <li>Protecting the Pravara River from pollution by ensuring proper treatment of city wastewater.</li>
-                    <li>Improving public sanitation and health outcomes for the entire population.</li>
-                    <li>Enabling predictive maintenance to prevent costly and disruptive system failures.</li>
-                    <li>Supporting the sustainable expansion of residential and industrial zones with reliable sewage infrastructure.</li>
-                </ul>
-            </div>
+    <p>
+        Agarta follows a clearly defined <b>V1–V6 road hierarchy</b> so that every trip –
+        from intercity freight to a person walking to a park – has a safe and efficient path.
+        This supports <b>SDG 9.1</b> (reliable infrastructure) and <b>SDG 11.2</b>
+        (safe, affordable, and sustainable transport systems).
+    </p>
+
+    <p>The hierarchy is as follows:</p>
+    <ul>
+        <li><b>V1 – Regional Expressways</b><br>
+            High-speed corridors connecting Agarta to Pune, Nashik and the outer ring road.
+            Limited access, grade-separated junctions, and dedicated freight lanes.
+        </li>
+
+        <li><b>V2 – City Arterial Roads</b><br>
+            Major roads connecting different parts of Agarta and linking to V1.
+            Carry high volumes of traffic, support BRT and intercity buses,
+            and connect large commercial and industrial sectors.
+        </li>
+
+        <li><b>V3 – Sector Connectors</b><br>
+            Roads that connect one sector to another (residential–commercial–industrial).
+            They distribute traffic from V2 into the internal grid of each sector.
+        </li>
+
+        <li><b>V4 – Internal Sector Roads</b><br>
+            Roads inside each sector, dividing it into blocks and mini-sectors.
+            They primarily handle local traffic, school buses, and service vehicles.
+        </li>
+
+        <li><b>V5 – Access Lanes & Service Roads</b><br>
+            Short roads providing access to individual plots, parking areas,
+            loading/unloading bays, and service entrances.
+        </li>
+
+        <li><b>V6 – Pedestrian and Cycle Network</b><br>
+            Continuous, safe, and shaded paths for walking and cycling, designed so that
+            a person can travel from one end of the city to another without using a motor vehicle.
+            These paths often run parallel to green belts and the riverfront.
+        </li>
+    </ul>
+
+    <p>
+        The hierarchy allows <b>speed control, traffic segregation, and emergency routing</b>.
+        It also makes it easier to apply intelligent traffic systems, priority lanes for buses,
+        and future autonomous vehicles.
+    </p>
+</div>
+
+<div class="initiative">
+    <h3>2. Sewage Network Monitoring and Maintenance System</h3>
+    <span class="sdg-tag">SDG 6.3 & SDG 11.6</span>
+
+    <p>
+        This system enables <b>real-time monitoring, fault detection, and predictive maintenance</b>
+        of the entire underground sewage network of Agartha. It directly supports
+        <b>SDG 6.3</b> (Clean Water & Sanitation) and <b>SDG 11.6</b> (Environmental Impact Reduction).
+    </p>
+
+    <p>
+        Each sewer line is equipped with <b>level, flow-rate, and toxic-gas sensors</b>. Data is
+        analyzed continuously to prevent overflows, blockages, and untreated discharge into
+        the Pravara River.
+    </p>
+
+    <ul>
+        <li>Real-time sewage level & pressure monitoring per sector.</li>
+        <li>Automatic detection of leaks and blockages.</li>
+        <li>Predictive maintenance using historical data trends.</li>
+        <li>Instant alerts to maintenance teams before system failure.</li>
+        <li>Emergency bypass routing during pipe failures.</li>
+    </ul>
+
+    <p>
+        Technically implemented using <b>Segment Trees, Graph Algorithms, and Priority Queues</b>
+        for fast fault detection and response routing.
+    </p>
+</div>
 
 
-            <div class="initiative">
-                <h3>3. Population Forecasting and Town Planning Centre</h3>
-                <span class="sdg-tag">SDG 11.3 & SDG 11.a</span>
-                <p>This initiative is vital for achieving **SDG 11.3** (Participatory, Integrated, and Sustainable Human Settlement Planning). Accurate forecasting is the backbone of sustainable urban growth management.</p>
-                <p>The centre will use advanced data modeling to predict future demands on infrastructure, housing, and social services for the 4-million-plus population.</p>
-                <ul>
-                    <li>Ensuring that major infrastructure (roads, water, power) is planned and built ahead of population demand.</li>
-                    <li>Preventing unplanned sprawl and enabling the preservation of green spaces.</li>
-                    <li>Facilitating the equitable distribution of public services across all neighborhoods.</li>
-                    <li>Informing policies for managing rapid population influx due to its strategic intercity location.</li>
-                </ul>
-            </div>
+<div class="initiative">
+    <h3>3. Population Forecasting and Town Planning Centre</h3>
+    <span class="sdg-tag">SDG 11.3 & SDG 11.a</span>
+
+    <p>
+        This centre predicts <b>future population growth, land demand, traffic load,
+        water consumption, power requirements, and housing needs</b> for the next 30–50 years.
+    </p>
+
+    <p>
+        Data is collected from birth records, migration entries, housing allocations,
+        and employment zones to generate accurate urban growth models.
+    </p>
+
+    <ul>
+        <li>AI-based demand forecasting for housing and transport.</li>
+        <li>Prevents infrastructure overload.</li>
+        <li>Ensures equitable public resource distribution.</li>
+        <li>Optimizes land use zoning decisions.</li>
+    </ul>
+
+    <p>
+        Implemented using <b>Fenwick Trees for real-time population updates,
+        AVL Trees for balanced data storage, and Merge Sort for demographic analysis.</b>
+    </p>
+</div>
 
 
 
-            <div class="initiative">
-                <h3>4. Parcel Delivery Through Small Drones</h3>
-                <span class="sdg-tag">SDG 9.1 & SDG 11.2</span>
-                <p>Aligning with **SDG 9.1** (Develop Resilient Infrastructure) and **SDG 11.2** (Sustainable Transport), drone delivery represents a leap in sustainable, low-emission urban logistics.</p>
-                <p>This service will optimize last-mile delivery, significantly reducing road traffic congestion and the carbon footprint associated with delivery vehicles.</p>
-                <ul>
-                    <li>Significantly reducing the number of delivery vehicles on city roads.</li>
-                    <li>Lowering transportation-related air and noise pollution in residential zones.</li>
-                    <li>Providing fast and efficient delivery to areas with limited road access or high congestion.</li>
-                    <li>Positioning Agartha as a hub for innovative and green logistics infrastructure.</li>
-                </ul>
-            </div>
+
+  <div class="initiative">
+    <h3>4. Parcel Delivery Through Small Drones</h3>
+    <span class="sdg-tag">SDG 9.1 & SDG 11.2</span>
+
+    <p>
+        A fully automated <b>drone-based parcel delivery network</b> ensures fast,
+        eco-friendly last-mile logistics across all zones of Agartha.
+    </p>
+
+    <p>
+        Drones operate between micro-hubs placed on commercial buildings,
+        hospitals, and logistics centers.
+    </p>
+
+    <ul>
+        <li>Reduces road traffic congestion.</li>
+        <li>No fuel emissions – electric drone fleet.</li>
+        <li>Medical emergency & night delivery support.</li>
+        <li>Fastest routing using GPS + shortest path algorithms.</li>
+    </ul>
+
+    <p>
+        The routing engine is built using <b>Graph Algorithms, Dijkstra’s Algorithm,
+        Hash Maps, and Priority Queues</b>.
+    </p>
+</div>
+
             
-            
-            <div class="initiative">
-                <h3>5.Housing and Allocation</h3>
-                <span class="sdg-tag">SDG 9.1 & SDG 11.2</span>
-                <p>This initiative supports **SDG 9.1** (Develop Quality, Reliable, Sustainable, and Resilient Infrastructure) by structuring the city's transport network for optimal function and safety.</p>
-                <p>Proper classification—from expressways to neighborhood streets—is crucial for managing the heavy traffic flow between Pune, Nashik, and the inner city areas.</p>
-                <ul>
-                    <li>Optimizing traffic movement and reducing commute times across the metropolitan area.</li>
-                    <li>Enabling better allocation of maintenance and safety resources for each road type.</li>
-                    <li>Supporting the future integration of smart traffic management systems.</li>
-                    <li>Minimizing accident risk by clearly defining speed limits and road usage.</li>
-                </ul>
-            </div>
+ <div class="initiative">
+    <h3>5. Housing and Allocation System</h3>
+    <span class="sdg-tag">SDG 11.1 & SDG 9.1</span>
+
+    <p>
+        This initiative supports <b>SDG 11.1</b> (Access to Adequate, Safe and Affordable Housing) 
+        and <b>SDG 9.1</b> (Resilient Infrastructure) by ensuring a structured, fair, 
+        and data-driven housing allocation mechanism for Agartha.
+    </p>
+
+    <p>
+        The city follows a <b>Four-Tier Housing Model</b> to serve different income groups 
+        while maintaining equality, accessibility, and sustainability.
+    </p>
+
+    <ul>
+        <li><b>Type-1: Affordable Housing</b> (700–900 sq.ft) — For EWS & LIG citizens near industrial and service zones.</li>
+        <li><b>Type-2: Standard Apartments</b> (900–1200 sq.ft) — For middle-income families inside core residential sectors.</li>
+        <li><b>Type-3: Premium Apartments</b> (1200–2000 sq.ft) — For professionals near commercial and IT hubs.</li>
+        <li><b>Type-4: Luxury Villas & Bungalows</b> (2000+ sq.ft) — Located near riverfront and low-density green zones.</li>
+        <li>Each residential sector also includes <b>internal parks, playgrounds, schools, and health centers.</b></li>
+        <li>Allocation is done digitally based on <b>income group, family size, job location, and preference.</b></li>
+    </ul>
+</div>
+
 
                  
-            <div class="initiative">
-                <h3>6.Bus Traffic and Management</h3>
-                <span class="sdg-tag">SDG 9.1 & SDG 11.2</span>
-                <p>This initiative supports **SDG 9.1** (Develop Quality, Reliable, Sustainable, and Resilient Infrastructure) by structuring the city's transport network for optimal function and safety.</p>
-                <p>Proper classification—from expressways to neighborhood streets—is crucial for managing the heavy traffic flow between Pune, Nashik, and the inner city areas.</p>
-                <ul>
-                    <li>Optimizing traffic movement and reducing commute times across the metropolitan area.</li>
-                    <li>Enabling better allocation of maintenance and safety resources for each road type.</li>
-                    <li>Supporting the future integration of smart traffic management systems.</li>
-                    <li>Minimizing accident risk by clearly defining speed limits and road usage.</li>
-                </ul>
-            </div>            
+   <div class="initiative">
+    <h3>6. Bus Traffic and Public Transport Management</h3>
+    <span class="sdg-tag">SDG 11.2 & SDG 13.2</span>
 
-                        
-            <div class="initiative">
-                <h3>7.System to show how city revenue is collected and spent</h3>
-                <span class="sdg-tag">SDG 9.1 & SDG 11.2</span>
-                <p>This initiative supports **SDG 9.1** (Develop Quality, Reliable, Sustainable, and Resilient Infrastructure) by structuring the city's transport network for optimal function and safety.</p>
-                <p>Proper classification—from expressways to neighborhood streets—is crucial for managing the heavy traffic flow between Pune, Nashik, and the inner city areas.</p>
-                <ul>
-                    <li>Optimizing traffic movement and reducing commute times across the metropolitan area.</li>
-                    <li>Enabling better allocation of maintenance and safety resources for each road type.</li>
-                    <li>Supporting the future integration of smart traffic management systems.</li>
-                    <li>Minimizing accident risk by clearly defining speed limits and road usage.</li>
-                </ul>
-            </div>    
+    <p>
+        Agarta uses a <b>bus-first public transport strategy</b> designed around the V1–V6
+        road hierarchy. This supports <b>SDG 11.2</b> (safe and affordable transport)
+        and <b>SDG 13.2</b> (integration of climate measures in city planning) by reducing
+        private vehicle dependency and emissions.
+    </p>
 
-                                  
-            <div class="initiative">
-                <h3>8.House No allocation</h3>
-                <span class="sdg-tag">SDG 9.1 & SDG 11.2</span>
-                <p>This initiative supports **SDG 9.1** (Develop Quality, Reliable, Sustainable, and Resilient Infrastructure) by structuring the city's transport network for optimal function and safety.</p>
-                <p>Proper classification—from expressways to neighborhood streets—is crucial for managing the heavy traffic flow between Pune, Nashik, and the inner city areas.</p>
-                <ul>
-                    <li>Optimizing traffic movement and reducing commute times across the metropolitan area.</li>
-                    <li>Enabling better allocation of maintenance and safety resources for each road type.</li>
-                    <li>Supporting the future integration of smart traffic management systems.</li>
-                    <li>Minimizing accident risk by clearly defining speed limits and road usage.</li>
-                </ul>
-            </div>  
+    <p>The system combines three layers of bus services:</p>
+    <ul>
+        <li><b>Trunk BRT (Bus Rapid Transit) Routes</b><br>
+            Operate on <b>V1 and V2 corridors</b> with dedicated lanes, off-board ticketing,
+            level boarding, and signal priority at junctions.
+        </li>
+
+        <li><b>Feeder and Loop Buses</b><br>
+            Smaller buses running on <b>V3 and V4 roads</b>, connecting neighborhoods,
+            schools, and commercial sectors to the nearest BRT station.
+        </li>
+
+        <li><b>Last-Mile & On-Demand Services</b><br>
+            Electric mini-buses and shuttles using <b>V4 and V5 roads</b> for last-mile
+            connectivity, especially for elderly and differently-abled citizens.
+        </li>
+    </ul>
+
+    <p><b>Smart Bus Management Platform:</b></p>
+    <ul>
+        <li>Real-time GPS tracking of buses and live ETA display at stations and on mobile apps.</li>
+        <li>Dynamic scheduling based on demand: peak-hour frequency increase and off-peak optimization.</li>
+        <li>Priority at signals on V2 roads using adaptive traffic lights.</li>
+        <li>Integrated ticketing system (smart cards / UPI) common to BRT, feeders, and metro.</li>
+    </ul>
+
+    <p>
+        From a technical point of view, the system uses <b>graphs and shortest-path algorithms</b>
+        to design optimal routes, <b>queues</b> to simulate and control bus dispatch,
+        and <b>priority queues (heaps)</b> to handle delays and rescheduling.
+    </p>
+</div>
+          
+
+<div class="initiative">
+    <h3>7. City Revenue Collection and Expenditure Transparency System</h3>
+    <span class="sdg-tag">SDG 16.6 & SDG 11.a</span>
+
+    <p>
+        This system publicly displays <b>how city revenue is collected and spent</b>
+        across infrastructure, health, transport, housing, and environment.
+    </p>
+
+    <p>
+        Revenue sources include property tax, commercial licensing,
+        industrial tax, tourism, transport fares, and utilities.
+    </p>
+
+    <ul>
+        <li>Real-time financial dashboards.</li>
+        <li>Public audit transparency.</li>
+        <li>Fraud detection and anomaly tracking.</li>
+        <li>Budget optimization for city services.</li>
+    </ul>
+
+    <p>
+        Implemented using <b>Red-Black Trees for ordered finance records,
+        Hashing for instant lookup,
+        and Heaps for top-spending department tracking.</b>
+    </p>
+</div>
+
+
+ <div class="initiative">
+    <h3>8. House Number Allocation & Smart Addressing System</h3>
+    <span class="sdg-tag">SDG 9.1 & SDG 11.3</span>
+
+    <p>
+        This initiative provides a unified <b>digital address and building identification system</b> 
+        for the entire Agartha city to support navigation, emergency services, postal delivery, 
+        and smart governance.
+    </p>
+
+    <p>
+        The house number format follows a structured smart-code:
+        <br><b>Format:</b> [Direction][Sector-Type][Sector-Number][Street-Number][Building-Number]
+        <br><b>Example:</b> <b>NWSR-1-10</b>
+    </p>
+
+    <ul>
+        <li><b>NW</b> → North-West City Zone</li>
+        <li><b>SR</b> → Sector Residential (SC-Commercial, SI-Industrial, SP-Public)</li>
+        <li><b>1</b> → Sub-sector or cross road number</li>
+        <li><b>10</b> → Building or plot number</li>
+        <li>Integrated with <b>GIS mapping, emergency response, drones, and smart postal services.</b></li>
+        <li>Supports <b>automatic routing for ambulances, fire brigades, and delivery services.</b></li>
+    </ul>
+</div>
+ 
 
             
 
