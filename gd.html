@@ -434,7 +434,7 @@
             1: {
                 title: "Road Hierarchy Classification System",
                 problem: "Cities without proper road classification face traffic congestion, inefficient transport systems, and safety issues. Agarta needs a structured road hierarchy (V1-V6) to support intercity freight, public buses, local traffic, and pedestrian movement efficiently.",
-                approach: "We implement a Graph-based road classification system where each road type (V1-V6) has specific attributes (speed limits, access controls, permitted vehicles). The system uses Dijkstra's algorithm for optimal routing and BFS for connectivity verification across road types.",
+                approach: "We implement a Graph-based road classification system where each road type (V1-V6) has specific attributes (speed limits, access controls, permitted vehicles). The system uses Dijkstra's algorithm for optimal routing and BFS for connectivity verification across road types. The hierarchy is as follows: V1 – Regional Expressways (high-speed corridors connecting Agarta to Pune, Nashik and the outer ring road with limited access and grade-separated junctions); V2 – City Arterial Roads (major roads connecting different parts of Agarta with support for BRT and intercity buses); V3 – Sector Connectors (roads connecting residential–commercial–industrial sectors); V4 – Internal Sector Roads (roads dividing sectors into blocks and mini-sectors); V5 – Access Lanes & Service Roads (providing access to individual plots and parking areas); V6 – Pedestrian and Cycle Network (continuous safe paths for walking and cycling). The hierarchy allows speed control, traffic segregation, and emergency routing, making it easier to apply intelligent traffic systems and future autonomous vehicles.",
                 code: `// Road Hierarchy Graph System
 #include <iostream>
 #include <vector>
@@ -890,9 +890,9 @@ int main() {
 }`
             },
             5: {
-                title: "Housing Allocation System",
-                problem: "Fair housing distribution is critical for social equity. Agarta needs to allocate 1 million housing units across 4 tiers (affordable to luxury) based on income, family size, and proximity to workplaces, ensuring no bias and optimal resource utilization.",
-                approach: "We use a Weighted Bipartite Matching algorithm to match applicants to available housing, Dynamic Programming for optimal space allocation, and Hash Maps for O(1) applicant lookup. The system considers multiple constraints simultaneously.",
+                title: "Housing and Allocation System",
+                problem: "Fair housing distribution is critical for social equity. This initiative supports SDG 11.1 (Access to Adequate, Safe and Affordable Housing) and SDG 9.1 (Resilient Infrastructure) by ensuring a structured, fair, and data-driven housing allocation mechanism for Agartha.",
+                approach: "The city follows a Four-Tier Housing Model to serve different income groups while maintaining equality, accessibility, and sustainability. Type-1: Affordable Housing (700–900 sq.ft) for EWS & LIG citizens near industrial and service zones. Type-2: Standard Apartments (900–1200 sq.ft) for middle-income families inside core residential sectors. Type-3: Premium Apartments (1200–2000 sq.ft) for professionals near commercial and IT hubs. Type-4: Luxury Villas & Bungalows (2000+ sq.ft) located near riverfront and low-density green zones. Each residential sector includes internal parks, playgrounds, schools, and health centers. Allocation is done digitally based on income group, family size, job location, and preference.",
                 code: `// Housing Allocation System
 #include <iostream>
 #include <vector>
@@ -1369,114 +1369,137 @@ int main() {
 `
             },
             8: {
-                title: "Smart Addressing System",
-                problem: "Inefficient and inconsistent addressing causes delays in logistics, emergency response, and municipal services. Agartha needs a simple, geocoded smart-code system for every physical location.",
-                approach: "We implement a Geohash-style Quadtree or K-D Tree structure to map coordinates to a unique address code. The system uses a fixed-length hexadecimal code for high-precision lookup, allowing O(log N) search time.",
-                code: `// Smart Addressing System (Simplified Geohash-style)
+                title: "House Number Allocation & Smart Addressing System",
+                problem: "Inefficient and inconsistent addressing causes delays in logistics, emergency response, and municipal services. This initiative provides a unified digital address and building identification system for the entire Agartha city to support navigation, emergency services, postal delivery, and smart governance.",
+                approach: "The house number format follows a structured smart-code format: [Direction][Sector-Type][Sector-Number][Street-Number][Building-Number]. Example: NWSR-1-10 where NW = North-West City Zone, SR = Sector Residential (SC-Commercial, SI-Industrial, SP-Public), 1 = Sub-sector or cross road number, 10 = Building or plot number. The system is integrated with GIS mapping, emergency response, drones, and smart postal services, supporting automatic routing for ambulances, fire brigades, and delivery services.",
+                code: `// Smart Addressing System - Agartha Smart-Code Format
 #include <iostream>
 #include <string>
-#include <cmath>
-#include <algorithm>
-#include <unordered_map>
+#include <sstream>
 #include <iomanip>
+#include <unordered_map>
+#include <vector>
 using namespace std;
 
-// Base32 characters for geohash-like encoding
-const string BASE32 = "0123456789bcdefghjkmnpqrstuvwxyz";
+enum Direction { NW, NE, SW, SE };
+enum SectorType { SR, SC, SI, SP };  // Residential, Commercial, Industrial, Public
 
-// Latitude/Longitude bounds (e.g., area between Pune and Nashik)
-const double MIN_LAT = 18.0, MAX_LAT = 20.0;
-const double MIN_LON = 73.0, MAX_LON = 75.0;
-
-class SmartAddress {
-private:
-    // Helper function to encode coordinate using binary search
-    string encodeCoord(double value, double minVal, double maxVal, int bits) {
-        string code = "";
-        for (int i = 0; i < bits; ++i) {
-            double mid = (minVal + maxVal) / 2.0;
-            if (value > mid) {
-                code += '1';
-                minVal = mid;
-            } else {
-                code += '0';
-                maxVal = mid;
-            }
-        }
-        return code;
+string directionToString(Direction dir) {
+    switch(dir) {
+        case NW: return "NW";
+        case NE: return "NE";
+        case SW: return "SW";
+        case SE: return "SE";
+        default: return "XX";
     }
+}
 
-    // Helper function to interleave (Z-order curve approximation)
-    string interleave(const string& latBits, const string& lonBits) {
-        string interleaved = "";
-        size_t len = min(latBits.length(), lonBits.length());
-        for (size_t i = 0; i < len; ++i) {
-            interleaved += lonBits[i];
-            interleaved += latBits[i];
-        }
-        return interleaved;
+string sectorTypeToString(SectorType type) {
+    switch(type) {
+        case SR: return "SR";  // Sector Residential
+        case SC: return "SC";  // Sector Commercial
+        case SI: return "SI";  // Sector Industrial
+        case SP: return "SP";  // Sector Public
+        default: return "XX";
     }
+}
 
-    // Helper function to convert 5-bit binary string to Base32 char
-    char binToB32(const string& bin) {
-        int val = 0;
-        for (char c : bin) {
-            val = (val << 1) | (c - '0');
-        }
-        return BASE32[val];
-    }
+struct SmartAddress {
+    Direction direction;           // NW, NE, SW, SE (City Zone)
+    SectorType sectorType;         // SR, SC, SI, SP
+    int sectorNumber;              // 1-100 (Sector identifier)
+    int streetNumber;              // 1-50 (Street/cross-road number)
+    int buildingNumber;            // 1-9999 (Building or plot number)
+};
 
+class SmartAddressingSystem {
+    unordered_map<string, SmartAddress> addressRegistry;
+    
 public:
-    // Generates a Geohash-style code (precision = number of Base32 characters)
-    string generateSmartCode(double lat, double lon, int precision = 12) {
-        // Total bits needed (5 bits per character)
-        int bits = precision * 5; 
-        
-        string latBits = encodeCoord(lat, MIN_LAT, MAX_LAT, bits / 2);
-        string lonBits = encodeCoord(lon, MIN_LON, MAX_LON, bits / 2);
-        string interleavedBits = interleave(latBits, lonBits);
-        
-        string smartCode = "";
-        for (size_t i = 0; i < interleavedBits.length(); i += 5) {
-            string chunk = interleavedBits.substr(i, 5);
-            if (chunk.length() == 5) {
-                smartCode += binToB32(chunk);
-            }
-        }
-        
-        return smartCode;
-    }
-
-    // Example of a structured smart address (incorporating Zone and Building ID)
-    string formatAddress(const string& geocode, int zoneID, int buildingID) {
+    string generateSmartCode(Direction dir, SectorType type, 
+                            int sectorNum, int streetNum, int buildingNum) {
         stringstream ss;
-        ss << setfill('0') << setw(2) << zoneID 
-           << "-" << geocode 
-           << "-" << setfill('0') << setw(4) << buildingID;
+        ss << directionToString(dir) 
+           << sectorTypeToString(type) 
+           << "-" << sectorNum 
+           << "-" << streetNum
+           << "-" << setfill('0') << setw(4) << buildingNum;
         return ss.str();
     }
     
-    void demonstrate() {
-        double testLat = 19.34567;
-        double testLon = 74.56789;
-        int zone = 15;
-        int building = 458;
+    void registerAddress(string code, Direction dir, SectorType type,
+                        int sectorNum, int streetNum, int buildingNum) {
+        SmartAddress addr = {dir, type, sectorNum, streetNum, buildingNum};
+        addressRegistry[code] = addr;
+        cout << "✓ Registered: " << code << "\n";
+    }
+    
+    SmartAddress* lookupAddress(string code) {
+        if (addressRegistry.find(code) != addressRegistry.end()) {
+            return &addressRegistry[code];
+        }
+        return nullptr;
+    }
+    
+    void displayAddressDetails(string code) {
+        SmartAddress* addr = lookupAddress(code);
+        if (!addr) {
+            cout << "Address not found: " << code << "\n";
+            return;
+        }
         
-        string geocode = generateSmartCode(testLat, testLon, 12);
-        string fullAddress = formatAddress(geocode, zone, building);
+        cout << "\n=== Address Details for " << code << " ===\n";
+        cout << "Direction Zone: " << directionToString(addr->direction) << "\n";
+        cout << "Sector Type: " << sectorTypeToString(addr->sectorType) << " ";
         
-        cout << "Coordinates: (" << testLat << ", " << testLon << ")\n";
-        cout << "Raw Geocode: " << geocode << "\n";
-        cout << "Full Smart Address:\n";
-        cout << "AGR-" << fullAddress << "\n";
-        cout << "(Format: CITY-ZONE-GEOCODE-BUILDING)\n";
+        switch(addr->sectorType) {
+            case SR: cout << "(Residential)\n"; break;
+            case SC: cout << "(Commercial)\n"; break;
+            case SI: cout << "(Industrial)\n"; break;
+            case SP: cout << "(Public)\n"; break;
+        }
+        
+        cout << "Sector #: " << addr->sectorNumber << "\n";
+        cout << "Street/Cross-road #: " << addr->streetNumber << "\n";
+        cout << "Building/Plot #: " << addr->buildingNumber << "\n";
+    }
+    
+    void demonstrateEmergencyRouting(string code) {
+        SmartAddress* addr = lookupAddress(code);
+        if (!addr) return;
+        
+        cout << "\n=== Emergency Routing for " << code << " ===\n";
+        cout << "🚑 Nearest Hospital (SP sectors): ";
+        cout << directionToString(addr->direction) << "SP-" 
+             << addr->sectorNumber << "\n";
+        cout << "🔥 Fire Station (SP sectors): ";
+        cout << directionToString(addr->direction) << "SP-" 
+             << (addr->sectorNumber + 1) << "\n";
+        cout << "📦 Drone Delivery Hub: " << code << "\n";
+        cout << "Route calculated and optimized.\n";
     }
 };
 
 int main() {
-    SmartAddress addressSystem;
+    SmartAddressingSystem system;
     
-    addressSystem.demonstrate();
+    // Register sample addresses
+    string addr1 = system.generateSmartCode(NW, SR, 5, 2, 145);
+    system.registerAddress(addr1, NW, SR, 5, 2, 145);
+    
+    string addr2 = system.generateSmartCode(SE, SC, 12, 7, 89);
+    system.registerAddress(addr2, SE, SC, 12, 7, 89);
+    
+    string addr3 = system.generateSmartCode(NE, SI, 8, 3, 234);
+    system.registerAddress(addr3, NE, SI, 8, 3, 234);
+    
+    // Display address details
+    system.displayAddressDetails(addr1);
+    system.displayAddressDetails(addr2);
+    
+    // Demonstrate emergency routing
+    system.demonstrateEmergencyRouting(addr1);
+    system.demonstrateEmergencyRouting(addr3);
     
     return 0;
 }`
