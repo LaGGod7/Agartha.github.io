@@ -1,500 +1,1508 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goureesh Doddamani - Sustainable City Initiatives</title>
+    <title>Goureesh Doddamani | Sustainable City Portfolio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyan: { 450: '#00d4ff' }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a1628 0%, #1a2940 100%);
-            color: #e0e0e0;
-            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
-
-        nav {
-            background-color: rgba(10, 22, 40, 0.95);
-            padding: 20px 0;
-            border-bottom: 2px solid #00a8cc;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        h1, h2, h3, .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
         }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap;
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
         }
-
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 500;
-            transition: color 0.3s ease;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        nav a:hover {
-            color: #00d4ff;
+        .initiative-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
         }
-
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(180deg, rgba(10, 22, 40, 0.8) 0%, rgba(26, 41, 64, 0.6) 100%);
+        .initiative-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
         }
-
-        .hero h1 {
-            font-size: 48px;
-            color: #00d4ff;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        html.dark .initiative-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
         }
-
-        .hero-divider {
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
-            margin: 30px auto;
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        .content-container {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
+        ::-webkit-scrollbar-track {
+            background: #f3f4f6;
         }
-
-        .main-card {
-            background: rgba(30, 45, 70, 0.6);
-            border-radius: 20px;
-            padding: 60px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 168, 204, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        html.dark ::-webkit-scrollbar-track {
+            background: #111827;
         }
-
-        .section-title {
-            font-size: 36px;
-            color: #00d4ff;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .title-divider {
-            width: 60px;
-            height: 3px;
+        ::-webkit-scrollbar-thumb {
             background: #00d4ff;
-            margin: 0 auto 40px;
+            border-radius: 4px;
         }
-
-        .initiative {
-            margin-bottom: 50px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid rgba(0, 168, 204, 0.2);
+        .modal {
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
         }
-
-        .initiative:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
         }
-
-        .initiative h3 {
-            font-size: 28px;
-            color: #00d4ff;
-            margin-bottom: 20px;
-        }
-
-        .initiative p {
-            color: #b8c5d6;
-            line-height: 1.8;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-
-        .initiative ul {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .initiative li {
-            color: #b8c5d6;
-            padding-left: 30px;
-            margin-bottom: 12px;
-            position: relative;
-            line-height: 1.8;
-        }
-
-        .initiative li:before {
-            content: "•";
-            color: #00d4ff;
-            font-size: 24px;
-            position: absolute;
-            left: 10px;
-            top: -2px;
-        }
-
-        .sdg-tag {
-            display: inline-block;
-            background: rgba(0, 212, 255, 0.1);
-            color: #00d4ff;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .main-card {
-                padding: 30px 20px;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-
-            nav ul {
-                gap: 20px;
-            }
-
-            nav a {
-                font-size: 16px;
-            }
+        /* FIX: Ensures code wraps while retaining indentation */
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-x: auto;
         }
     </style>
 </head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="javascript:history.back()">← Back</a></li>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
+
+    <nav class="bg-white/90 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-city text-cyan-450 text-2xl mr-2"></i>
+                    <span class="brand-font text-xl font-bold text-gray-900 dark:text-white tracking-tight">Agartha City</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="javascript:history.back()" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 dark:hover:text-cyan-450 font-medium transition">← Back</a>
+                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 dark:hover:text-cyan-450 font-medium transition">Home</a>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 dark:hover:text-cyan-450 font-medium transition">About</a>
+                    
+                    <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition focus:outline-none">
+                        <i id="theme-icon" class="fa-solid fa-sun text-yellow-500 text-xl"></i>
+                    </button>
+                </div>
+
+                <div class="flex items-center md:hidden space-x-4">
+                    <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <i id="mobile-theme-icon" class="fa-solid fa-sun text-yellow-500 text-xl"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4 space-y-2 shadow-lg">
+            <a href="javascript:history.back()" class="block w-full text-left py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium rounded">← Back</a>
+            <a href="index.html" class="block w-full text-left py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium rounded">Home</a>
+            <a href="about.html" class="block w-full text-left py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium rounded">About</a>
+        </div>
     </nav>
 
-    <div class="content-container">
-        <div class="main-card">
-            <h2 class="section-title">Comprehensive Sustainable City Initiatives 🏙️</h2>
-            <div class="title-divider"></div>
-            
-            <p style="color: #b8c5d6; line-height: 1.8; font-size: 16px; margin-bottom: 40px; text-align: center;">
-                Hi, I am Goureesh. This document outlines the full scope of business cases developed for **Agartha** — a new, self-sufficient, and sustainable city with a population of 4 million, located between Pune and Nashik near the banks of the Pravara River. These 21 initiatives are designed to support the city's long-term growth, improve quality of life, and align with global Sustainable Development Goals (SDGs).
-            </p>
+    <main class="flex-grow relative fade-in">
+        <div class="relative bg-white dark:bg-gray-900 overflow-hidden border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+            <div class="absolute inset-0 opacity-10">
+                <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path d="M0 100 C 20 0 50 0 100 100 Z" fill="#00d4ff"></path>
+                </svg>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-br from-cyan-100/40 via-white to-white dark:from-cyan-900/20 dark:via-gray-900 dark:to-gray-900"></div>
 
-            <div style="background: rgba(0, 212, 255, 0.05); border-left: 4px solid #00d4ff; padding: 30px; margin-bottom: 50px; border-radius: 10px;">
-                <h3 style="color: #00d4ff; font-size: 24px; margin-bottom: 20px;"> Business Cases:</h3>
-                <ol style="color: #b8c5d6; line-height: 2; font-size: 16px; padding-left: 25px;">
-           
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">Comprehensive Sustainable City Initiatives</h1>
+                <div class="w-24 h-1 bg-cyan-450 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-10">
+                    Hi, I am <span class="text-cyan-450 font-semibold">Goureesh Doddamani</span>. This document outlines the full scope of business cases developed for <span class="font-semibold">Agartha</span> — a new, self-sufficient, and sustainable city with a population of 4 million, located between Pune and Nashik near the banks of the Pravara River.
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="bg-cyan-50 dark:bg-gray-800 rounded-xl p-8 border-l-4 border-cyan-450 shadow-lg mb-12">
+                <h3 class="text-2xl font-bold text-cyan-450 mb-6 flex items-center">
+                    <i class="fa-solid fa-lightbulb mr-3"></i>
+                    8 Key Business Cases
+                </h3>
+                <ol class="space-y-3 text-gray-700 dark:text-gray-300 ml-6 list-decimal">
                     <li>Road Hierarchy and Proper Classification of City Roads</li>
                     <li>Sewage Network Monitoring and Maintenance System</li>
-                    <li>Housing and Allocation</li>
                     <li>Population Forecasting and Town Planning Centre</li>
-                    <li>Bus Traffic Management</li>
-                    <li>System to show how city revenue is collected and spent</li>
                     <li>Parcel Delivery Through Small Drones</li>
-                    <li>House No Allocation</li>
-               
+                    <li>Housing and Allocation System</li>
+                    <li>Bus Traffic and Public Transport Management</li>
+                    <li>City Revenue Collection and Expenditure Transparency System</li>
+                    <li>House Number Allocation & Smart Addressing System</li>
                 </ol>
-                <p style="color: #b8c5d6; margin-top: 20px; font-style: italic;">These initiatives form the blueprint for a modern, sustainable, efficient, and inclusive urban ecosystem for the future of Agartha.</p>
+                <p class="text-gray-600 dark:text-gray-400 mt-6 italic">Click on any initiative below to see the detailed approach and implementation code.</p>
             </div>
 
+            <h2 class="text-3xl font-bold text-cyan-450 mb-8 text-center">Detailed Initiatives</h2>
+            <div class="grid grid-cols-1 gap-8">
+                
+                <div onclick="openModal(1)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-cyan-450 to-blue-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">1. Road Hierarchy and Proper Classification</h3>
+                            <i class="fa-solid fa-road text-cyan-450 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 9.1 & SDG 11.2</span>
+                        
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Agarta follows a clearly defined <b>V1–V6 road hierarchy</b> ensuring every trip has a safe and efficient path.
+                        </p>
+                        
+                        <div class="mt-4 text-cyan-450 font-semibold text-sm flex items-center">
+                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
 
+                <div onclick="openModal(2)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-blue-450 to-cyan-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">2. Sewage Network Monitoring System</h3>
+                            <i class="fa-solid fa-water text-blue-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 6.3 & SDG 11.6</span>
+                        
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Real-time monitoring, fault detection, and predictive maintenance of the entire underground sewage network.
+                        </p>
+                        
+                        <div class="mt-4 text-blue-500 font-semibold text-sm flex items-center">
+                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
 
-            <h2 class="section-title">Advanced Planning and Resource Management Initiatives (0-10)</h2>
-            <div class="title-divider"></div>
+                <div onclick="openModal(3)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-purple-450 to-pink-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">3. Population Forecasting Centre</h3>
+                            <i class="fa-solid fa-users text-purple-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 11.3 & SDG 11.a</span>
+                        
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            AI-powered prediction of future population growth, land demand, traffic load, and resource requirements.
+                        </p>
+                        
+                        <div class="mt-4 text-purple-500 font-semibold text-sm flex items-center">
+                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
 
-           <div class="initiative">
-    <h3>1. Road Hierarchy and Proper Classification of City Roads</h3>
-    <span class="sdg-tag">SDG 9.1 & SDG 11.2</span>
+                <div onclick="openModal(4)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-green-450 to-emerald-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">4. Drone Parcel Delivery Network</h3>
+                            <i class="fa-solid fa-drone text-green-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 9.1 & SDG 11.2</span>
+                        
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Fully automated drone-based parcel delivery ensuring fast, eco-friendly last-mile logistics.
+                        </p>
+                        
+                        <div class="mt-4 text-green-500 font-semibold text-sm flex items-center">
+                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
 
-    <p>
-        Agarta follows a clearly defined <b>V1–V6 road hierarchy</b> so that every trip –
-        from intercity freight to a person walking to a park – has a safe and efficient path.
-        This supports <b>SDG 9.1</b> (reliable infrastructure) and <b>SDG 11.2</b>
-        (safe, affordable, and sustainable transport systems).
-    </p>
+                <div onclick="openModal(5)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-orange-450 to-red-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">5. Housing Allocation System</h3>
+                            <i class="fa-solid fa-home text-orange-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 11.1 & SDG 9.1</span>
+                        
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Four-tier housing model ensuring fair, data-driven allocation for all income groups.
+                        </p>
+                        
+                        <div class="mt-4 text-orange-500 font-semibold text-sm flex items-center">
+                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
 
-    <p>The hierarchy is as follows:</p>
-    <ul>
-        <li><b>V1 – Regional Expressways</b><br>
-            High-speed corridors connecting Agarta to Pune, Nashik and the outer ring road.
-            Limited access, grade-separated junctions, and dedicated freight lanes.
-        </li>
+                <div onclick="openModal(6)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-yellow-450 to-amber-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">6. Bus Traffic Management</h3>
+                            <i class="fa-solid fa-bus text-yellow-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 11.2 & SDG 13.2</span>
+                        
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Bus-first public transport strategy with three-layer service design and smart management.
+                        </p>
+                        
+                        <div class="mt-4 text-yellow-500 font-semibold text-sm flex items-center">
+                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
 
-        <li><b>V2 – City Arterial Roads</b><br>
-            Major roads connecting different parts of Agarta and linking to V1.
-            Carry high volumes of traffic, support BRT and intercity buses,
-            and connect large commercial and industrial sectors.
-        </li>
+                <div onclick="openModal(7)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-indigo-450 to-purple-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">7. Revenue Transparency System</h3>
+                            <i class="fa-solid fa-coins text-indigo-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 16.6 & SDG 11.a</span>
+                        
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Public display of how city revenue is collected and spent with real-time dashboards.
+                        </p>
+                        
+                        <div class="mt-4 text-indigo-500 font-semibold text-sm flex items-center">
+                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
 
-        <li><b>V3 – Sector Connectors</b><br>
-            Roads that connect one sector to another (residential–commercial–industrial).
-            They distribute traffic from V2 into the internal grid of each sector.
-        </li>
+                <div onclick="openModal(8)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-teal-450 to-cyan-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">8. Smart Addressing System</h3>
+                            <i class="fa-solid fa-map-marked-alt text-teal-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 9.1 & SDG 11.3</span>
+                        
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Unified digital address system with structured smart-code format.
+                        </p>
+                        
+                        <div class="mt-4 text-teal-500 font-semibold text-sm flex items-center">
+                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
 
-        <li><b>V4 – Internal Sector Roads</b><br>
-            Roads inside each sector, dividing it into blocks and mini-sectors.
-            They primarily handle local traffic, school buses, and service vehicles.
-        </li>
+            </div>
+        </div>
+    </main>
 
-        <li><b>V5 – Access Lanes & Service Roads</b><br>
-            Short roads providing access to individual plots, parking areas,
-            loading/unloading bays, and service entrances.
-        </li>
-
-        <li><b>V6 – Pedestrian and Cycle Network</b><br>
-            Continuous, safe, and shaded paths for walking and cycling, designed so that
-            a person can travel from one end of the city to another without using a motor vehicle.
-            These paths often run parallel to green belts and the riverfront.
-        </li>
-    </ul>
-
-    <p>
-        The hierarchy allows <b>speed control, traffic segregation, and emergency routing</b>.
-        It also makes it easier to apply intelligent traffic systems, priority lanes for buses,
-        and future autonomous vehicles.
-    </p>
-</div>
-
-<div class="initiative">
-    <h3>2. Sewage Network Monitoring and Maintenance System</h3>
-    <span class="sdg-tag">SDG 6.3 & SDG 11.6</span>
-
-    <p>
-        This system enables <b>real-time monitoring, fault detection, and predictive maintenance</b>
-        of the entire underground sewage network of Agartha. It directly supports
-        <b>SDG 6.3</b> (Clean Water & Sanitation) and <b>SDG 11.6</b> (Environmental Impact Reduction).
-    </p>
-
-    <p>
-        Each sewer line is equipped with <b>level, flow-rate, and toxic-gas sensors</b>. Data is
-        analyzed continuously to prevent overflows, blockages, and untreated discharge into
-        the Pravara River.
-    </p>
-
-    <ul>
-        <li>Real-time sewage level & pressure monitoring per sector.</li>
-        <li>Automatic detection of leaks and blockages.</li>
-        <li>Predictive maintenance using historical data trends.</li>
-        <li>Instant alerts to maintenance teams before system failure.</li>
-        <li>Emergency bypass routing during pipe failures.</li>
-    </ul>
-
-    <p>
-        Technically implemented using <b>Segment Trees, Graph Algorithms, and Priority Queues</b>
-        for fast fault detection and response routing.
-    </p>
-</div>
-
-
-<div class="initiative">
-    <h3>3. Population Forecasting and Town Planning Centre</h3>
-    <span class="sdg-tag">SDG 11.3 & SDG 11.a</span>
-
-    <p>
-        This centre predicts <b>future population growth, land demand, traffic load,
-        water consumption, power requirements, and housing needs</b> for the next 30–50 years.
-    </p>
-
-    <p>
-        Data is collected from birth records, migration entries, housing allocations,
-        and employment zones to generate accurate urban growth models.
-    </p>
-
-    <ul>
-        <li>AI-based demand forecasting for housing and transport.</li>
-        <li>Prevents infrastructure overload.</li>
-        <li>Ensures equitable public resource distribution.</li>
-        <li>Optimizes land use zoning decisions.</li>
-    </ul>
-
-    <p>
-        Implemented using <b>Fenwick Trees for real-time population updates,
-        AVL Trees for balanced data storage, and Merge Sort for demographic analysis.</b>
-    </p>
-</div>
-
-
-
-
-  <div class="initiative">
-    <h3>4. Parcel Delivery Through Small Drones</h3>
-    <span class="sdg-tag">SDG 9.1 & SDG 11.2</span>
-
-    <p>
-        A fully automated <b>drone-based parcel delivery network</b> ensures fast,
-        eco-friendly last-mile logistics across all zones of Agartha.
-    </p>
-
-    <p>
-        Drones operate between micro-hubs placed on commercial buildings,
-        hospitals, and logistics centers.
-    </p>
-
-    <ul>
-        <li>Reduces road traffic congestion.</li>
-        <li>No fuel emissions – electric drone fleet.</li>
-        <li>Medical emergency & night delivery support.</li>
-        <li>Fastest routing using GPS + shortest path algorithms.</li>
-    </ul>
-
-    <p>
-        The routing engine is built using <b>Graph Algorithms, Dijkstra’s Algorithm,
-        Hash Maps, and Priority Queues</b>.
-    </p>
-</div>
-
+    <div id="caseModal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative z-10 transition-colors">
             
- <div class="initiative">
-    <h3>5. Housing and Allocation System</h3>
-    <span class="sdg-tag">SDG 11.1 & SDG 9.1</span>
-
-    <p>
-        This initiative supports <b>SDG 11.1</b> (Access to Adequate, Safe and Affordable Housing) 
-        and <b>SDG 9.1</b> (Resilient Infrastructure) by ensuring a structured, fair, 
-        and data-driven housing allocation mechanism for Agartha.
-    </p>
-
-    <p>
-        The city follows a <b>Four-Tier Housing Model</b> to serve different income groups 
-        while maintaining equality, accessibility, and sustainability.
-    </p>
-
-    <ul>
-        <li><b>Type-1: Affordable Housing</b> (700–900 sq.ft) — For EWS & LIG citizens near industrial and service zones.</li>
-        <li><b>Type-2: Standard Apartments</b> (900–1200 sq.ft) — For middle-income families inside core residential sectors.</li>
-        <li><b>Type-3: Premium Apartments</b> (1200–2000 sq.ft) — For professionals near commercial and IT hubs.</li>
-        <li><b>Type-4: Luxury Villas & Bungalows</b> (2000+ sq.ft) — Located near riverfront and low-density green zones.</li>
-        <li>Each residential sector also includes <b>internal parks, playgrounds, schools, and health centers.</b></li>
-        <li>Allocation is done digitally based on <b>income group, family size, job location, and preference.</b></li>
-    </ul>
-</div>
-
-
-                 
-   <div class="initiative">
-    <h3>6. Bus Traffic and Public Transport Management</h3>
-    <span class="sdg-tag">SDG 11.2 & SDG 13.2</span>
-
-    <p>
-        Agarta uses a <b>bus-first public transport strategy</b> designed around the V1–V6
-        road hierarchy. This supports <b>SDG 11.2</b> (safe and affordable transport)
-        and <b>SDG 13.2</b> (integration of climate measures in city planning) by reducing
-        private vehicle dependency and emissions.
-    </p>
-
-    <p>The system combines three layers of bus services:</p>
-    <ul>
-        <li><b>Trunk BRT (Bus Rapid Transit) Routes</b><br>
-            Operate on <b>V1 and V2 corridors</b> with dedicated lanes, off-board ticketing,
-            level boarding, and signal priority at junctions.
-        </li>
-
-        <li><b>Feeder and Loop Buses</b><br>
-            Smaller buses running on <b>V3 and V4 roads</b>, connecting neighborhoods,
-            schools, and commercial sectors to the nearest BRT station.
-        </li>
-
-        <li><b>Last-Mile & On-Demand Services</b><br>
-            Electric mini-buses and shuttles using <b>V4 and V5 roads</b> for last-mile
-            connectivity, especially for elderly and differently-abled citizens.
-        </li>
-    </ul>
-
-    <p><b>Smart Bus Management Platform:</b></p>
-    <ul>
-        <li>Real-time GPS tracking of buses and live ETA display at stations and on mobile apps.</li>
-        <li>Dynamic scheduling based on demand: peak-hour frequency increase and off-peak optimization.</li>
-        <li>Priority at signals on V2 roads using adaptive traffic lights.</li>
-        <li>Integrated ticketing system (smart cards / UPI) common to BRT, feeders, and metro.</li>
-    </ul>
-
-    <p>
-        From a technical point of view, the system uses <b>graphs and shortest-path algorithms</b>
-        to design optimal routes, <b>queues</b> to simulate and control bus dispatch,
-        and <b>priority queues (heaps)</b> to handle delays and rescheduling.
-    </p>
-</div>
-          
-
-<div class="initiative">
-    <h3>7. City Revenue Collection and Expenditure Transparency System</h3>
-    <span class="sdg-tag">SDG 16.6 & SDG 11.a</span>
-
-    <p>
-        This system publicly displays <b>how city revenue is collected and spent</b>
-        across infrastructure, health, transport, housing, and environment.
-    </p>
-
-    <p>
-        Revenue sources include property tax, commercial licensing,
-        industrial tax, tourism, transport fares, and utilities.
-    </p>
-
-    <ul>
-        <li>Real-time financial dashboards.</li>
-        <li>Public audit transparency.</li>
-        <li>Fraud detection and anomaly tracking.</li>
-        <li>Budget optimization for city services.</li>
-    </ul>
-
-    <p>
-        Implemented using <b>Red-Black Trees for ordered finance records,
-        Hashing for instant lookup,
-        and Heaps for top-spending department tracking.</b>
-    </p>
-</div>
-
-
- <div class="initiative">
-    <h3>8. House Number Allocation & Smart Addressing System</h3>
-    <span class="sdg-tag">SDG 9.1 & SDG 11.3</span>
-
-    <p>
-        This initiative provides a unified <b>digital address and building identification system</b> 
-        for the entire Agartha city to support navigation, emergency services, postal delivery, 
-        and smart governance.
-    </p>
-
-    <p>
-        The house number format follows a structured smart-code:
-        <br><b>Format:</b> [Direction][Sector-Type][Sector-Number][Street-Number][Building-Number]
-        <br><b>Example:</b> <b>NWSR-1-10</b>
-    </p>
-
-    <ul>
-        <li><b>NW</b> → North-West City Zone</li>
-        <li><b>SR</b> → Sector Residential (SC-Commercial, SI-Industrial, SP-Public)</li>
-        <li><b>1</b> → Sub-sector or cross road number</li>
-        <li><b>10</b> → Building or plot number</li>
-        <li>Integrated with <b>GIS mapping, emergency response, drones, and smart postal services.</b></li>
-        <li>Supports <b>automatic routing for ambulances, fire brigades, and delivery services.</b></li>
-    </ul>
-</div>
- 
-
+            <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                <h3 id="modalTitle" class="text-2xl font-bold text-gray-900 dark:text-white font-mono"></h3>
+                <button onclick="closeModal()" class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
             
-
-
-  
-            
-
+            <div class="p-6 overflow-y-auto bg-gray-50 dark:bg-gray-900/50">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Problem Statement</h4>
+                        <p id="modalProblem" class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"></p>
+                        
+                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Solution Approach</h4>
+                        <p id="modalApproach" class="text-gray-700 dark:text-gray-300 leading-relaxed"></p>
+                    </div>
+                    <div>
+                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Implementation Code</h4>
+                        <div class="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm">
+                            <pre><code id="modalCode" class="language-cpp hljs"></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-800 dark:text-white py-8 mt-auto transition-colors">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="brand-font text-lg font-bold">Agartha Sustainable City</span>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">Building a sustainable future, one initiative at a time.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-cyan-450 dark:hover:text-cyan-450 transition"><i class="fa-brands fa-github text-xl"></i></a>
+                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-cyan-450 dark:hover:text-cyan-450 transition"><i class="fa-brands fa-linkedin text-xl"></i></a>
+                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-cyan-450 dark:hover:text-cyan-450 transition"><i class="fa-brands fa-twitter text-xl"></i></a>
+            </div>
+        </div>
+        <div class="text-center mt-8 text-gray-500 dark:text-gray-600 text-xs">
+            © 2025 Agartha City Project by Goureesh Doddamani. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            const mobileIcon = document.getElementById('mobile-theme-icon');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                icon.classList.remove('fa-sun', 'text-yellow-500');
+                icon.classList.add('fa-moon', 'text-gray-600');
+                
+                mobileIcon.classList.remove('fa-sun', 'text-yellow-500');
+                mobileIcon.classList.add('fa-moon', 'text-gray-600');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                icon.classList.remove('fa-moon', 'text-gray-600');
+                icon.classList.add('fa-sun', 'text-yellow-500');
+                
+                mobileIcon.classList.remove('fa-moon', 'text-gray-600');
+                mobileIcon.classList.add('fa-sun', 'text-yellow-500');
+            }
+        }
+
+        // Initialize Theme
+        if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            document.documentElement.classList.remove('dark');
+            const icon = document.getElementById('theme-icon');
+            const mobileIcon = document.getElementById('mobile-theme-icon');
+            if (icon) {
+                icon.classList.remove('fa-sun', 'text-yellow-500');
+                icon.classList.add('fa-moon', 'text-gray-600');
+            }
+            if (mobileIcon) {
+                mobileIcon.classList.remove('fa-sun', 'text-yellow-500');
+                mobileIcon.classList.add('fa-moon', 'text-gray-600');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Modal Functionality
+        function openModal(caseId) {
+            const caseInfo = caseData[caseId];
+            if (!caseInfo) return;
+
+            document.getElementById('modalTitle').innerText = caseInfo.title;
+            document.getElementById('modalProblem').innerText = caseInfo.problem;
+            document.getElementById('modalApproach').innerText = caseInfo.approach;
+            document.getElementById('modalCode').textContent = caseInfo.code; 
+
+            // Highlight the newly inserted code
+            hljs.highlightAll();
+
+            document.getElementById('caseModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('caseModal').classList.remove('active');
+        }
+
+
+        // Case Data Database
+        const caseData = {
+            1: {
+                title: "Road Hierarchy Classification System",
+                problem: "Cities without proper road classification face traffic congestion, inefficient transport systems, and safety issues. Agarta needs a structured road hierarchy (V1-V6) to support intercity freight, public buses, local traffic, and pedestrian movement efficiently.",
+                approach: "We implement a Graph-based road classification system where each road type (V1-V6) has specific attributes (speed limits, access controls, permitted vehicles). The system uses Dijkstra's algorithm for optimal routing and BFS for connectivity verification across road types.",
+                code: `// Road Hierarchy Graph System
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <unordered_map>
+#include <algorithm>
+using namespace std;
+
+enum RoadType { V1, V2, V3, V4, V5, V6 };
+
+struct Road {
+    int to;
+    RoadType type;
+    int speedLimit;
+    double length;
+};
+
+class RoadHierarchy {
+    unordered_map<int, vector<Road>> graph;
+    
+public:
+    void addRoad(int from, int to, RoadType type, int speed, double len) {
+        graph[from].push_back({to, type, speed, len});
+        graph[to].push_back({from, type, speed, len});
+    }
+    
+    // Find optimal route considering road hierarchy
+    vector<int> findOptimalRoute(int start, int end, bool allowV1) {
+        priority_queue<pair<double, int>, 
+                       vector<pair<double, int>>, 
+                       greater<pair<double, int>>> pq;
+        unordered_map<int, double> dist;
+        unordered_map<int, int> parent;
+        
+        dist[start] = 0;
+        pq.push({0, start});
+        
+        while (!pq.empty()) {
+            auto [d, u] = pq.top();
+            pq.pop();
+            
+            if (u == end) break;
+            
+            for (auto& road : graph[u]) {
+                if (!allowV1 && road.type == V1) continue;
+                
+                double newDist = d + road.length / road.speedLimit;
+                
+                if (!dist.count(road.to) || newDist < dist[road.to]) {
+                    dist[road.to] = newDist;
+                    parent[road.to] = u;
+                    pq.push({newDist, road.to});
+                }
+            }
+        }
+        
+        vector<int> path;
+        for (int v = end; v != start; v = parent[v])
+            path.push_back(v);
+        path.push_back(start);
+        reverse(path.begin(), path.end());
+        return path;
+    }
+};
+
+int main() {
+    RoadHierarchy city;
+    
+    // Add roads with hierarchy
+    city.addRoad(0, 1, V1, 120, 50.0);  // Expressway
+    city.addRoad(1, 2, V2, 80, 20.0);   // Arterial
+    city.addRoad(2, 3, V4, 40, 5.0);    // Internal
+    
+    auto route = city.findOptimalRoute(0, 3, true);
+    
+    cout << "Optimal Route: ";
+    for (int node : route) cout << node << " ";
+    cout << endl;
+    
+    return 0;
+}`
+            },
+            2: {
+                title: "Sewage Network Monitoring System",
+                problem: "Traditional sewage systems lack real-time monitoring, leading to overflow incidents, blockages, and environmental pollution. Agarta's 4 million population requires a smart system to prevent sewage failures and protect the Pravara River from contamination.",
+                approach: "We use a Segment Tree for fast range queries on sewage levels across sectors, Priority Queues for maintenance task scheduling, and Graph algorithms to model the sewage network. Sensors provide real-time data, and predictive algorithms forecast potential failures.",
+                // **FIXED: This code string is now properly formatted with line breaks and indentation.**
+                code: `// Sewage Monitoring System
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+
+struct SewagePipe {
+    int id;
+    double currentLevel;
+    double capacity;
+    double flowRate;
+    int priority;   // 1=critical, 2=high, 3=normal
+};
+
+class SegmentTree {
+    vector<double> tree;
+    int n;
+    
+public:
+    SegmentTree(int size) : n(size) {
+        tree.resize(4 * n, 0);
+    }
+    
+    void update(int node, int start, int end, int idx, double val) {
+        if (start == end) {
+            tree[node] = val;
+            return;
+        }
+        int mid = (start + end) / 2;
+        if (idx <= mid)
+            update(2*node, start, mid, idx, val);
+        else
+            update(2*node+1, mid+1, end, idx, val);
+        tree[node] = max(tree[2*node], tree[2*node+1]);
+    }
+    
+    double queryMax(int node, int start, int end, int l, int r) {
+        if (r < start || end < l) return 0;
+        if (l <= start && end <= r) return tree[node];
+        int mid = (start + end) / 2;
+        return max(queryMax(2*node, start, mid, l, r),
+                   queryMax(2*node+1, mid+1, end, l, r));
+    }
+};
+
+class SewageMonitor {
+    SegmentTree levels;
+    // Max heap for maintenance priority
+    priority_queue<pair<int, SewagePipe>> alertQueue; 
+    vector<SewagePipe> pipes;
+    
+public:
+    SewageMonitor(int numPipes) : levels(numPipes), pipes(numPipes) {
+        for (int i = 0; i < numPipes; ++i) {
+            pipes[i] = {i, 0.0, 1000.0, 0.0, 3};
+        }
+    }
+    
+    void updatePipeLevel(int pipeId, double newLevel) {
+        pipes[pipeId].currentLevel = newLevel;
+        levels.update(1, 0, pipes.size()-1, pipeId, newLevel);
+        
+        double fillPercentage = newLevel / pipes[pipeId].capacity;
+        if (fillPercentage > 0.85) {
+            pipes[pipeId].priority = 1;  // Critical
+            alertQueue.push({pipes[pipeId].priority, pipes[pipeId]});
+            cout << "ALERT: Pipe " << pipeId << " at " 
+                 << (fillPercentage*100) << "% capacity!\n";
+        }
+    }
+    
+    double getMaxLevelInSector(int startPipe, int endPipe) {
+        return levels.queryMax(1, 0, pipes.size()-1, startPipe, endPipe);
+    }
+    
+    void dispatchMaintenance() {
+        if (!alertQueue.empty()) {
+            auto topElement = alertQueue.top();
+            SewagePipe pipe = topElement.second;
+            alertQueue.pop();
+            cout << "Dispatching maintenance to Pipe " << pipe.id 
+                 << " (Priority: " << topElement.first << ")\n";
+        }
+    }
+};
+
+int main() {
+    SewageMonitor monitor(100);
+    
+    // Simulate sensor updates
+    monitor.updatePipeLevel(25, 850.0);  // 85% capacity
+    monitor.updatePipeLevel(50, 920.0);  // 92% capacity
+    
+    cout << "Max level in sector 20-60: " 
+         << monitor.getMaxLevelInSector(20, 60) << "\n";
+    
+    monitor.dispatchMaintenance();
+    
+    return 0;
+}`
+            },
+            3: {
+                title: "Population Forecasting System",
+                problem: "Without accurate population forecasting, cities face infrastructure shortages, traffic congestion, and inadequate public services. Agarta needs to predict growth patterns for 30-50 years to plan housing, transport, water, and power needs.",
+                approach: "We use Fenwick Trees for efficient population updates across zones, Time Series Analysis with exponential smoothing for trend prediction, and AVL Trees for maintaining sorted demographic data. The system processes birth, death, and migration data in real-time.",
+                code: `// Population Forecasting System
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <numeric>
+#include <algorithm>
+using namespace std;
+
+class FenwickTree {
+    vector<int> tree;
+    int n;
+    
+public:
+    FenwickTree(int size) : n(size), tree(size + 1, 0) {}
+    
+    void update(int idx, int delta) {
+        for (; idx <= n; idx += idx & -idx)
+            tree[idx] += delta;
+    }
+    
+    int query(int idx) {
+        int sum = 0;
+        for (; idx > 0; idx -= idx & -idx)
+            sum += tree[idx];
+        return sum;
+    }
+    
+    int rangeQuery(int l, int r) {
+        if (l > r) return 0;
+        return query(r) - query(l - 1);
+    }
+};
+
+class PopulationForecaster {
+    FenwickTree population;
+    vector<int> historicalData;
+    int numZones;
+    
+public:
+    PopulationForecaster(int zones) : 
+        population(zones), numZones(zones) {}
+    
+    void recordPopulation(int zone, int count) {
+        // Find current population for the zone (using difference)
+        int current = population.query(zone) - population.query(zone - 1);
+        population.update(zone, count - current);
+        
+        // Only track total population for time series forecasting
+        int total = 0;
+        for (int i = 1; i <= numZones; ++i) {
+            total += population.query(i) - population.query(i - 1);
+        }
+        historicalData.push_back(total);
+    }
+    
+    // Exponential Smoothing Forecast
+    int forecastPopulation(int years) {
+        if (historicalData.empty()) return 0;
+        
+        double alpha = 0.3;   // Smoothing factor
+        double forecast = historicalData[0];
+        
+        for (size_t i = 1; i < historicalData.size(); i++) {
+            forecast = alpha * historicalData[i] + (1 - alpha) * forecast;
+        }
+        
+        // Simple growth model applied to the smoothed value
+        double growthRate = 0.025;  // 2.5% annual growth
+        // Use the last recorded population as the base for growth
+        double basePopulation = historicalData.back(); 
+        
+        double finalForecast = basePopulation * pow(1 + growthRate, years);
+        
+        return (int)finalForecast;
+    }
+    
+    int getCurrentPopulation(int zone) {
+        if (zone < 1 || zone > numZones) return 0;
+        return population.query(zone) - population.query(zone - 1);
+    }
+    
+    int getSectorPopulation(int startZone, int endZone) {
+        return population.rangeQuery(startZone, endZone);
+    }
+    
+    // Resource Planning
+    void predictResourceNeeds(int years) {
+        int futurePopulation = forecastPopulation(years);
+        
+        cout << "\n=== " << years << "-Year Forecast ===\n";
+        cout << "Projected Population: " << futurePopulation << "\n";
+        cout << "Housing Units Needed: " << futurePopulation / 4 << "\n";
+        cout << "Water (ML/day): " << futurePopulation * 0.15 << "\n";
+        cout << "Power (MW): " << futurePopulation * 0.002 << "\n";
+        cout << "Schools Required: " << futurePopulation / 5000 << "\n";
+    }
+};
+
+int main() {
+    PopulationForecaster forecaster(50);  // 50 zones
+    
+    // Record historical data
+    forecaster.recordPopulation(1, 80000);
+    forecaster.recordPopulation(2, 95000);
+    forecaster.recordPopulation(3, 105000);
+    
+    cout << "Current Sector 1-3 Population: " 
+         << forecaster.getSectorPopulation(1, 3) << "\n";
+    
+    forecaster.predictResourceNeeds(10);  // 10-year forecast
+    forecaster.predictResourceNeeds(30);  // 30-year forecast
+    
+    return 0;
+}`
+            },
+            4: {
+                title: "Drone Parcel Delivery Network",
+                problem: "Traditional ground delivery increases traffic congestion and emissions. For a smart city like Agarta, we need an automated aerial delivery system that can handle parcels, medical supplies, and emergency items efficiently.",
+                approach: "We use Dijkstra's algorithm for shortest path routing between drone hubs, A* search for obstacle avoidance, and Priority Queues for managing delivery priorities (medical > express > standard). The system maintains a graph of 3D waypoints.",
+                code: `// Drone Delivery Routing System
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <unordered_map>
+#include <cmath>
+#include <algorithm>
+using namespace std;
+
+struct Location {
+    double x, y, z;  // 3D coordinates
+    int hubId;
+};
+
+struct Delivery {
+    int priority;  // 1=medical, 2=express, 3=standard
+    Location source;
+    Location dest;
+    double weight;
+};
+
+class DroneRouter {
+    unordered_map<int, vector<pair<int, double>>> graph;
+    unordered_map<int, Location> hubs;
+    
+public:
+    void addHub(int id, Location loc) {
+        hubs[id] = loc;
+    }
+    
+    void addRoute(int from, int to, double distance) {
+        graph[from].push_back({to, distance});
+        graph[to].push_back({from, distance});
+    }
+    
+    double calculateDistance(Location a, Location b) {
+        return sqrt(pow(a.x - b.x, 2) + 
+                    pow(a.y - b.y, 2) + 
+                    pow(a.z - b.z, 2));
+    }
+    
+    vector<int> findRoute(int startHub, int endHub) {
+        priority_queue<pair<double, int>, 
+                       vector<pair<double, int>>, 
+                       greater<>> pq;
+        unordered_map<int, double> dist;
+        unordered_map<int, int> parent;
+        
+        dist[startHub] = 0;
+        pq.push({0, startHub});
+        
+        while (!pq.empty()) {
+            auto [d, u] = pq.top();
+            pq.pop();
+            
+            if (u == endHub) break;
+            
+            for (auto [v, weight] : graph[u]) {
+                double newDist = d + weight;
+                if (!dist.count(v) || newDist < dist[v]) {
+                    dist[v] = newDist;
+                    parent[v] = u;
+                    pq.push({newDist, v});
+                }
+            }
+        }
+        
+        vector<int> path;
+        int curr = endHub;
+        while(parent.count(curr)) {
+            path.push_back(curr);
+            curr = parent[curr];
+        }
+        if (curr == startHub) path.push_back(startHub);
+        reverse(path.begin(), path.end());
+        
+        // Handle case where no route is found
+        if (path.size() < 2 && startHub != endHub) return {}; 
+        
+        return path;
+    }
+    
+    void processDeliveries(vector<Delivery>& deliveries) {
+        // Priority queue: medical first (lower number is higher priority)
+        auto cmp = [](const Delivery& a, const Delivery& b) {
+            return a.priority > b.priority;
+        };
+        priority_queue<Delivery, vector<Delivery>, decltype(cmp)> pq(cmp);
+        
+        for (auto& d : deliveries) pq.push(d);
+        
+        while (!pq.empty()) {
+            auto delivery = pq.top();
+            pq.pop();
+            
+            cout << "Processing ";
+            if (delivery.priority == 1) cout << "MEDICAL ";
+            else if (delivery.priority == 2) cout << "EXPRESS ";
+            else cout << "STANDARD ";
+            cout << "delivery\n";
+            
+            auto route = findRoute(delivery.source.hubId, 
+                                   delivery.dest.hubId);
+            cout << "Route: ";
+            if (route.empty()) {
+                cout << "No direct route found.";
+            } else {
+                for (int hub : route) cout << hub << " ";
+            }
+            cout << "\n\n";
+        }
+    }
+};
+
+int main() {
+    DroneRouter router;
+    
+    // Add delivery hubs
+    router.addHub(1, {0, 0, 50, 1});      // Hospital
+    router.addHub(2, {10, 5, 50, 2});     // Commercial
+    router.addHub(3, {20, 10, 50, 3});    // Residential
+    router.addHub(4, {15, 15, 50, 4});    // Industrial
+    
+    // Add routes
+    router.addRoute(1, 2, 12.0);
+    router.addRoute(2, 3, 11.0);
+    router.addRoute(3, 4, 8.0);
+    router.addRoute(1, 4, 18.0);
+    
+    // Create deliveries (Hub IDs are 1, 2, 3, 4)
+    vector<Delivery> deliveries = {
+        {3, {0,0,50,1}, {20,10,50,3}, 2.5},    // Standard: 1 -> 3
+        {1, {0,0,50,1}, {15,15,50,4}, 0.5},    // Medical: 1 -> 4
+        {2, {10,5,50,2}, {20,10,50,3}, 3.0}    // Express: 2 -> 3
+    };
+    
+    router.processDeliveries(deliveries);
+    
+    return 0;
+}`
+            },
+            5: {
+                title: "Housing Allocation System",
+                problem: "Fair housing distribution is critical for social equity. Agarta needs to allocate 1 million housing units across 4 tiers (affordable to luxury) based on income, family size, and proximity to workplaces, ensuring no bias and optimal resource utilization.",
+                approach: "We use a Weighted Bipartite Matching algorithm to match applicants to available housing, Dynamic Programming for optimal space allocation, and Hash Maps for O(1) applicant lookup. The system considers multiple constraints simultaneously.",
+                code: `// Housing Allocation System
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+
+enum HouseType { AFFORDABLE, STANDARD, PREMIUM, LUXURY };
+
+string houseTypeToString(HouseType type) {
+    switch(type) {
+        case AFFORDABLE: return "AFFORDABLE";
+        case STANDARD: return "STANDARD";
+        case PREMIUM: return "PREMIUM";
+        case LUXURY: return "LUXURY";
+        default: return "UNKNOWN";
+    }
+}
+
+struct Applicant {
+    int id;
+    int familySize;
+    int income;
+    int workZone;
+    HouseType preference;
+    int score;
+};
+
+struct House {
+    int id;
+    HouseType type;
+    int zone;
+    int sqft;
+    bool allocated;
+};
+
+class HousingAllocator {
+    unordered_map<int, Applicant> applicants;
+    vector<House> houses;
+    
+public:
+    void addApplicant(Applicant app) {
+        // Calculate allocation score
+        app.score = calculateScore(app);
+        applicants[app.id] = app;
+    }
+    
+    int calculateScore(const Applicant& app) {
+        int score = 0;
+        
+        // Family size priority
+        score += app.familySize * 10;
+        
+        // Income-based adjustment (more points for those applying for low-tier houses)
+        HouseType eligible = determineEligibility(app.income);
+        if (app.preference == AFFORDABLE && eligible == AFFORDABLE)
+            score += 50;
+        if (app.preference == STANDARD && eligible == STANDARD)
+            score += 30;
+            
+        // Waiting time (simulated)
+        score += 20;
+        
+        return score;
+    }
+    
+    void addHouse(House house) {
+        houses.push_back(house);
+    }
+    
+    HouseType determineEligibility(int income) {
+        if (income < 50000) return AFFORDABLE;
+        if (income < 100000) return STANDARD;
+        if (income < 200000) return PREMIUM;
+        return LUXURY;
+    }
+    
+    void allocateHouses() {
+        // Sort applicants by score (higher first)
+        vector<Applicant> sortedApps;
+        for (auto& [id, app] : applicants)
+            sortedApps.push_back(app);
+        
+        sort(sortedApps.begin(), sortedApps.end(),
+             [](const Applicant& a, const Applicant& b) {
+                 return a.score > b.score;
+             });
+        
+        cout << "\n=== Housing Allocation Results ===\n\n";
+        
+        for (auto& app : sortedApps) {
+            HouseType eligible = determineEligibility(app.income);
+            
+            // Find best matching house
+            int bestHouseIndex = -1;
+            int minDistance = 1e9;
+            
+            for (int i = 0; i < houses.size(); i++) {
+                if (houses[i].allocated) continue;
+                // Match based on income eligibility
+                if (houses[i].type != eligible) continue; 
+                
+                // Prioritize houses near work zone (minimal travel)
+                int distance = abs(houses[i].zone - app.workZone);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    bestHouseIndex = i;
+                }
+            }
+            
+            if (bestHouseIndex != -1) {
+                houses[bestHouseIndex].allocated = true;
+                cout << "Applicant " << app.id << " (Score: " << app.score 
+                     << ") -> House " << houses[bestHouseIndex].id 
+                     << " (Type: " << houseTypeToString(houses[bestHouseIndex].type)
+                     << ", Zone: " << houses[bestHouseIndex].zone << ")\n";
+            } else {
+                cout << "Applicant " << app.id 
+                     << " added to waiting list\n";
+            }
+        }
+    }
+    
+    void generateReport() {
+        int allocated = 0;
+        for (auto& house : houses)
+            if (house.allocated) allocated++;
+        
+        int waiting = applicants.size() - allocated;
+        
+        cout << "\n=== Allocation Report ===\n";
+        cout << "Total Houses (Available in system): " << houses.size() << "\n";
+        cout << "Allocated: " << allocated << "\n";
+        cout << "Waiting List (Unmatched applicants): " << waiting << "\n";
+        cout << "Allocation Rate: " 
+             << (allocated * 100.0 / applicants.size()) << "% (of applicants)\n";
+    }
+};
+
+int main() {
+    HousingAllocator allocator;
+    
+    // Add houses
+    allocator.addHouse({101, AFFORDABLE, 5, 800, false});
+    allocator.addHouse({102, AFFORDABLE, 6, 850, false});
+    allocator.addHouse({103, STANDARD, 8, 1100, false});
+    allocator.addHouse({104, PREMIUM, 12, 1800, false});
+    allocator.addHouse({105, AFFORDABLE, 7, 800, false});
+    
+    // Add applicants
+    // Income/Preference must match eligibility to get preference boost
+    allocator.addApplicant({1, 4, 35000, 5, AFFORDABLE, 0});
+    allocator.addApplicant({2, 3, 75000, 8, STANDARD, 0});
+    allocator.addApplicant({3, 2, 150000, 12, PREMIUM, 0});
+    allocator.addApplicant({4, 5, 40000, 6, AFFORDABLE, 0});
+    allocator.addApplicant({5, 1, 250000, 10, LUXURY, 0}); // No LUXURY house available
+    
+    allocator.allocateHouses();
+    allocator.generateReport();
+    
+    return 0;
+}`
+            },
+            6: {
+                title: "Bus Traffic Management System",
+                problem: "Public transport must be efficient to reduce private vehicle usage. Agarta's bus network needs real-time management for 500+ buses across BRT, feeder, and last-mile services, with dynamic scheduling based on passenger demand.",
+                approach: "We use Graph algorithms for route optimization, Priority Queues for bus dispatch scheduling, and Sliding Window technique for real-time demand analysis. The system adjusts frequency based on peak/off-peak patterns.",
+                code: `// Bus Traffic Management System
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <unordered_map>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+
+enum BusType { BRT, FEEDER, LASTMILE };
+
+struct Bus {
+    int id;
+    BusType type;
+    int currentStop;
+    int capacity;
+    int passengers;
+    double eta;  // Estimated time to next stop (simulated)
+};
+
+struct BusStop {
+    int id;
+    string name;
+    int waitingPassengers;
+    vector<int> connectedRoutes;
+};
+
+class BusManagementSystem {
+    unordered_map<int, Bus> buses;
+    unordered_map<int, BusStop> stops;
+    // Min heap: Stores {ETA to next stop, Bus ID}
+    priority_queue<pair<double, int>, 
+                    vector<pair<double, int>>, 
+                    greater<>> dispatchQueue;
+    
+public:
+    void addBus(Bus bus) {
+        buses[bus.id] = bus;
+        dispatchQueue.push({0, bus.id});
+    }
+    
+    void addStop(BusStop stop) {
+        stops[stop.id] = stop;
+    }
+    
+    void updatePassengerCount(int stopId, int count) {
+        if (!stops.count(stopId)) return;
+        stops[stopId].waitingPassengers = count;
+        
+        // Trigger dynamic scheduling if demand is high (using a simple threshold)
+        if (count > 50) {
+            cout << "HIGH DEMAND at Stop " << stopId 
+                 << ": " << count << " passengers waiting\n";
+            dispatchExtraBus(stopId);
+        }
+    }
+    
+    void dispatchExtraBus(int stopId) {
+        // Find nearest available bus (low load factor)
+        int nearestBus = -1;
+        double minEta = 1e9;
+        
+        for (auto& [id, bus] : buses) {
+            // Check for buses that are less than 50% full
+            if ((double)bus.passengers / bus.capacity < 0.5) {
+                // Simplified ETA based on stop difference (simulated)
+                double eta = abs(bus.currentStop - stopId) * 2.0; 
+                if (eta < minEta) {
+                    minEta = eta;
+                    nearestBus = id;
+                }
+            }
+        }
+        
+        if (nearestBus != -1) {
+            cout << "Dispatching Bus " << nearestBus 
+                 << " to Stop " << stopId 
+                 << " (ETA: " << minEta << " min)\n\n";
+        }
+    }
+    
+    void updateBusPosition(int busId, int newStop, int newPassengers) {
+        if (!buses.count(busId)) return;
+        buses[busId].currentStop = newStop;
+        buses[busId].passengers = newPassengers;
+        
+        double loadFactor = (double)newPassengers / buses[busId].capacity;
+        
+        cout << "Bus " << busId << " at Stop " << newStop 
+             << " | Load: " << (loadFactor * 100) << "%\n";
+    }
+    
+    void optimizeFrequency() {
+        cout << "\n=== Frequency Optimization ===\n";
+        
+        for (auto& [id, stop] : stops) {
+            int demand = stop.waitingPassengers;
+            int recommendedFrequency;
+            
+            if (demand > 100)
+                recommendedFrequency = 5;  // Every 5 minutes
+            else if (demand > 50)
+                recommendedFrequency = 10;
+            else
+                recommendedFrequency = 15;
+            
+            cout << "Stop " << id << " (" << stop.name << "): "
+                 << "Demand=" << demand 
+                 << ", Frequency=" << recommendedFrequency << " min\n";
+        }
+    }
+    
+    void generateReport() {
+        int totalPassengers = 0;
+        int totalCapacity = 0;
+        
+        for (auto& [id, bus] : buses) {
+            totalPassengers += bus.passengers;
+            totalCapacity += bus.capacity;
+        }
+        
+        cout << "\n=== Fleet Report ===\n";
+        cout << "Active Buses: " << buses.size() << "\n";
+        cout << "Total Passengers: " << totalPassengers << "\n";
+        if (totalCapacity > 0) {
+            cout << "System Utilization: " 
+                 << (totalPassengers * 100.0 / totalCapacity) << "%\n";
+        } else {
+            cout << "System Utilization: 0%\n";
+        }
+    }
+};
+
+int main() {
+    BusManagementSystem bms;
+    
+    // Add bus stops (ID, Name, WaitingPassengers, ConnectedRoutes)
+    bms.addStop({1, "Central Station", 80, {1, 2}});
+    bms.addStop({2, "Tech Park", 120, {2, 3}});
+    bms.addStop({3, "Residential Hub", 45, {1, 3}});
+    
+    // Add buses (ID, Type, CurrentStop, Capacity, Passengers, ETA)
+    bms.addBus({101, BRT, 1, 80, 45, 0});
+    bms.addBus({102, BRT, 2, 80, 60, 0});
+    bms.addBus({201, FEEDER, 3, 40, 20, 0});
+    
+    // Simulate operations
+    bms.updatePassengerCount(2, 120);  // High demand at Tech Park
+    bms.updateBusPosition(101, 2, 65); // Bus 101 arrives at Stop 2
+    bms.updateBusPosition(102, 3, 50); // Bus 102 arrives at Stop 3
+    
+    bms.optimizeFrequency();
+    bms.generateReport();
+    
+    return 0;
+}`
+            },
+            7: {
+                title: "Revenue Transparency System",
+                problem: "Citizens demand transparency in how their taxes are spent. Agarta needs a public dashboard showing real-time revenue collection and expenditure across all departments, with fraud detection capabilities.",
+                approach: "We use Red-Black Trees for maintaining ordered financial records, Hash Maps for instant transaction lookup, and Heaps for tracking top-spending departments. Anomaly detection algorithms flag suspicious patterns.",
+                code: `// City Revenue Transparency System
+#include <iostream>
+#include <map>
+#include <unordered_map>
+#include <queue>
+#include <vector>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+enum Category {
+    PROPERTY_TAX, COMMERCIAL_TAX, UTILITIES, 
+    INFRASTRUCTURE, HEALTH, EDUCATION, TRANSPORT, OTHER
+};
+
+string getCategoryName(Category cat) {
+    switch(cat) {
+        case PROPERTY_TAX: return "Property Tax";
+        case COMMERCIAL_TAX: return "Commercial Tax";
+        case UTILITIES: return "Utilities";
+        case INFRASTRUCTURE: return "Infrastructure";
+        case HEALTH: return "Healthcare";
+        case EDUCATION: return "Education";
+        case TRANSPORT: return "Transport";
+        case OTHER: return "Other";
+        default: return "Unknown";
+    }
+}
+
+struct Transaction {
+    int id;
+    Category category;
+    double amount; // in Crores (Cr)
+    string timestamp;
+    bool isRevenue;  // true=revenue, false=expenditure
+};
+
+class TransparencySystem {
+    // std::map is implemented as a Red-Black Tree in C++
+    map<string, double> dailyRevenue;  
+    map<string, double> dailyExpenditure;
+    unordered_map<int, Transaction> transactions;
+    priority_queue<pair<double, Category>> topSpenders;
+    unordered_map<Category, double> categorySpending;
+    
+    double totalRevenue = 0;
+    double totalExpenditure = 0;
+    
+public:
+    void recordTransaction(Transaction txn) {
+        transactions[txn.id] = txn;
+        
+        if (txn.isRevenue) {
+            dailyRevenue[txn.timestamp] += txn.amount;
+            totalRevenue += txn.amount;
+            cout << "[REVENUE] +" << txn.amount << " Cr from " 
+                 << getCategoryName(txn.category) << "\n";
+        } else {
+            dailyExpenditure[txn.timestamp] += txn.amount;
+            totalExpenditure += txn.amount;
+            
+            categorySpending[txn.category] += txn.amount;
+            
+            cout << "[EXPENSE] -" << txn.amount << " Cr for " 
+                 << getCategoryName(txn.category) << "\n";
+            
+            // Anomaly detection: Flag any single transaction over a limit
+            if (txn.amount > 100.0) {
+                cout << "  ⚠️  ALERT: Large transaction detected! (Over 100 Cr)\n";
+            }
+        }
+    }
+    
+    void showTopSpenders(int n) {
+        cout << "\n=== Top " << n << " Spending Categories ===\n";
+        
+        // Rebuild heap to ensure it reflects current total category spending
+        priority_queue<pair<double, Category>> currentTopSpenders;
+        for(auto& [category, amount] : categorySpending) {
+            currentTopSpenders.push({amount, category});
+        }
+        
+        for (int i = 0; i < n && !currentTopSpenders.empty(); i++) {
+            auto [amount, category] = currentTopSpenders.top();
+            currentTopSpenders.pop();
+            cout << i+1 << ". " << getCategoryName(category) 
+                 << ": ₹" << fixed << setprecision(2) << amount << " Cr\n";
+        }
+    }
+    
+    void generateReport() {
+        cout << "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        cout << "     FINANCIAL TRANSPARENCY REPORT\n";
+        cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
+        
+        cout << fixed << setprecision(2);
+        cout << "Total Revenue:     ₹" << totalRevenue << " Crores\n";
+        cout << "Total Expenditure: ₹" << totalExpenditure << " Crores\n";
+        cout << "Balance:           ₹" << (totalRevenue - totalExpenditure) 
+             << " Crores\n";
+        
+        double utilizationRate = (totalRevenue > 0) ? (totalExpenditure / totalRevenue) * 100 : 0.0;
+        cout << "Utilization Rate:  " << utilizationRate << "%\n";
+        
+        if (utilizationRate > 95 && totalRevenue > 0) {
+            cout << "⚠️  High utilization - budget review recommended\n";
+        }
+        
+        cout << "\n📊 Daily Revenue Breakdown:\n";
+        for (auto& [date, amount] : dailyRevenue) {
+            cout << "  " << date << " : ₹" << amount << " Cr\n";
+        }
+
+        cout << "\n📉 Daily Expenditure Breakdown:\n";
+        for (auto& [date, amount] : dailyExpenditure) {
+            cout << "  " << date << " : ₹" << amount << " Cr\n";
+        }
+
+        cout << "\n────────────────────────────────────────\n";
+        cout << " End of Financial Transparency Report\n";
+        cout << "────────────────────────────────────────\n";
+    }
+};
+
+int main() {
+    TransparencySystem system;
+
+    // Sample Transactions (Amount in Crores)
+    system.recordTransaction({1, PROPERTY_TAX, 75.5, "2025-01-10", true});
+    system.recordTransaction({2, COMMERCIAL_TAX, 120.0, "2025-01-10", true});
+    system.recordTransaction({3, HEALTH, 45.2, "2025-01-10", false});
+    system.recordTransaction({4, INFRASTRUCTURE, 150.8, "2025-01-11", false}); // ALERT
+    system.recordTransaction({5, EDUCATION, 22.9, "2025-01-11", false});
+    system.recordTransaction({6, UTILITIES, 95.0, "2025-01-11", true});
+    system.recordTransaction({7, INFRASTRUCTURE, 30.0, "2025-01-11", false});
+
+    cout << "\n";
+    system.showTopSpenders(3);
+
+    cout << "\n";
+    system.generateReport();
+
+    return 0;
+}
+`
+            },
+            8: {
+                title: "Smart Addressing System",
+                problem: "Inefficient and inconsistent addressing causes delays in logistics, emergency response, and municipal services. Agartha needs a simple, geocoded smart-code system for every physical location.",
+                approach: "We implement a Geohash-style Quadtree or K-D Tree structure to map coordinates to a unique address code. The system uses a fixed-length hexadecimal code for high-precision lookup, allowing O(log N) search time.",
+                code: `// Smart Addressing System (Simplified Geohash-style)
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <algorithm>
+#include <unordered_map>
+#include <iomanip>
+using namespace std;
+
+// Base32 characters for geohash-like encoding
+const string BASE32 = "0123456789bcdefghjkmnpqrstuvwxyz";
+
+// Latitude/Longitude bounds (e.g., area between Pune and Nashik)
+const double MIN_LAT = 18.0, MAX_LAT = 20.0;
+const double MIN_LON = 73.0, MAX_LON = 75.0;
+
+class SmartAddress {
+private:
+    // Helper function to encode coordinate using binary search
+    string encodeCoord(double value, double minVal, double maxVal, int bits) {
+        string code = "";
+        for (int i = 0; i < bits; ++i) {
+            double mid = (minVal + maxVal) / 2.0;
+            if (value > mid) {
+                code += '1';
+                minVal = mid;
+            } else {
+                code += '0';
+                maxVal = mid;
+            }
+        }
+        return code;
+    }
+
+    // Helper function to interleave (Z-order curve approximation)
+    string interleave(const string& latBits, const string& lonBits) {
+        string interleaved = "";
+        size_t len = min(latBits.length(), lonBits.length());
+        for (size_t i = 0; i < len; ++i) {
+            interleaved += lonBits[i];
+            interleaved += latBits[i];
+        }
+        return interleaved;
+    }
+
+    // Helper function to convert 5-bit binary string to Base32 char
+    char binToB32(const string& bin) {
+        int val = 0;
+        for (char c : bin) {
+            val = (val << 1) | (c - '0');
+        }
+        return BASE32[val];
+    }
+
+public:
+    // Generates a Geohash-style code (precision = number of Base32 characters)
+    string generateSmartCode(double lat, double lon, int precision = 12) {
+        // Total bits needed (5 bits per character)
+        int bits = precision * 5; 
+        
+        string latBits = encodeCoord(lat, MIN_LAT, MAX_LAT, bits / 2);
+        string lonBits = encodeCoord(lon, MIN_LON, MAX_LON, bits / 2);
+        string interleavedBits = interleave(latBits, lonBits);
+        
+        string smartCode = "";
+        for (size_t i = 0; i < interleavedBits.length(); i += 5) {
+            string chunk = interleavedBits.substr(i, 5);
+            if (chunk.length() == 5) {
+                smartCode += binToB32(chunk);
+            }
+        }
+        
+        return smartCode;
+    }
+
+    // Example of a structured smart address (incorporating Zone and Building ID)
+    string formatAddress(const string& geocode, int zoneID, int buildingID) {
+        stringstream ss;
+        ss << setfill('0') << setw(2) << zoneID 
+           << "-" << geocode 
+           << "-" << setfill('0') << setw(4) << buildingID;
+        return ss.str();
+    }
+    
+    void demonstrate() {
+        double testLat = 19.34567;
+        double testLon = 74.56789;
+        int zone = 15;
+        int building = 458;
+        
+        string geocode = generateSmartCode(testLat, testLon, 12);
+        string fullAddress = formatAddress(geocode, zone, building);
+        
+        cout << "Coordinates: (" << testLat << ", " << testLon << ")\n";
+        cout << "Raw Geocode: " << geocode << "\n";
+        cout << "Full Smart Address:\n";
+        cout << "AGR-" << fullAddress << "\n";
+        cout << "(Format: CITY-ZONE-GEOCODE-BUILDING)\n";
+    }
+};
+
+int main() {
+    SmartAddress addressSystem;
+    
+    addressSystem.demonstrate();
+    
+    return 0;
+}`
+            }
+        };
+
+        // Initialize syntax highlighting on load
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Check for the initial dark mode preference and apply the correct icon
+             if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                // If the user prefers dark mode, the theme-icon should be 'sun'
+                document.getElementById('theme-icon').classList.remove('fa-moon', 'text-gray-600');
+                document.getElementById('theme-icon').classList.add('fa-sun', 'text-yellow-500');
+                document.getElementById('mobile-theme-icon').classList.remove('fa-moon', 'text-gray-600');
+                document.getElementById('mobile-theme-icon').classList.add('fa-sun', 'text-yellow-500');
+            } else {
+                // If the user prefers light mode, the theme-icon should be 'moon'
+                document.getElementById('theme-icon').classList.remove('fa-sun', 'text-yellow-500');
+                document.getElementById('theme-icon').classList.add('fa-moon', 'text-gray-600');
+                document.getElementById('mobile-theme-icon').classList.remove('fa-sun', 'text-yellow-500');
+                document.getElementById('mobile-theme-icon').classList.add('fa-moon', 'text-gray-600');
+            }
+
+            // Highlight any existing code blocks (though none exist initially, good practice)
+            hljs.highlightAll();
+        });
+    </script>
 </body>
 </html>
