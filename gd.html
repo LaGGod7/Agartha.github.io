@@ -331,7 +331,7 @@
                         <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Problem Statement</h4>
                         <p id="modalProblem" class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"></p>
                         
-                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Solution Approach</h4>
+                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Solution Approach / Documentation</h4>
                         <p id="modalApproach" class="text-gray-700 dark:text-gray-300 leading-relaxed"></p>
                     </div>
                     <div>
@@ -415,7 +415,14 @@
 
             document.getElementById('modalTitle').innerText = caseInfo.title;
             document.getElementById('modalProblem').innerText = caseInfo.problem;
-            document.getElementById('modalApproach').innerText = caseInfo.approach;
+            
+            // Format the approach text to include the efficiency analysis
+            let approachHtml = caseInfo.approach
+                .replace(/\n/g, '<br>')
+                .replace(/(\*\*(.*?)\*\*)/g, '<span class="text-cyan-450 font-bold">$2</span>');
+
+            document.getElementById('modalApproach').innerHTML = approachHtml;
+            
             document.getElementById('modalCode').textContent = caseInfo.code; 
 
             // Highlight the newly inserted code
@@ -434,7 +441,9 @@
             1: {
                 title: "Road Hierarchy Classification System",
                 problem: "Cities without proper road classification face traffic congestion, inefficient transport systems, and safety issues. Agarta needs a structured road hierarchy (V1-V6) to support intercity freight, public buses, local traffic, and pedestrian movement efficiently.",
-                approach: "We implement a Graph-based road classification system where each road type (V1-V6) has specific attributes (speed limits, access controls, permitted vehicles). The system uses Dijkstra's algorithm for optimal routing and BFS for connectivity verification across road types. The hierarchy is as follows: V1 – Regional Expressways (high-speed corridors connecting Agarta to Pune, Nashik and the outer ring road with limited access and grade-separated junctions); V2 – City Arterial Roads (major roads connecting different parts of Agarta with support for BRT and intercity buses); V3 – Sector Connectors (roads connecting residential–commercial–industrial sectors); V4 – Internal Sector Roads (roads dividing sectors into blocks and mini-sectors); V5 – Access Lanes & Service Roads (providing access to individual plots and parking areas); V6 – Pedestrian and Cycle Network (continuous safe paths for walking and cycling). The hierarchy allows speed control, traffic segregation, and emergency routing, making it easier to apply intelligent traffic systems and future autonomous vehicles.",
+                approach: "We implement a Graph-based road classification system where each road type (V1-V6) has specific attributes (speed limits, access controls, permitted vehicles). The system uses Dijkstra's algorithm for optimal routing and BFS for connectivity verification across road types.\n\n" +
+                          "**Documentation:** The hierarchy allows speed control, traffic segregation, and emergency routing.\n" +
+                          "**Efficiency Analysis:** Dijkstra's algorithm runs in **O(E + V log V)** with a Priority Queue, ensuring fast pathfinding across the city road network (Graph G=(V, E)).",
                 code: `// Road Hierarchy Graph System
 #include <iostream>
 #include <vector>
@@ -520,8 +529,9 @@ int main() {
             2: {
                 title: "Sewage Network Monitoring System",
                 problem: "Traditional sewage systems lack real-time monitoring, leading to overflow incidents, blockages, and environmental pollution. Agarta's 4 million population requires a smart system to prevent sewage failures and protect the Pravara River from contamination.",
-                approach: "We use a Segment Tree for fast range queries on sewage levels across sectors, Priority Queues for maintenance task scheduling, and Graph algorithms to model the sewage network. Sensors provide real-time data, and predictive algorithms forecast potential failures.",
-                // **FIXED: This code string is now properly formatted with line breaks and indentation.**
+                approach: "We use a **Segment Tree** for fast range queries on sewage levels across sectors, and **Priority Queues** for immediate maintenance task scheduling. Sensors provide real-time data, and predictive algorithms forecast potential failures.\n\n" +
+                          "**Documentation:** The Segment Tree allows quick identification of the maximum sewage level (highest overflow risk) within any defined segment of the underground network.\n" +
+                          "**Efficiency Analysis:** Range Maximum Query (RMQ) and updates take **O(log N)** using the Segment Tree, where N is the number of pipe segments, ensuring real-time performance.",
                 code: `// Sewage Monitoring System
 #include <iostream>
 #include <vector>
@@ -626,9 +636,11 @@ int main() {
 }`
             },
             3: {
-                title: "Population Forecasting System",
+                title: "Population Forecasting Centre",
                 problem: "Without accurate population forecasting, cities face infrastructure shortages, traffic congestion, and inadequate public services. Agarta needs to predict growth patterns for 30-50 years to plan housing, transport, water, and power needs.",
-                approach: "We use Fenwick Trees for efficient population updates across zones, Time Series Analysis with exponential smoothing for trend prediction, and AVL Trees for maintaining sorted demographic data. The system processes birth, death, and migration data in real-time.",
+                approach: "We use **Fenwick Trees (BIT)** for efficient population updates across zones, enabling quick calculation of cumulative population changes. Time Series Analysis with exponential smoothing predicts future trends.\n\n" +
+                          "**Documentation:** The Fenwick Tree is ideal for handling frequent updates and rapid prefix sum queries across the city's segmented population data.\n" +
+                          "**Efficiency Analysis:** Population updates and range sum queries are both **O(log N)**, where N is the number of city zones.",
                 code: `// Population Forecasting System
 #include <iostream>
 #include <vector>
@@ -747,7 +759,9 @@ int main() {
             4: {
                 title: "Drone Parcel Delivery Network",
                 problem: "Traditional ground delivery increases traffic congestion and emissions. For a smart city like Agarta, we need an automated aerial delivery system that can handle parcels, medical supplies, and emergency items efficiently.",
-                approach: "We use Dijkstra's algorithm for shortest path routing between drone hubs, A* search for obstacle avoidance, and Priority Queues for managing delivery priorities (medical > express > standard). The system maintains a graph of 3D waypoints.",
+                approach: "We use **Dijkstra's algorithm** for shortest path routing between drone hubs, and **Priority Queues** for managing delivery priorities (medical > express > standard). The system models the delivery space as a 3D graph of waypoints.\n\n" +
+                          "**Documentation:** Priority Queues ensure critical deliveries (like medical supplies) are always processed first, minimizing dispatch latency.\n" +
+                          "**Efficiency Analysis:** The routing component using Dijkstra's algorithm runs in **O(E + V log V)**, where V is the number of drone hubs and E is the number of aerial routes, guaranteeing optimal path selection.",
                 code: `// Drone Delivery Routing System
 #include <iostream>
 #include <vector>
@@ -890,9 +904,11 @@ int main() {
 }`
             },
             5: {
-                title: "Housing and Allocation System",
+                title: "Housing Allocation System",
                 problem: "Fair housing distribution is critical for social equity. This initiative supports SDG 11.1 (Access to Adequate, Safe and Affordable Housing) and SDG 9.1 (Resilient Infrastructure) by ensuring a structured, fair, and data-driven housing allocation mechanism for Agartha.",
-                approach: "The city follows a Four-Tier Housing Model to serve different income groups while maintaining equality, accessibility, and sustainability. Type-1: Affordable Housing (700–900 sq.ft) for EWS & LIG citizens near industrial and service zones. Type-2: Standard Apartments (900–1200 sq.ft) for middle-income families inside core residential sectors. Type-3: Premium Apartments (1200–2000 sq.ft) for professionals near commercial and IT hubs. Type-4: Luxury Villas & Bungalows (2000+ sq.ft) located near riverfront and low-density green zones. Each residential sector includes internal parks, playgrounds, schools, and health centers. Allocation is done digitally based on income group, family size, job location, and preference.",
+                approach: "The city follows a Four-Tier Housing Model to serve different income groups while maintaining equality, accessibility, and sustainability. Type-1: Affordable Housing (700–900 sq.ft); Type-2: Standard Apartments (900–1200 sq.ft); Type-3: Premium Apartments (1200–2000 sq.ft); Type-4: Luxury Villas (2000+ sq.ft). Allocation is prioritized based on **score**, which is a weighted sum of income eligibility, family size, and proximity to the work zone.\n\n" +
+                          "**Documentation:** The system uses sorting (Merge/Quick Sort variant) to prioritize applicants based on their calculated score. Location preference is handled by finding the nearest zone.\n" +
+                          "**Efficiency Analysis:** The primary allocation bottleneck is sorting the applicants, resulting in a complexity of **O(A log A)**, where A is the total number of applicants. Lookup/matching is essentially linear in the number of available houses, O(H).",
                 code: `// Housing Allocation System
 #include <iostream>
 #include <vector>
@@ -1060,7 +1076,9 @@ int main() {
             6: {
                 title: "Bus Traffic Management System",
                 problem: "Public transport must be efficient to reduce private vehicle usage. Agarta's bus network needs real-time management for 500+ buses across BRT, feeder, and last-mile services, with dynamic scheduling based on passenger demand.",
-                approach: "We use Graph algorithms for route optimization, Priority Queues for bus dispatch scheduling, and Sliding Window technique for real-time demand analysis. The system adjusts frequency based on peak/off-peak patterns.",
+                approach: "We use **Graph algorithms** for route optimization, **Priority Queues** for bus dispatch scheduling, and the **Sliding Window** technique for real-time demand analysis.\n\n" +
+                          "**Documentation:** The system prioritizes the dispatch of an extra bus (Greedy approach) if passenger demand exceeds a certain threshold at any stop.\n" +
+                          "**Efficiency Analysis:** The core logic involves iterating over the fleet and stops, resulting in a complexity of **O(F * S)** for dispatch decisions, where F is the fleet size and S is the number of stops. This is efficient for dynamic routing decisions.",
                 code: `// Bus Traffic Management System
 #include <iostream>
 #include <vector>
@@ -1200,9 +1218,6 @@ int main() {
     // Add bus stops (ID, Name, WaitingPassengers, ConnectedRoutes)
     bms.addStop({1, "Central Station", 80, {1, 2}});
     bms.addStop({2, "Tech Park", 120, {2, 3}});
-    bms.addStop({3, "Residential Hub", 45, {1, 3}});
-    
-    // Add buses (ID, Type, CurrentStop, Capacity, Passengers, ETA)
     bms.addBus({101, BRT, 1, 80, 45, 0});
     bms.addBus({102, BRT, 2, 80, 60, 0});
     bms.addBus({201, FEEDER, 3, 40, 20, 0});
@@ -1221,7 +1236,9 @@ int main() {
             7: {
                 title: "Revenue Transparency System",
                 problem: "Citizens demand transparency in how their taxes are spent. Agarta needs a public dashboard showing real-time revenue collection and expenditure across all departments, with fraud detection capabilities.",
-                approach: "We use Red-Black Trees for maintaining ordered financial records, Hash Maps for instant transaction lookup, and Heaps for tracking top-spending departments. Anomaly detection algorithms flag suspicious patterns.",
+                approach: "We use **Red-Black Trees** (via `std::map`) for maintaining ordered financial records, **Hash Maps** for instant transaction lookup, and **Heaps** for tracking top-spending departments.\n\n" +
+                          "**Documentation:** The system flags unusually large single transactions (> ₹100 Cr) as potential anomalies for immediate audit.\n" +
+                          "**Efficiency Analysis:** Lookup, insertion, and deletion of financial records (transactions) are performed in **O(log N)** time due to the use of the Red-Black Tree structure.",
                 code: `// City Revenue Transparency System
 #include <iostream>
 #include <map>
@@ -1371,7 +1388,9 @@ int main() {
             8: {
                 title: "House Number Allocation & Smart Addressing System",
                 problem: "Inefficient and inconsistent addressing causes delays in logistics, emergency response, and municipal services. This initiative provides a unified digital address and building identification system for the entire Agartha city to support navigation, emergency services, postal delivery, and smart governance.",
-                approach: "The house number format follows a structured smart-code format: [Direction][Sector-Type][Sector-Number][Street-Number][Building-Number]. Example: NWSR-1-10 where NW = North-West City Zone, SR = Sector Residential (SC-Commercial, SI-Industrial, SP-Public), 1 = Sub-sector or cross road number, 10 = Building or plot number. The system is integrated with GIS mapping, emergency response, drones, and smart postal services, supporting automatic routing for ambulances, fire brigades, and delivery services.",
+                approach: "The house number format follows a structured smart-code format: [Direction][Sector-Type]-[Sector-Number]-[Street-Number]-[Building-Number]. Example: NWSR-1-10. \n\n" +
+                          "**Documentation:** The system uses **Hash Maps** for near O(1) retrieval of full address details from the compact smart-code. It is integrated with GIS mapping and routing systems.\n" +
+                          "**Efficiency Analysis:** Address lookup and retrieval using the Hash Map is **O(1)** on average, which is critical for real-time services like emergency dispatch and drone routing. Address generation is **O(L)**, where L is the length of the smart-code string.",
                 code: `// Smart Addressing System - Agartha Smart-Code Format
 #include <iostream>
 #include <string>
