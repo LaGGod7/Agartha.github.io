@@ -1,221 +1,545 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashutosh Kulkarni - Sustainable City Initiatives</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ashutosh Kulkarni | Sustainable City Portfolio</title>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a1628 0%, #1a2940 100%);
-            color: #e0e0e0;
-            min-height: 100vh;
-        }
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: { colors: { cyan: { 450: '#00d4ff' } } }
+      }
+    }
+  </script>
 
-        nav {
-            background-color: rgba(10, 22, 40, 0.95);
-            padding: 20px 0;
-            border-bottom: 2px solid #00a8cc;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #00d4ff;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(180deg, rgba(10, 22, 40, 0.8) 0%, rgba(26, 41, 64, 0.6) 100%);
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            color: #00d4ff;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-        }
-
-        .hero-divider {
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
-            margin: 30px auto;
-        }
-
-        .content-container {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-
-        .main-card {
-            background: rgba(30, 45, 70, 0.6);
-            border-radius: 20px;
-            padding: 60px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 168, 204, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .section-title {
-            font-size: 36px;
-            color: #00d4ff;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .title-divider {
-            width: 60px;
-            height: 3px;
-            background: #00d4ff;
-            margin: 0 auto 40px;
-        }
-
-        .initiative {
-            margin-bottom: 50px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid rgba(0, 168, 204, 0.2);
-        }
-
-        .initiative:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .initiative h3 {
-            font-size: 28px;
-            color: #00d4ff;
-            margin-bottom: 20px;
-        }
-
-        .initiative p {
-            color: #b8c5d6;
-            line-height: 1.8;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-
-        .initiative ul {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .initiative li {
-            color: #b8c5d6;
-            padding-left: 30px;
-            margin-bottom: 12px;
-            position: relative;
-            line-height: 1.8;
-        }
-
-        .initiative li:before {
-            content: "•";
-            color: #00d4ff;
-            font-size: 24px;
-            position: absolute;
-            left: 10px;
-            top: -2px;
-        }
-
-        .sdg-tag {
-            display: inline-block;
-            background: rgba(0, 212, 255, 0.1);
-            color: #00d4ff;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .main-card {
-                padding: 30px 20px;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-
-            nav ul {
-                gap: 20px;
-            }
-
-            nav a {
-                font-size: 16px;
-            }
-        }
-    </style>
+  <style>
+    body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+    h1,h2,h3,.brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .fade-in { animation: fadeIn .45s ease-in-out; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+    .initiative-card { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; cursor: pointer; }
+    .initiative-card:hover { transform: translateY(-5px); border-color: #00d4ff; }
+    html.dark .initiative-card:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,.5), 0 4px 6px -2px rgba(0,0,0,.3); }
+    ::-webkit-scrollbar { width:8px; } ::-webkit-scrollbar-track { background:#0b1220; } ::-webkit-scrollbar-thumb { background:#00d4ff; border-radius:4px; }
+    .modal { transition: opacity .3s ease-in-out; opacity:0; pointer-events:none; }
+    .modal.active { opacity:1; pointer-events:auto; }
+    pre { white-space: pre-wrap; word-wrap: break-word; overflow-x:auto; }
+    .code-box { background: #0b1220; padding: 12px; border-radius: 8px; }
+  </style>
 </head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="javascript:history.back()">← Back</a></li>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
 
-    <div class="content-container">
-        <div class="main-card">
-            <h2 class="section-title">Comprehensive Sustainable City Initiatives 🏙️</h2>
-            <div class="title-divider"></div>
-            
-            <p style="color: #b8c5d6; line-height: 1.8; font-size: 16px; margin-bottom: 40px; text-align: center;">
-                Hi, I am Ashutosh. This document outlines the full scope of business cases developed for <strong>Agartha</strong> — a new, self-sufficient, and sustainable city with a population of 4 million, located between Pune and Nashik near the banks of the Pravara River. These initiatives are designed to support the city's long-term growth, improve quality of life, and align with global Sustainable Development Goals (SDGs).
-            </p>
+  <nav class="bg-white/90 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex items-center">
+          <i class="fa-solid fa-city text-cyan-450 text-2xl mr-2"></i>
+          <span class="brand-font text-xl font-bold text-gray-900 dark:text-white tracking-tight">Agartha City</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="javascript:history.back()" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium">← Back</a>
+          <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium">Home</a>
+          <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium">About</a>
+          <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+            <i id="theme-icon" class="fa-solid fa-sun text-yellow-500 text-xl"></i>
+          </button>
+        </div>
+        <div class="flex items-center md:hidden space-x-4">
+          <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+            <i id="mobile-theme-icon" class="fa-solid fa-sun text-yellow-500 text-xl"></i>
+          </button>
+          <button onclick="toggleMobileMenu()" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450">
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
 
-            <div style="background: rgba(0, 212, 255, 0.05); border-left: 4px solid #00d4ff; padding: 30px; margin-bottom: 50px; border-radius: 10px;">
-                <h3 style="color: #00d4ff; font-size: 24px; margin-bottom: 20px;"> Business Cases:</h3>
-                <ol style="color: #b8c5d6; line-height: 2; font-size: 16px; padding-left: 25px;">
-                    <li>Allocation of Funds to Industries</li>
-                    <li>Electricity Substation Monitoring System</li>
-                    <li>Theatre Allocation and Management System</li>
-                    <li>Integrated Tax Management System</li>
-                    <li>City-wide Hygiene and Sanitation Monitoring</li>
-                    <li>Municipal Vehicle Allocation and Optimization (CO)</li>
-                    <li>Sector-wise Construction Planning and Coordination (CO)</li>
-                    <li>Crime Management and Police Workforce Optimization</li>
-                    <li>Integrated Tourism Promotion and Visitor Services</li>
-                    <li>Government Schemes Awareness and Beneficiary Tracking System</li>
-                </ol>
-                <p style="color: #b8c5d6; margin-top: 20px; font-style: italic;">
-                    These initiatives form the blueprint for a modern, sustainable, efficient, and inclusive urban ecosystem for the future of Agartha.
-                </p>
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4 space-y-2 shadow-lg">
+      <a href="javascript:history.back()" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded text-gray-700 dark:text-gray-200">← Back</a>
+      <a href="index.html" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded text-gray-700 dark:text-gray-200">Home</a>
+      <a href="about.html" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded text-gray-700 dark:text-gray-200">About</a>
+    </div>
+  </nav>
+
+  <main class="flex-grow relative fade-in">
+    <div class="relative bg-white dark:bg-gray-900 overflow-hidden border-b border-gray-200 dark:border-gray-800">
+      <div class="absolute inset-0 opacity-10">
+        <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M0 100 C 20 0 50 0 100 100 Z" fill="#00d4ff"></path>
+        </svg>
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-br from-cyan-100/40 via-white to-white dark:from-cyan-900/20 dark:via-gray-900 dark:to-gray-900"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">Comprehensive Sustainable City Initiatives</h1>
+        <div class="w-24 h-1 bg-cyan-450 mx-auto mb-6"></div>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-10">
+          Hi, I am <span class="text-cyan-450 font-semibold">Ashutosh Kulkarni</span>. This document outlines the full scope of business cases developed for <span class="font-semibold">Agartha</span> — a self-sufficient, sustainable city near the Pravara River.
+        </p>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-16">
+      <div class="bg-cyan-50 dark:bg-gray-800 rounded-xl p-8 border-l-4 border-cyan-450 shadow-lg mb-12">
+        <h3 class="text-2xl font-bold text-cyan-450 mb-6 flex items-center"><i class="fa-solid fa-lightbulb mr-3"></i> 8 Key Business Cases</h3>
+        <ol class="space-y-3 text-gray-700 dark:text-gray-300 ml-6 list-decimal">
+          <li>Allocation of Funds to Industries</li>
+          <li>Electricity Substation Monitoring System</li>
+          <li>Theatre Allocation and Management System</li>
+          <li>Integrated Tax Management System</li>
+          <li>City-wide Hygiene and Sanitation Monitoring</li>
+          <li>Municipal Vehicle Allocation and Optimization</li>
+          <li>Sector-wise Construction Planning & Coordination</li>
+          <li>Crime Management & Police Workforce Optimization</li>
+        </ol>
+        <p class="text-gray-600 dark:text-gray-400 mt-6 italic">Click any card below to view the approach and code samples (C++ / JS snippets).</p>
+      </div>
+
+      <h2 class="text-3xl font-bold text-cyan-450 mb-8 text-center">Detailed Initiatives</h2>
+
+      <div class="grid grid-cols-1 gap-8">
+
+        <!-- Initiative cards (1..8) -->
+        <div onclick="openModal(1)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-cyan-450 to-blue-500"></div>
+          <div class="p-8">
+            <div class="flex items-start justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">1. Allocation of Funds to Industries</h3>
+              <i class="fa-solid fa-hand-holding-dollar text-cyan-450 text-3xl"></i>
             </div>
+            <span class="inline-block bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">Policy: revenue checks, bonus & loan rules</span>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+              Fund allocation enforces revenue-based rules: 200% of annual revenue if revenue &gt; ₹5,00,000, otherwise ₹5,00,000 base. Small-scale industries get +15% bonus. Loans offered when requested. Uses priority scoring for fair disbursement.
+            </p>
+            <div class="mt-4 text-cyan-450 font-semibold text-sm flex items-center">Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i></div>
+          </div>
+        </div>
 
-           
+        <div onclick="openModal(2)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-blue-450 to-cyan-500"></div>
+          <div class="p-8">
+            <div class="flex items-start justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">2. Electricity Substation Monitoring System</h3>
+              <i class="fa-solid fa-bolt text-blue-500 text-3xl"></i>
+            </div>
+            <span class="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">Realtime telemetry • predictive maintenance</span>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+              Sensors stream voltage/current/temperature. Segment tree (over substations) + RB-tree for predicted failures and a min-heap for alarms ensures fast regional aggregation and prioritized maintenance scheduling.
+            </p>
+            <div class="mt-4 text-blue-500 font-semibold text-sm flex items-center">Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i></div>
+          </div>
+        </div>
 
-           
-           
+        <div onclick="openModal(3)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-purple-450 to-pink-500"></div>
+          <div class="p-8">
+            <div class="flex items-start justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">3. Theatre Allocation and Management</h3>
+              <i class="fa-solid fa-theater-masks text-purple-500 text-3xl"></i>
+            </div>
+            <span class="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">Venue caps: 2×2.5k, 8k, 15k</span>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+              Interval-based scheduling with venue preferences. Classical events receive discounted allocation priority. If preferred slot busy, system tries alternate venues or suggests time shifts.
+            </p>
+            <div class="mt-4 text-purple-500 font-semibold text-sm flex items-center">Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i></div>
+          </div>
+        </div>
+
+        <div onclick="openModal(4)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-green-450 to-emerald-500"></div>
+          <div class="p-8">
+            <div class="flex items-start justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">4. Integrated Tax Management System</h3>
+              <i class="fa-solid fa-receipt text-green-500 text-3xl"></i>
+            </div>
+            <span class="inline-block bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">Incentives to attract companies</span>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+              Unified portal, skip-list / ordered indexes, Fenwick for monthly aggregates, and tax-rate lookup tables. Lower road & capital-gain taxes used as incentives to encourage company formation.
+            </p>
+            <div class="mt-4 text-green-500 font-semibold text-sm flex items-center">Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i></div>
+          </div>
+        </div>
+
+        <div onclick="openModal(5)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-orange-450 to-red-500"></div>
+          <div class="p-8">
+            <div class="flex items-start justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">5. City-wide Hygiene & Sanitation Monitoring</h3>
+              <i class="fa-solid fa-broom text-orange-500 text-3xl"></i>
+            </div>
+            <span class="inline-block bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">Citizen reports • smart-bin optimisations</span>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+              Grid-hash buckets + skiplist for urgency-ordered tasks, sensor-driven smart-bin pickups, and Fenwick for daily operational KPIs help keep the city clean efficiently.
+            </p>
+            <div class="mt-4 text-orange-500 font-semibold text-sm flex items-center">Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i></div>
+          </div>
+        </div>
+
+        <div onclick="openModal(6)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-yellow-450 to-amber-500"></div>
+          <div class="p-8">
+            <div class="flex items-start justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">6. Municipal Vehicle Allocation & Optimization</h3>
+              <i class="fa-solid fa-truck text-yellow-500 text-3xl"></i>
+            </div>
+            <span class="inline-block bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">Routing (Dijkstra/A*), VRP heuristics</span>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+              Fleet inventory in HashMap, route costs via Dijkstra/A*, and VRP heuristics + heaps for dispatch. EVs assigned to routes with charging windows to reduce emissions.
+            </p>
+            <div class="mt-4 text-yellow-500 font-semibold text-sm flex items-center">Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i></div>
+          </div>
+        </div>
+
+        <div onclick="openModal(7)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-indigo-450 to-purple-500"></div>
+          <div class="p-8">
+            <div class="flex items-start justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">7. Sector-wise Construction Planning & Coordination</h3>
+              <i class="fa-solid fa-hard-hat text-indigo-500 text-3xl"></i>
+            </div>
+            <span class="inline-block bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">Sector = 8 residential blocks + center block</span>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+              DAG of tasks + topological sort to enforce dependencies, and per-block segment trees for occupancy scheduling; automated conflict detection avoids simultaneous high-impact works.
+            </p>
+            <div class="mt-4 text-indigo-500 font-semibold text-sm flex items-center">Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i></div>
+          </div>
+        </div>
+
+        <div onclick="openModal(8)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <div class="h-2 bg-gradient-to-r from-teal-450 to-cyan-500"></div>
+          <div class="p-8">
+            <div class="flex items-start justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">8. Crime Management & Police Workforce Optimization</h3>
+              <i class="fa-solid fa-shield-halved text-teal-500 text-3xl"></i>
+            </div>
+            <span class="inline-block bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">Heatmap ranking • shift matching</span>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+              Fenwick for time-windowed incident counts, AVL/skiplist for ranked hotspot lists, and bipartite-matching (Hungarian/max-flow) for officer↔shift optimization; Dijkstra for dispatch routing.
+            </p>
+            <div class="mt-4 text-teal-500 font-semibold text-sm flex items-center">Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div id="caseModal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative z-10">
+      <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+        <h3 id="modalTitle" class="text-2xl font-bold text-gray-900 dark:text-white font-mono"></h3>
+        <button onclick="closeModal()" class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
+          <i class="fa-solid fa-xmark text-2xl"></i>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto bg-gray-50 dark:bg-gray-900/50">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div>
+            <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Problem Statement</h4>
+            <p id="modalProblem" class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"></p>
+
+            <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Solution Approach / Documentation</h4>
+            <p id="modalApproach" class="text-gray-700 dark:text-gray-300 leading-relaxed"></p>
+          </div>
+
+          <div>
+            <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Implementation Code</h4>
+            <div class="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm">
+              <pre class="code-box"><code id="modalCode" class="hljs"></code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-800 dark:text-white py-8 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <span class="brand-font text-lg font-bold">Agartha Sustainable City</span>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">Building a sustainable future, one algorithm at a time.</p>
+      </div>
+      <div class="flex space-x-6">
+        <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-cyan-450"><i class="fa-brands fa-github text-xl"></i></a>
+        <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-cyan-450"><i class="fa-brands fa-linkedin text-xl"></i></a>
+        <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-cyan-450"><i class="fa-brands fa-twitter text-xl"></i></a>
+      </div>
+    </div>
+    <div class="text-center mt-8 text-gray-500 dark:text-gray-600 text-xs">© 2025 Agartha City Project by Ashutosh Kulkarni. All Rights Reserved.</div>
+  </footer>
+
+  <script>
+    // Theme toggle and mobile menu
+    function toggleTheme(){
+      const html = document.documentElement;
+      const icon = document.getElementById('theme-icon');
+      const mobileIcon = document.getElementById('mobile-theme-icon');
+      if(html.classList.contains('dark')){
+        html.classList.remove('dark'); localStorage.setItem('theme','light');
+        icon.classList.remove('fa-sun','text-yellow-500'); icon.classList.add('fa-moon','text-gray-600');
+        mobileIcon.classList.remove('fa-sun','text-yellow-500'); mobileIcon.classList.add('fa-moon','text-gray-600');
+      } else {
+        html.classList.add('dark'); localStorage.setItem('theme','dark');
+        icon.classList.remove('fa-moon','text-gray-600'); icon.classList.add('fa-sun','text-yellow-500');
+        mobileIcon.classList.remove('fa-moon','text-gray-600'); mobileIcon.classList.add('fa-sun','text-yellow-500');
+      }
+    }
+
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.getElementById('theme-icon').classList.remove('fa-moon','text-gray-600'); document.getElementById('theme-icon').classList.add('fa-sun','text-yellow-500');
+      document.getElementById('mobile-theme-icon').classList.remove('fa-moon','text-gray-600'); document.getElementById('mobile-theme-icon').classList.add('fa-sun','text-yellow-500');
+    } else {
+      document.getElementById('theme-icon').classList.remove('fa-sun','text-yellow-500'); document.getElementById('theme-icon').classList.add('fa-moon','text-gray-600');
+      document.getElementById('mobile-theme-icon').classList.remove('fa-sun','text-yellow-500'); document.getElementById('mobile-theme-icon').classList.add('fa-moon','text-gray-600');
+    }
+
+    function toggleMobileMenu(){ document.getElementById('mobile-menu').classList.toggle('hidden'); }
+
+    // Case data (full code snippets included)
+    const caseData = {
+      1: {
+        title: "Allocation of Funds to Industries",
+        problem: "We must allocate limited city funds fairly: verify revenue, support small-scale industries, and offer loans when necessary. Rules: if annual_revenue > ₹5,00,000 then base funding = 200% of revenue; else base funding = ₹5,00,000. Small-scale get +15% bonus. Loans available when requested.",
+        approach: "Use HashMap for company lookup, Max-Heap (priority by need/risk/social benefit) for selection, and Fenwick tree for monthly aggregates. Grant base funding and offer loans up to policy cap when requested. Audit logs and tranche-release after milestones ensure accountability.",
+        code:
+`// JS: compute_base_funding (exact rule)
+function compute_base_funding(company) {
+  const threshold = 500000;
+  const smallBonus = 1.15;
+  let base = (company.annual_revenue > threshold) ? 2 * company.annual_revenue : threshold;
+  if (company.category === 'small-scale') base = Math.floor(base * smallBonus);
+  return Math.floor(base);
+}
+
+// Example:
+const company = { name: 'Local Bakery', annual_revenue: 300000, category: 'small-scale' };
+console.log('Base funding:', compute_base_funding(company));`
+      },
+
+      2: {
+        title: "Electricity Substation Monitoring System",
+        problem: "Substations must be monitored to prevent overloads or failures. For many substations, regional aggregation and prioritized alerts are required. The system must support fast range queries per region and fast selection of most urgent alarms.",
+        approach: "Index substations by id (HashMap). Use a Segment Tree over the substations' indexed load values for fast regional max/aggregate queries (O(log N)). Maintain a min-heap for alarms and an ordered tree (RB-tree) for predicted failure scheduling.",
+        code:
+`// C++: Segment Tree for regional load aggregation (excerpt)
+#include <vector>
+using namespace std;
+struct SegmentTree {
+  int n; vector<double> tree;
+  SegmentTree(int size): n(size), tree(4*size, 0) {}
+  void update(int node,int s,int e,int idx,double val){
+    if(s==e){ tree[node]=val; return; }
+    int mid=(s+e)/2;
+    if(idx<=mid) update(2*node,s,mid,idx,val); else update(2*node+1,mid+1,e,idx,val);
+    tree[node]=max(tree[2*node], tree[2*node+1]);
+  }
+  double queryMax(int node,int s,int e,int l,int r){
+    if(r<s||e<l) return 0;
+    if(l<=s && e<=r) return tree[node];
+    int mid=(s+e)/2;
+    return max(queryMax(2*node,s,mid,l,r), queryMax(2*node+1,mid+1,e,l,r));
+  }
+};`
+      },
+
+      3: {
+        title: "Theatre Allocation and Management System",
+        problem: "We have 2 amphitheatres of 2.5k each, 1 large indoor of 8k, and an open space of 15k. Events must be assigned by expected audience and classical events get low-cost access. Handle overlaps and suggest alternatives.",
+        approach: "Per-venue interval managers (sorted-interval arrays + binary search) detect overlaps in O(log m). Preferred venue lists decide assignment order: ≤2500 → A1/A2 first; 2501–8000 → L1; >8000 → O1. Apply classical-event discount while booking.",
+        code:
+`// JS: IntervalManager (excerpt)
+class IntervalManager {
+  constructor(){ this.intervals = []; }
+  overlaps(s,e){
+    let lo=0, hi=this.intervals.length;
+    while(lo<hi){ let mid=(lo+hi)>>1; if(this.intervals[mid].s<=s) lo=mid+1; else hi=mid; }
+    if(lo-1>=0 && this.intervals[lo-1].e > s) return true;
+    if(lo < this.intervals.length && this.intervals[lo].s < e) return true;
+    return false;
+  }
+  insert(s,e,id){
+    let lo=0, hi=this.intervals.length;
+    while(lo<hi){ let mid=(lo+hi)>>1; if(this.intervals[mid].s<=s) lo=mid+1; else hi=mid; }
+    this.intervals.splice(lo,0,{s,e,id});
+  }
+}`
+      },
+
+      4: {
+        title: "Integrated Tax Management System",
+        problem: "Create a unified portal that simplifies tax compliance, attracts companies via incentives (lower road and capital-gains taxes), and supports fast revenue aggregation for forecasting and transparency.",
+        approach: "Use ordered indexes (skip-list equivalence) for sorted taxpayer lists, HashMap for instant taxpayer lookup, and Fenwick tree for rapid monthly revenue prefix sums. Incentives modeled by lookup tables; reductions can be applied programmatically for attracting companies.",
+        code:
+`// JS: Tax management demo (lookup table + Fenwick)
+class Fenwick {
+  constructor(n){ this.n=n; this.bit=new Array(n+1).fill(0); }
+  update(i,delta){ for(let x=i;x<=this.n;x+= x & -x) this.bit[x]+=delta; }
+  query(i){ let s=0; for(let x=i;x>0;x-= x & -x) s+=this.bit[x]; return s; }
+  rangeQuery(l,r){ return this.query(r)-this.query(l-1); }
+}
+
+const taxRates = {
+  road: { small: 0.01, medium: 0.02, large: 0.03 },
+  capgain: { small: 0.05, medium: 0.1, large: 0.15 }
+};
+
+function computeIncentive(company){
+  const size = company.size || 'small';
+  const road = taxRates.road[size] * (company.isNew ? 0.8 : 1.0);
+  const capGain = taxRates.capgain[size] * (company.isNew ? 0.9 : 1.0);
+  return { road, capGain };
+}
+
+// Demo: Fenwick monthly aggregates
+const fen = new Fenwick(12); // 12 months
+fen.update(1, 10_000); // month 1 revenue
+fen.update(2, 15_000); // month 2 revenue
+console.log('Q1 total:', fen.rangeQuery(1,3));`
+      },
+
+      5: {
+        title: "City-wide Hygiene & Sanitation Monitoring",
+        problem: "Rapid citizen reports, optimized pickup routing, and sensor-driven collection are required to maintain high hygiene standards without wasting resources.",
+        approach: "Use grid-hash (HashMap of cell → bucket) to find nearest crews (no quadtrees). Smart-bin sensors push tasks into a skip-list ordered by urgency. Fenwick tracks daily KPIs (bin fill, response times).",
+        code:
+`// JS: Grid-hash & task assignment (concept)
+function cellId(lat,lon,delta){ return Math.floor(lat/delta) + ':' + Math.floor(lon/delta); }
+const tasksByCell = new Map();
+function reportIssue(lat,lon,task){
+  const cell = cellId(lat,lon,0.01);
+  if(!tasksByCell.has(cell)) tasksByCell.set(cell,[]);
+  tasksByCell.get(cell).push(task);
+}
+// then pick crews from the cell's crew list and assign`
+      },
+
+      6: {
+        title: "Municipal Vehicle Allocation & Optimization",
+        problem: "Optimize municipal fleets for waste pickup, inspections and emergency dispatch with mixed ICE + EV fleet and charging constraints.",
+        approach: "Graph for road network (adj lists) + Dijkstra/A* for travel estimates. Use Min/Max heaps for dispatch; use VRP heuristics (Clarke-Wright or greedy cluster + route) for daily planning. EVs assigned when route range & charging windows fit.",
+        code:
+`// C++: Dijkstra core used for routing estimates
+#include <vector>
+#include <queue>
+#include <limits>
+using namespace std;
+vector<double> dijkstra(int src, const vector<vector<pair<int,double>>>& adj){
+  int n = adj.size();
+  vector<double> dist(n, numeric_limits<double>::infinity());
+  priority_queue<pair<double,int>, vector<pair<double,int>>, greater<pair<double,int>>> pq;
+  dist[src]=0; pq.push({0,src});
+  while(!pq.empty()){
+    auto [d,u]=pq.top(); pq.pop();
+    if(d>dist[u]) continue;
+    for(auto [v,w] : adj[u]){
+      if(dist[v] > d + w){ dist[v] = d+w; pq.push({dist[v], v}); }
+    }
+  }
+  return dist;
+}`
+      },
+
+      7: {
+        title: "Sector-wise Construction Planning & Coordination",
+        problem: "Each sector has 8 residential blocks + 1 center block. Construction tasks have dependencies (utilities → foundation → surface). Overlapping heavy works must be avoided per block.",
+        approach: "Model tasks as DAG, run topological sort to enforce dependencies, and use per-block segment trees (or occupancy maps) to detect date-range overlaps. If conflict arises, task is rescheduled or alerted.",
+        code:
+`// JS: topoSort + simple occupancy detection
+function topoSort(nodes, edges){
+  const indeg = {}; nodes.forEach(n=>indeg[n]=0);
+  const adj = {}; nodes.forEach(n=>adj[n]=[]);
+  edges.forEach(([u,v])=>{ adj[u].push(v); indeg[v] = (indeg[v]||0)+1; });
+  const q = [], order=[];
+  nodes.forEach(n=>{ if(indeg[n]===0) q.push(n); });
+  while(q.length){
+    const u = q.shift(); order.push(u);
+    adj[u].forEach(v=>{ indeg[v]--; if(indeg[v]===0) q.push(v); });
+  }
+  return order;
+}`
+      },
+
+      8: {
+        title: "Crime Management & Police Workforce Optimization",
+        problem: "Allocate patrols to hotspots, schedule officers to shifts, and provide minimal-response routing for incidents. Need aggregated incident counts per time window and prioritized dispatch.",
+        approach: "Use Fenwick for time-binned incident counts, AVL/SkipList for ranked hotspots, and bipartite matching (Hungarian or max-flow) for assigning officers to shifts. Use Dijkstra for dispatch routing.",
+        code:
+`// JS: Fenwick + Hungarian (mini) for officers↔shifts assignment
+// Fenwick (BIT)
+class Fenwick {
+  constructor(n){ this.n=n; this.bit=new Array(n+1).fill(0); }
+  update(i,delta){ for(let x=i;x<=this.n;x+= x & -x) this.bit[x]+=delta; }
+  query(i){ let s=0; for(let x=i;x>0;x-= x & -x) s+=this.bit[x]; return s; }
+  rangeQuery(l,r){ return this.query(r)-this.query(l-1); }
+}
+
+// Small Hungarian implementation for square cost matrix (minimization)
+function hungarian(cost) {
+  const n = cost.length;
+  const u = new Array(n+1).fill(0), v = new Array(n+1).fill(0);
+  const p = new Array(n+1).fill(0), way = new Array(n+1).fill(0);
+  for (let i=1;i<=n;i++){
+    p[0]=i;
+    let j0=0;
+    const minv = new Array(n+1).fill(Infinity);
+    const used = new Array(n+1).fill(false);
+    do {
+      used[j0]=true;
+      const i0=p[j0], delta = Infinity;
+      let j1 = 0;
+      for (let j=1;j<=n;j++) if(!used[j]){
+        const cur = cost[i0-1][j-1]-u[i0]-v[j];
+        if(cur < minv[j]) { minv[j] = cur; way[j] = j0; }
+        if(minv[j] < (minv[j1] || Infinity)) j1=j;
+      }
+      let deltaVal = Infinity;
+      for (let j=1;j<=n;j++) if(!used[j]) deltaVal = Math.min(deltaVal, minv[j]);
+      for (let j=0;j<=n;j++) {
+        if(used[j]) { u[p[j]] += deltaVal; v[j] -= deltaVal; } 
+        else minv[j] -= deltaVal;
+      }
+      j0 = j1;
+    } while(p[j0] !== 0);
+    do {
+      const j1 = way[j0];
+      p[j0] = p[j1];
+      j0 = j1;
+    } while(j0);
+  }
+  const assignment = new Array(n).fill(-1);
+  for (let j=1;j<=n;j++) if(p[j]) assignment[p[j]-1] = j-1;
+  return assignment; // assignment[i]=j means row i assigned to column j
+}`
+      }
+    };
+
+    // Modal functions
+    function openModal(caseId){
+      const info = caseData[caseId];
+      if(!info) return;
+      document.getElementById('modalTitle').innerText = info.title;
+      document.getElementById('modalProblem').innerText = info.problem;
+      document.getElementById('modalApproach').innerHTML = info.approach.replace(/\n/g,'<br>');
+      document.getElementById('modalCode').textContent = info.code;
+      hljs.highlightAll();
+      document.getElementById('caseModal').classList.add('active');
+    }
+    function closeModal(){ document.getElementById('caseModal').classList.remove('active'); }
+
+    // Highlight code blocks initially
+    document.addEventListener('DOMContentLoaded', ()=>{ hljs.highlightAll(); });
+  </script>
+</body>
+</html>
