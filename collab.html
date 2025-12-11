@@ -1,1 +1,470 @@
-in progress
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Projects - Agartha City</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyan: { 450: '#00d4ff' } // Custom Accent Color
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'space-grotesk': ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .text-cyan-450 {
+            color: #00d4ff;
+        }
+        /* Card Hover Effects */
+        .problem-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+        }
+        .problem-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+        }
+        html.dark .problem-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
+        /* Code Formatting Fix */
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-x: auto;
+        }
+        .modal {
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
+    
+    <nav class="bg-white/90 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center">
+                <i class="fa-solid fa-city text-cyan-450 text-2xl mr-2"></i>
+                <span class="brand-font text-xl font-bold text-gray-900 dark:text-white tracking-tight">Agartha City</span>
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Home</a>
+                <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">About</a>
+                <a href="gd.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Goureesh</a>
+                <a href="Ashu.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Ashutosh</a>
+                <a href="collab.html" class="text-cyan-450 dark:text-cyan-450 font-medium transition">Collab</a>
+                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition focus:outline-none">
+                    <i id="theme-icon" class="fa-solid fa-moon text-gray-600 dark:text-yellow-500 text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="about-header text-center py-16 px-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+            Collaborative Projects <span class="text-cyan-450">🤝</span>
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400 mt-2">
+            **Goureesh D & Ashutosh K:** Addressing cross-domain challenges in infrastructure and resource management.
+        </p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-12 flex-grow space-y-12">
+        
+        <section class="bg-cyan-50 dark:bg-gray-800 rounded-xl p-8 border-l-4 border-cyan-450 shadow-lg">
+            <h2 class="text-2xl font-bold text-cyan-450 mb-4 flex items-center">
+                <i class="fa-solid fa-building mr-3"></i> Foundational Planning Context
+            </h2>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                The city is structured on **3x3 blocks forming a Sector**. Each block is a fundamental unit with a 340m x 340m grid, accommodating 1700-2000 residents. The blocks contain small supermarkets, shops, offices, apartments, or bungalows. The blocks are categorized into four types of housing (Type 1 to Type 4) based on square footage (e.g., 700 sq ft to 1200 sq ft).
+            </p>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+                This grid system is the basis for the following algorithmic solutions, ensuring that every placement and route is computationally optimized.
+            </p>
+                    </section>
+
+        <section>
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 border-l-4 border-cyan-450 pl-4">Key Collaborative Solutions</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div onclick="openModal(1)" class="problem-card bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-md transition cursor-pointer">
+                    <div class="flex items-center mb-2">
+                        <span class="bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-300 text-xs font-semibold px-2.5 py-0.5 rounded mr-2 border border-cyan-200 dark:border-cyan-700">Greedy Algorithm</span>
+                        <h4 class="font-bold text-lg text-gray-900 dark:text-white">Municipal Vehicle Allocation & Optimization</h4>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Optimally assign available sanitation trucks to cover waste zones, maximizing coverage efficiency based on immediate need and minimizing travel time.</p>
+                </div>
+                
+                <div onclick="openModal(2)" class="problem-card bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-md transition cursor-pointer">
+                    <div class="flex items-center mb-2">
+                        <span class="bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-300 text-xs font-semibold px-2.5 py-0.5 rounded mr-2 border border-cyan-200 dark:border-cyan-700">Topological Sort</span>
+                        <h4 class="font-bold text-lg text-gray-900 dark:text-white">Sector-wise Construction Planning & Coordination</h4>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Determine the dependency order for building 3x3 sector components (e.g., roads before buildings, utility lines before finishing) to prevent logistical bottlenecks.</p>
+                </div>
+                
+            </div>
+        </section>
+
+    </main>
+
+    <div id="caseModal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative z-10 transition-colors">
+            
+            <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                <h3 id="modalTitle" class="text-2xl font-bold text-gray-900 dark:text-white font-mono"></h3>
+                <button onclick="closeModal()" class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto bg-gray-50 dark:bg-gray-900/50">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Problem Statement</h4>
+                        <p id="modalProblem" class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"></p>
+                        
+                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Solution Approach</h4>
+                        <p id="modalApproach" class="text-gray-700 dark:text-gray-300 leading-relaxed"></p>
+                    </div>
+                    <div>
+                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Implementation Code (C++)</h4>
+                        <div class="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm">
+                            <pre><code id="modalCode" class="language-cpp hljs"></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-800 dark:text-white py-8 mt-auto transition-colors">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="brand-font text-lg font-bold">Agartha Sustainable City</span>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">Building a sustainable future, one algorithm at a time.</p>
+            </div>
+            <div class="text-center mt-4 text-gray-500 dark:text-gray-600 text-xs">
+                © 2025 Agartha City Project. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Theme Toggle Logic (Copied from previous fixes) ---
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                icon.classList.remove('fa-sun', 'text-yellow-500');
+                icon.classList.add('fa-moon', 'text-gray-600');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                icon.classList.remove('fa-moon', 'text-gray-600');
+                icon.classList.add('fa-sun', 'text-yellow-500');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            
+            if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+                 html.classList.remove('dark');
+                 if (icon) {
+                     icon.classList.remove('fa-sun', 'text-yellow-500');
+                     icon.classList.add('fa-moon', 'text-gray-600');
+                 }
+            } else {
+                 html.classList.add('dark');
+                 if (icon) {
+                     icon.classList.remove('fa-moon', 'text-gray-600');
+                     icon.classList.add('fa-sun', 'text-yellow-500');
+                 }
+            }
+        });
+
+
+        // --- Modal Logic ---
+        function openModal(caseId) {
+            const caseInfo = caseData[caseId];
+            if (!caseInfo) return;
+
+            document.getElementById('modalTitle').innerText = caseInfo.title;
+            document.getElementById('modalProblem').innerText = caseInfo.problem;
+            document.getElementById('modalApproach').innerText = caseInfo.approach;
+            document.getElementById('modalCode').textContent = caseInfo.code; 
+
+            // Highlight the newly inserted code
+            hljs.highlightAll();
+
+            document.getElementById('caseModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('caseModal').classList.remove('active');
+        }
+
+
+        // --- Collab Data Database ---
+        const caseData = {
+            1: {
+                title: "Municipal Vehicle Allocation & Optimization",
+                problem: "The city has 10 municipal vehicles (ambulances, sanitation trucks) that need to be allocated based on live event queues (e.g., high severity traffic accidents, overflowing waste bins). We must assign the closest *available* and *correct type* of vehicle to the highest priority event.",
+                approach: "We use a Priority Queue (Max-Heap) to store all outstanding events, prioritized by severity. We use a Greedy approach to allocate the vehicle: for the highest-priority event, we find the closest available vehicle of the correct type (using Dijkstra's algorithm for distance) and dispatch it. This ensures fast response to critical incidents.",
+                code: `// Municipal Vehicle Allocation (Greedy/Priority Queue)
+#include <iostream>
+#include <queue>
+#include <vector>
+#include <cmath>
+using namespace std;
+
+// Vehicle Types (Sanitation, Ambulance, Fire)
+enum VType { SANITATION, AMBULANCE, FIRE };
+
+struct Event {
+    int id;
+    int severity; // 1=Highest, 10=Lowest
+    VType type;
+    double x, y;  // Incident location
+
+    // Max-Heap: Prioritize higher severity (lower number)
+    bool operator<(const Event& other) const {
+        return severity > other.severity;
+    }
+};
+
+struct Vehicle {
+    int id;
+    VType type;
+    double x, y;
+    bool isAvailable;
+};
+
+double calculateDistance(double x1, double y1, double x2, double y2) {
+    return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
+}
+
+void dispatchVehicle(priority_queue<Event>& events, vector<Vehicle>& fleet) {
+    if (events.empty()) {
+        cout << "No events in queue.\n";
+        return;
+    }
+
+    Event currentEvent = events.top();
+    events.pop();
+
+    int bestVehicleId = -1;
+    double minDistance = 1e9;
+
+    for (auto& v : fleet) {
+        if (v.isAvailable && v.type == currentEvent.type) {
+            double dist = calculateDistance(v.x, v.y, currentEvent.x, currentEvent.y);
+            if (dist < minDistance) {
+                minDistance = dist;
+                bestVehicleId = v.id;
+            }
+        }
+    }
+
+    if (bestVehicleId != -1) {
+        // Dispatch the vehicle
+        fleet[bestVehicleId].isAvailable = false;
+        cout << "DISPATCHED: Vehicle " << bestVehicleId 
+             << " (" << (currentEvent.type == AMBULANCE ? "AMBULANCE" : "SANITATION")
+             << ") dispatched to Event " << currentEvent.id 
+             << " (Severity " << currentEvent.severity << "). Distance: " 
+             << minDistance << "\n";
+    } else {
+        cout << "ALERT: No available vehicle of type " 
+             << (currentEvent.type == AMBULANCE ? "AMBULANCE" : "SANITATION")
+             << " for Event " << currentEvent.id << ".\n";
+        // Re-push event to queue for next cycle if resources are low
+        // events.push(currentEvent); 
+    }
+}
+
+int main() {
+    priority_queue<Event> eventQueue;
+    vector<Vehicle> cityFleet = {
+        {0, SANITATION, 10.0, 5.0, true},
+        {1, SANITATION, 30.0, 25.0, true},
+        {2, AMBULANCE, 5.0, 5.0, true},
+        {3, AMBULANCE, 45.0, 45.0, true}
+    };
+
+    // Add events (Note: lower severity number = higher priority)
+    eventQueue.push({101, 1, AMBULANCE, 15.0, 15.0}); // High Priority Ambulance
+    eventQueue.push({102, 5, SANITATION, 12.0, 8.0}); // Medium Priority Sanitation
+    eventQueue.push({103, 2, AMBULANCE, 40.0, 40.0}); // Higher Priority Ambulance
+
+    cout << "--- Dispatch Cycle 1 ---\n";
+    dispatchVehicle(eventQueue, cityFleet); // Should pick Event 101
+
+    cout << "\n--- Dispatch Cycle 2 ---\n";
+    dispatchVehicle(eventQueue, cityFleet); // Should pick Event 103
+
+    cout << "\n--- Dispatch Cycle 3 ---\n";
+    dispatchVehicle(eventQueue, cityFleet); // Should pick Event 102
+    
+    return 0;
+}`
+            },
+            2: {
+                title: "Sector-wise Construction Planning & Coordination",
+                problem: "Construction tasks within a 3x3 sector (like laying water lines, building vertical housing, final road paving) have strict dependencies. Starting a dependent task too early leads to cost overruns and delays. We need a valid sequence of tasks.",
+                approach: "We model the construction process as a Directed Acyclic Graph (DAG) where nodes are tasks and edges represent dependencies ('Task A must finish before Task B starts'). Topological Sort provides a valid linear ordering of tasks in O(V + E) time.",
+                code: `// Sector Construction Planning (Topological Sort - Kahn's Algorithm)
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
+#include <unordered_map>
+using namespace std;
+
+// 0: Road Grading, 1: Utility Lines, 2: Housing Foundations, 
+// 3: Vertical Construction, 4: Interior Finishing, 5: Road Paving
+vector<string> TaskNames = {
+    "Road Grading", "Utility Lines", "Housing Foundations", 
+    "Vertical Construction", "Interior Finishing", "Road Paving"
+};
+
+void addDependency(unordered_map<int, vector<int>>& adj, vector<int>& in_degree, int u, int v) {
+    adj[u].push_back(v);
+    in_degree[v]++;
+}
+
+vector<int> topologicalSort(int V, unordered_map<int, vector<int>>& adj) {
+    vector<int> in_degree(V, 0);
+    for (auto const& [u, neighbors] : adj) {
+        for (int v : neighbors) {
+            in_degree[v]++;
+        }
+    }
+
+    queue<int> q;
+    for (int i = 0; i < V; i++) {
+        // Re-calculate in_degree based on adjacency map
+        int current_in_degree = 0;
+        for (auto const& [u, neighbors] : adj) {
+            for (int v : neighbors) {
+                if (v == i) current_in_degree++;
+            }
+        }
+        if (current_in_degree == 0) q.push(i);
+    }
+    
+    // Recalculate in_degree properly based on the map structure:
+    in_degree.assign(V, 0);
+    for (auto const& [u, neighbors] : adj) {
+        for (int v : neighbors) {
+            in_degree[v]++;
+        }
+    }
+    
+    q = queue<int>(); // Reset queue
+    for (int i = 0; i < V; i++) {
+        if (in_degree[i] == 0) q.push(i);
+    }
+
+
+    vector<int> result;
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        result.push_back(u);
+
+        // Iterate through neighbors and decrement in-degree
+        if (adj.count(u)) {
+            for (int v : adj[u]) {
+                in_degree[v]--;
+                if (in_degree[v] == 0) {
+                    q.push(v);
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    int V = TaskNames.size();
+    unordered_map<int, vector<int>> adj;
+    vector<int> in_degree(V, 0);
+
+    // Dependencies: U -> V means U must finish before V starts
+    
+    // 1. Road Grading (0) must precede Utility Lines (1)
+    addDependency(adj, in_degree, 0, 1);
+    
+    // 2. Utility Lines (1) must precede Housing Foundations (2)
+    addDependency(adj, in_degree, 1, 2);
+    
+    // 3. Foundations (2) must precede Vertical Construction (3)
+    addDependency(adj, in_degree, 2, 3);
+    
+    // 4. Vertical Construction (3) must precede Interior Finishing (4)
+    addDependency(adj, in_degree, 3, 4);
+
+    // 5. Utility Lines (1) must precede Road Paving (5)
+    addDependency(adj, in_degree, 1, 5);
+    
+    // 6. Vertical Construction (3) must precede Road Paving (5) (for heavy machinery)
+    addDependency(adj, in_degree, 3, 5);
+
+    vector<int> order = topologicalSort(V, adj);
+
+    if (order.size() == V) {
+        cout << "Valid Construction Order:\n";
+        for (int taskIndex : order) {
+            cout << TaskNames[taskIndex] << "\n";
+        }
+    } else {
+        cout << "Error: Cycle detected! Check dependencies.\n";
+    }
+
+    return 0;
+}`
+            }
+        };
+    </script>
+</body>
+</html>
