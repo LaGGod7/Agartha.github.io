@@ -1,496 +1,366 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Agartha Project</title>
-    <link rel="stylesheet" href="style.css">
-    <style> * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    <title>About Us & Project - Agartha City</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyan: { 450: '#00d4ff' } // Custom Accent Color (Agartha Blue)
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'space-grotesk': ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
         }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .text-cyan-450 {
+            color: #00d4ff;
+        }
+        
+        /* General Card Styling */
+        .team-member-card, .member-ideas-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+        }
+        .team-member-card:hover, .member-ideas-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+        }
+        html.dark .team-member-card:hover, html.dark .member-ideas-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
         }
 
-        nav {
-            background: #1e293b;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            border-bottom: 2px solid #06b6d4;
+        /* List Styling for Business Ideas */
+        .ideas-grid ol {
+            list-style-type: decimal;
+            margin-left: 1.5rem;
+            padding-left: 0;
+            color: #94a3b8; /* text-gray-400 */
         }
-
-        nav a {
-            color: #e2e8f0;
-            text-decoration: none;
-            padding: 12px 25px;
-            margin: 0 10px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            font-weight: 500;
+        .ideas-grid li {
+            padding-left: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: #cbd5e1; /* text-gray-300 */
         }
-
-        nav a:hover {
-            background: #334155;
-            color: #06b6d4;
-        }
-
-        .about-header {
-            background: #1e293b;
-            color: #06b6d4;
-            text-align: center;
-            padding: 80px 20px;
-            border-bottom: 3px solid #06b6d4;
-        }
-
-        .about-header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-        }
-
-        .about-project {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-
-        .mission-statement {
-            background: #1e293b;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            border: 2px solid #334155;
-        }
-
-        .mission-statement h2 {
-            font-size: 2.5rem;
-            color: #06b6d4;
-            margin-bottom: 20px;
-        }
-
-        .mission-statement h2::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 3px;
-            background: #06b6d4;
-            margin-top: 10px;
-        }
-
-        .mission-statement p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #94a3b8;
-            margin-bottom: 15px;
-        }
-
-        .team-section {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 40px 20px;
-        }
-
-        .section-heading {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #06b6d4;
-            margin-bottom: 50px;
-            font-weight: 700;
-        }
-
-        .team-roster {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .team-member-card {
-            background: #1e293b;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid #334155;
-        }
-
-        .team-member-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
-            border-color: #06b6d4;
-        }
-
-        .team-member-card h3 {
-            font-size: 1.8rem;
-            color: #06b6d4;
-            margin-bottom: 10px;
-        }
-
-        .srn {
-            color: #64748b;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .team-member-card hr {
-            margin: 20px 0;
-            border: none;
-            border-top: 2px solid #334155;
-        }
-
-        .team-member-card h4 {
-            font-size: 1.2rem;
-            color: #e2e8f0;
-            margin-bottom: 10px;
-        }
-
-        .team-member-card ul {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-
-        .team-member-card li {
-            padding: 5px 0;
-            color: #94a3b8;
-        }
-
-        .profile-link, .linkedin-link {
-            display: inline-block;
-            margin: 5px 5px 5px 0;
-            padding: 10px 20px;
-            background: #06b6d4;
-            color: #0f172a;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .linkedin-link {
-            background: #0077b5;
-            color: white;
-        }
-
-        .profile-link:hover {
-            background: #0891b2;
-            transform: translateY(-2px);
-        }
-
-        .linkedin-link:hover {
-            background: #005885;
-            transform: translateY(-2px);
-        }
-
-        /* Business Ideas Section */
-        .business-ideas-section {
-            max-width: 1400px;
-            margin: 60px auto 40px;
-            padding: 40px 20px;
-        }
-
-        .business-ideas-section .section-heading {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #06b6d4;
-            margin-bottom: 50px;
-            font-weight: 700;
-        }
-
-        .ideas-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .member-ideas-card {
-            background: #1e293b;
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            border: 2px solid #334155;
-            transition: all 0.3s ease;
-        }
-
-        .member-ideas-card:hover {
-            border-color: #06b6d4;
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
-        }
-
-        .member-ideas-card h3 {
-            font-size: 1.8rem;
-            color: #e2e8f0;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .ideas-subtitle {
-            font-size: 1.1rem;
-            color: #06b6d4;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .member-ideas-card ol {
-            list-style-position: inside;
-            color: #94a3b8;
-        }
-
-        .member-ideas-card li {
-            padding: 8px 0;
-            font-size: 1rem;
-            color: #cbd5e1;
-            line-height: 1.6;
-        }
-
-        .member-ideas-card li::marker {
-            color: #06b6d4;
-            font-weight: 600;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .ideas-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .about-header h1 {
-                font-size: 2rem;
-            }
-
-            .mission-statement h2 {
-                font-size: 2rem;
-            }
-
-            .section-heading {
-                font-size: 2rem;
-            }
-
-            .member-ideas-card h3 {
-                font-size: 1.5rem;
-            }
-
-            .member-ideas-card {
-                padding: 25px;
-            }
-        }</style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    </style>
 </head>
-<body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="Ashu.html">Ashutosh</a>
-        <a href="gd.html">Goureesh</a>
-        <a href="yashwant.html">Yashwant</a>
-        <a href="Aditya.html">Aditya</a>
-         <a href="collab.html">Collab</a>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
+    
+    <nav class="bg-white/90 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center">
+                <i class="fa-solid fa-city text-cyan-450 text-2xl mr-2"></i>
+                <span class="brand-font text-xl font-bold text-gray-900 dark:text-white tracking-tight">Agartha City</span>
+            </div>
+            <div class="flex items-center space-x-6">
+             <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Home</a>
+                <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">About</a>
+                <a href="gd.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Goureesh</a>
+                <a href="yashwant.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Yashwant</a>
+                 <a href="Aditya.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Aditya</a>
+                  <a href="Ashu.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Ashutosh</a>
+                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition focus:outline-none">
+                    <i id="theme-icon" class="fa-solid fa-moon text-gray-600 dark:text-yellow-500 text-xl"></i>
+                </button>
+            </div>
+        </div>
     </nav>
 
-    <header class="about-header">
-        <h1>About Our Team & Project 💡</h1>
+    <header class="about-header text-center py-16 px-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+            About Our Team & Project <span class="text-cyan-450">💡</span>
+        </h1>
     </header>
 
-    <section class="about-project">
-        <div class="mission-statement">
-            <h2>The Agartha Initiative 🏙️</h2>
-            <p>We are a passionate team of computer science enthusiasts working together on a groundbreaking project: the **Building of City Agartha**. Our goal is to apply advanced **Design and Algorithm Analysis (DAA)** techniques to develop sustainable, data-driven solutions for modern urban challenges, such as optimized resource allocation, traffic flow, and infrastructure planning.</p>
-            <p>Our goal is to integrate technology and innovation to create systems that are scalable, efficient, and user-friendly, demonstrating the practical application of theoretical computer science in real-world infrastructure.</p>
-        </div>
-    </section>
-
-    <section class="project-details-section">
-        <h2 class="section-heading">Project Insights & Analysis 📊</h2>
-
-        <div class="project-asset">
-            <h3>Conceptual Map of Agartha</h3>
-            <img src="ph1.jpg" alt="Conceptual City Map: A grid-based system optimized using graph algorithms for infrastructure planning." class="project-map-image">
-            <p class="asset-description">This hand-drawn map forms the foundation of our project. It utilizes a grid-based system for city planning, which is essential for applying **Graph Algorithms** (like Shortest Path or Minimum Spanning Tree) to optimize infrastructure like road networks, resource pipelines, and emergency routes.</p>
-        </div>
+    <main class="max-w-7xl mx-auto px-4 py-12 flex-grow space-y-12">
         
-        <hr>
+        <section class="about-project">
+            <div class="mission-statement bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                <h2 class="text-3xl font-bold text-cyan-450 mb-4 flex items-center">
+                    <i class="fa-solid fa-city mr-3"></i> The Agartha Initiative
+                </h2>
+                <p class="text-lg text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                    We are a passionate team of computer science enthusiasts working together on a groundbreaking project: the **Building of City Agartha**. Our goal is to apply advanced **Design and Algorithm Analysis (DAA)** techniques to develop sustainable, data-driven solutions for modern urban challenges, such as optimized resource allocation, traffic flow, and infrastructure planning.
+                </p>
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Our goal is to integrate technology and innovation to create systems that are scalable, efficient, and user-friendly, demonstrating the practical application of theoretical computer science in real-world infrastructure.
+                </p>
+            </div>
+        </section>
 
-        <div class="project-analysis">
-            <h3>Data-Driven City Design</h3>
-            
-            <p>The core of the Agartha project involves using data analysis to inform design decisions, ensuring efficiency and sustainability. Key data points and models include:</p>
-            
-            <div class="analysis-blocks">
-                <div class="data-block">
-                    <h4>City Zoning & Land Usage</h4>
-                    <ul>
-                        <li>**Residential:** 40% (Targeted for high density near services).</li>
-                        <li>**Commercial:** 25% (Strategically located for optimal traffic flow).</li>
-                        <li>**Industrial/Innovation:** 15% (Separated, but accessible via key transportation links).</li>
-                        <li>**Green/Recreational:** 20% (Crucial for sustainability and resident well-being).</li>
-                    </ul>
+        <section class="project-details-section">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 border-l-4 border-cyan-450 pl-4">Project Insights & Analysis 📊</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="project-asset space-y-6 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-2xl font-bold text-cyan-450 mb-4 flex items-center">
+                        <i class="fa-solid fa-map-marked-alt mr-2"></i> Conceptual Map of Agartha
+                    </h3>
+                    <img src="ph1.jpg" alt="Conceptual City Map: A grid-based system optimized using graph algorithms for infrastructure planning." class="w-full h-auto border border-gray-200 dark:border-gray-700 rounded-lg">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        This hand-drawn map forms the foundation of our project. It utilizes a grid-based system for city planning, which is essential for applying **Graph Algorithms** (like Shortest Path or Minimum Spanning Tree) to optimize infrastructure like road networks, resource pipelines, and emergency routes.
+                    </p>
                 </div>
-
-                <div class="data-block">
-                    <h4>Algorithm Focus Areas</h4>
-                    <ul>
-                        <li>**Traffic Optimization:** Using **Dijkstra's** or **A* Search** algorithms to find the quickest routes between zones.</li>
-                        <li>**Resource Allocation:** Applying **Greedy Algorithms** or **Dynamic Programming** for efficient distribution of power and water.</li>
-                        <li>**Infrastructure Planning:** Utilizing **Graph Coloring** or **Matching** to schedule maintenance and service routes without overlap.</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="project-asset ">
-                <img src="ph2.jpg" alt="Data Analysis and Zoning: Handwritten charts detailing proposed resource distribution, population density, and zoning breakdowns for algorithmic analysis." class="project-analysis-image">
-                <p class="asset-description">The charts and notes detail our data modeling efforts, including proposed resource distribution models and population density breakdowns, which directly feed into the algorithmic analysis of the city's efficiency.</p>
-            </div>
-        </div>
-
-    </section>
-    
-    <hr>
-    
-    <section class="team-section" id="gg">
-        <h2 class="section-heading">Meet the Team 👥</h2>
-        
-        <div class="team-roster">
-            <div class="team-member-card">
-                <h3>Ashutosh K</h3>
-                <p class="srn">01fe24bcs197</p>
-                <hr>
-                <h4>📌 Skills</h4>
-                <ul>
-                    <li>C, C++, Python</li>
-                    <li>Data Structures and Algorithms</li>
-                    <li>Web Development (HTML/CSS)</li>
-                    <li>[Specific Role/Focus in Project]</li>
-                </ul>
-                <a href="Ashu.html" class="profile-link">Ashutosh's Profile</a>
-                <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" class="linkedin-link">LinkedIn Profile</a>
-            </div>
-
-            <div class="team-member-card">
-                <h3>Yashwant P</h3>
-                <p class="srn">01fe24bcs198</p>
-                <hr>
-                <h4>📌 Skills</h4>
-                <ul>
-                    <li>C, C++, Python</li>
-                    <li>Data Structures and Algorithms</li>
-                    <li>Web Development (HTML/CSS)</li>
-                    <li>[Specific Role/Focus in Project]</li>
-                </ul>
-                <a href="yashwant.html" class="profile-link">Yashwant's Profile</a>
-                <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" class="linkedin-link">LinkedIn Profile</a>
-            </div>
-            
-            <div class="team-member-card">
-                <h3>Goureesh D</h3>
-                <p class="srn">01fe24bcs140</p>
-                <hr>
-                <h4>📌 Skills</h4>
-                <ul>
-                    <li>C, C++, Python</li>
-                    <li>Data Structures and Algorithms</li>
-                    <li>Web Development (HTML/CSS)</li>
-                    <li>[Specific Role/Focus in Project]</li>
-                </ul>
-                <a href="gd.html" class="profile-link">Goureesh's Profile</a>
-                <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" class="linkedin-link">LinkedIn Profile</a>
-            </div>
-
-            <div class="team-member-card">
-                <h3>Aditya H</h3>
-                <p class="srn">idk</p>
-                <hr>
-                <h4>📌 Skills</h4>
-                <ul>
-                    <li>C, C++, Python, JavaScript</li>
-                    <li>Data Structures and Algorithms</li>
-                    <li>Web Development (HTML/CSS)</li>
-                    <li>[Specific Role/Focus in Project]</li>
-                </ul>
-                <a href="Aditya.html" class="profile-link">Aditya's Profile</a>
-                <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" class="linkedin-link">LinkedIn Profile</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="business-ideas-section">
-        <h2 class="section-heading">Innovative Business Ideas 💼</h2>
-        
-        <div class="ideas-grid">
-            <div class="member-ideas-card">
-                <h3>Yashwant P</h3>
-                <p class="ideas-subtitle">Business Cases</p>
-                <ol>
-                    <li>EV Charging Network</li>
-                    <li>Waste Collection and Management System</li>
-                    <li>Car Parking and Management Solutions</li>
-                    <li>Smart Street Lighting System</li>
-                    <li>Emergency Response and Safety Infrastructure</li>
-                    <li>Digital and Eco-Friendly Advertisement Billboards</li>
-                    <li>Industrial Worker Support Hub</li>
-                    <li>Urban Green Parks and Riverfront Development</li>
-                    <li>Mobile Network and City-Wide Connectivity Infrastructure</li>
-                    <li>Gas Distribution Through Pipeline Network</li>
-                </ol>
-            </div>
-
-            <div class="member-ideas-card">
-                <h3>Goureesh D</h3>
-                <p class="ideas-subtitle">Business Cases</p>
-                <ol>
-           <li>Road Hierarchy and Proper Classification of City Roads</li>
-                    <li>Sewage Network Monitoring and Maintenance System</li>
-                    <li>Housing and Allocation</li>
-                    <li>Population Forecasting and Town Planning Centre</li>
-                    <li>Bus Traffic Management</li>
-                    <li>System to show how city revenue is collected and spent</li>
-                    <li>Parcel Delivery Through Small Drones</li>
-                    <li>House No Allocation</li>
-                    <li>Vehicle No Allocation(Collab)</li>
-                    <li>Sector Construction Along with blocks(Collab)</li>
                 
-                </ol>
+                <div class="project-analysis space-y-6">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Core Design Metrics</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="data-block">
+                                <h4 class="text-lg font-semibold text-cyan-450 mb-1">Land Usage Breakdown</h4>
+                                <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc ml-5">
+                                    <li>Residential: 40%</li>
+                                    <li>Commercial: 25%</li>
+                                    <li>Industrial/Innovation: 15%</li>
+                                    <li>Green/Recreational: 20%</li>
+                                </ul>
+                            </div>
+                            <div class="data-block">
+                                <h4 class="text-lg font-semibold text-cyan-450 mb-1">Algorithmic Focus</h4>
+                                <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc ml-5">
+                                    <li>Traffic: Dijkstra's / A* Search</li>
+                                    <li>Resources: Greedy / Dynamic Programming</li>
+                                    <li>Planning: Graph Coloring / Matching</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-asset wide-asset bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Detailed Data Modeling</h3>
+                        <img src="ph2.jpg" alt="Data Analysis and Zoning: Handwritten charts detailing proposed resource distribution, population density, and zoning breakdowns for algorithmic analysis." class="w-full h-auto border border-gray-200 dark:border-gray-700 rounded-lg">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">
+                            The charts and notes detail our data modeling efforts, including proposed resource distribution models and population density breakdowns, which directly feed into the algorithmic analysis of the city's efficiency.
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <div class="member-ideas-card">
-                <h3>Ashutosh K</h3>
-                <p class="ideas-subtitle">Business Cases</p>
-                <ol>
-                     <li>Allocation of Funds to Industries</li>
-                    <li>Electricity Substation Monitoring System</li>
-                    <li>Theatre Allocation and Management System</li>
-                    <li>Integrated Tax Management System</li>
-                    <li>City-wide Hygiene and Sanitation Monitoring</li>
-                    <li>Crime Management and Police Workforce Optimization</li>
-                    <li>Integrated Tourism Promotion and Visitor Services</li>
-                    <li>Government Schemes Awareness and Beneficiary Tracking System</li>
-                     <li>Municipal Vehicle Allocation and Optimization (Collab)</li>
-                    <li>Sector-wise Construction Planning and Coordination (Collab)</li>
-                </ol>
-            </div>
+        </section>
+        
+        <hr class="my-8 border-gray-300 dark:border-gray-700">
+        
+        <section class="team-section" id="team-roster">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 border-l-4 border-cyan-450 pl-4">Meet the Team 👥</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="team-member-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Ashutosh K</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">SRN: 01fe24bcs197</p>
+                    <hr class="border-gray-200 dark:border-gray-700 mb-3">
+                    <h4 class="text-base font-semibold text-cyan-450 mb-2">📌 Skills</h4>
+                    <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc ml-4">
+                        <li>C, C++, Python</li>
+                        <li>Data Structures and Algorithms</li>
+                        <li>Web Development (HTML/CSS)</li>
+                    
+                    </ul>
+                    <div class="mt-4 flex flex-col space-y-2">
+                        <a href="Ashu.html" class="text-sm font-medium text-cyan-450 hover:underline"><i class="fa-solid fa-user-circle mr-1"></i> Ashutosh's Profile</a>
+                        <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-cyan-450 transition"><i class="fa-brands fa-linkedin mr-1"></i> LinkedIn Profile</a>
+                    </div>
+                </div>
 
-            <div class="member-ideas-card">
-                <h3>Aditya H</h3>
-                <p class="ideas-subtitle">Business Cases</p>
-                <ol>
-                    <li>Electricity bill support and complaint service centre</li>
-                    <li>Sewage sludge treatment and compost making unit</li>
-                    <li>Reward system for timely tax payment</li>
-                    <li>Road repair and pothole reporting system</li>
-                    <li>Population information and resident ID database</li>
-                    <li>City-wide healthcare coordination centre</li>
-                    <li>Agartha cultural museum</li>
-                    <li>Pravara River cleanliness and waste control program</li>
-                    <li>Innovation and research centre for new technologies</li>
-                    <li>Transport hub combining bus, rail, and taxi services</li>
-                </ol>
+                <div class="team-member-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Yashwant P</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">SRN: 01fe24bcs198</p>
+                    <hr class="border-gray-200 dark:border-gray-700 mb-3">
+                    <h4 class="text-base font-semibold text-cyan-450 mb-2">📌 Skills</h4>
+                    <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc ml-4">
+                        <li>C, C++, Python</li>
+                        <li>Data Structures and Algorithms</li>
+                        <li>Web Development (HTML/CSS)</li>
+                    
+                    </ul>
+                    <div class="mt-4 flex flex-col space-y-2">
+                        <a href="yashwant.html" class="text-sm font-medium text-cyan-450 hover:underline"><i class="fa-solid fa-user-circle mr-1"></i> Yashwant's Profile</a>
+                        <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-cyan-450 transition"><i class="fa-brands fa-linkedin mr-1"></i> LinkedIn Profile</a>
+                    </div>
+                </div>
+                
+                <div class="team-member-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Goureesh D</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">SRN: 01fe24bcs140</p>
+                    <hr class="border-gray-200 dark:border-gray-700 mb-3">
+                    <h4 class="text-base font-semibold text-cyan-450 mb-2">📌 Skills</h4>
+                    <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc ml-4">
+                        <li>C, C++, Python,JavaScript</li>
+                        <li>Data Structures and Algorithms</li>
+                        <li>Web Development (HTML/CSS)</li>
+                    
+                    </ul>
+                    <div class="mt-4 flex flex-col space-y-2">
+                        <a href="gd.html" class="text-sm font-medium text-cyan-450 hover:underline"><i class="fa-solid fa-user-circle mr-1"></i> Goureesh's Profile</a>
+                        <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-cyan-450 transition"><i class="fa-brands fa-linkedin mr-1"></i> LinkedIn Profile</a>
+                    </div>
+                </div>
+
+                <div class="team-member-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Aditya H</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">SRN: idk</p>
+                    <hr class="border-gray-200 dark:border-gray-700 mb-3">
+                    <h4 class="text-base font-semibold text-cyan-450 mb-2">📌 Skills</h4>
+                    <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-disc ml-4">
+                        <li>C, C++, Python, JavaScript</li>
+                        <li>Data Structures and Algorithms</li>
+                        <li>Web Development (HTML/CSS)</li>
+                    
+                    </ul>
+                    <div class="mt-4 flex flex-col space-y-2">
+                        <a href="Aditya.html" class="text-sm font-medium text-cyan-450 hover:underline"><i class="fa-solid fa-user-circle mr-1"></i> Aditya's Profile</a>
+                        <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-cyan-450 transition"><i class="fa-brands fa-linkedin mr-1"></i> LinkedIn Profile</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="business-ideas-section">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 border-l-4 border-cyan-450 pl-4">Innovative Business Ideas 💼</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="member-ideas-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-cyan-450 mb-1">Yashwant P</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Business Cases</p>
+                    <ol class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                        <li>EV Charging Network</li>
+                        <li>Waste Collection and Management System</li>
+                        <li>Car Parking and Management Solutions</li>
+                        <li>Smart Street Lighting System</li>
+                        <li>Emergency Response and Safety Infrastructure</li>
+                        <li>Digital and Eco-Friendly Advertisement Billboards</li>
+                        <li>Industrial Worker Support Hub</li>
+                        <li>Urban Green Parks and Riverfront Development</li>
+                        <li>Mobile Network and City-Wide Connectivity Infrastructure</li>
+                        <li>Gas Distribution Through Pipeline Network</li>
+                    </ol>
+                </div>
+
+                <div class="member-ideas-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-cyan-450 mb-1">Goureesh D</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Business Cases</p>
+                    <ol class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                        <li>Road Hierarchy and Proper Classification of City Roads</li>
+                        <li>Sewage Network Monitoring and Maintenance System</li>
+                        <li>Housing and Allocation</li>
+                        <li>Population Forecasting and Town Planning Centre</li>
+                        <li>Bus Traffic Management</li>
+                        <li>System to show how city revenue is collected and spent</li>
+                        <li>Parcel Delivery Through Small Drones</li>
+                        <li>House No Allocation</li>
+                        <li>Vehicle No Allocation(Collab)</li>
+                        <li>Sector Construction Along with blocks(Collab)</li>
+                    </ol>
+                </div>
+
+                <div class="member-ideas-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-cyan-450 mb-1">Ashutosh K</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Business Cases</p>
+                    <ol class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                        <li>Allocation of Funds to Industries</li>
+                        <li>Electricity Substation Monitoring System</li>
+                        <li>Theatre Allocation and Management System</li>
+                        <li>Integrated Tax Management System</li>
+                        <li>City-wide Hygiene and Sanitation Monitoring</li>
+                        <li>Crime Management and Police Workforce Optimization</li>
+                        <li>Integrated Tourism Promotion and Visitor Services</li>
+                        <li>Government Schemes Awareness and Beneficiary Tracking System</li>
+                        <li>Municipal Vehicle Allocation and Optimization (Collab)</li>
+                        <li>Sector-wise Construction Planning and Coordination (Collab)</li>
+                    </ol>
+                </div>
+
+                <div class="member-ideas-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-cyan-450 mb-1">Aditya H</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Business Cases</p>
+                    <ol class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                        <li>Electricity bill support and complaint service centre</li>
+                        <li>Sewage sludge treatment and compost making unit</li>
+                        <li>Reward system for timely tax payment</li>
+                        <li>Road repair and pothole reporting system</li>
+                        <li>Population information and resident ID database</li>
+                        <li>City-wide healthcare coordination centre</li>
+                        <li>Agartha cultural museum</li>
+                        <li>Pravara River cleanliness and waste control program</li>
+                        <li>Innovation and research centre for new technologies</li>
+                        <li>Transport hub combining bus, rail, and taxi services</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-800 dark:text-white py-8 mt-auto transition-colors">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="brand-font text-lg font-bold">Agartha Sustainable City</span>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">Building a sustainable future, one algorithm at a time.</p>
+            </div>
+            <div class="text-center mt-4 text-gray-500 dark:text-gray-600 text-xs">
+                © 2025 Agartha City Project. All Rights Reserved.
             </div>
         </div>
-    </section>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                icon.classList.remove('fa-sun', 'text-yellow-500');
+                icon.classList.add('fa-moon', 'text-gray-600');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                icon.classList.remove('fa-moon', 'text-gray-600');
+                icon.classList.add('fa-sun', 'text-yellow-500');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            
+            // Check for saved preference or system preference
+            if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+                 html.classList.remove('dark');
+                 if (icon) {
+                     icon.classList.remove('fa-sun', 'text-yellow-500');
+                     icon.classList.add('fa-moon', 'text-gray-600');
+                 }
+            } else {
+                 html.classList.add('dark');
+                 if (icon) {
+                     icon.classList.remove('fa-moon', 'text-gray-600');
+                     icon.classList.add('fa-sun', 'text-yellow-500');
+                 }
+            }
+        });
+    </script>
 </body>
 </html>
