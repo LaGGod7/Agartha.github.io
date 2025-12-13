@@ -78,6 +78,14 @@
             word-wrap: break-word;
             overflow-x: auto;
         }
+        /* New style for data headers in modal */
+        .data-preview-header {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #00d4ff;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
@@ -152,7 +160,7 @@
                     <li>City Revenue Collection and Expenditure Transparency System</li>
                     <li>House Number Allocation & Smart Addressing System</li>
                 </ol>
-                <p class="text-gray-600 dark:text-gray-400 mt-6 italic">Click on any initiative below to see the detailed approach and implementation code.</p>
+                <p class="text-gray-600 dark:text-gray-400 mt-6 italic">Click on any initiative below to view the detailed approach, efficiency analysis, code, and sample dataset.</p>
             </div>
 
             <h2 class="text-3xl font-bold text-cyan-450 mb-8 text-center">Detailed Initiatives</h2>
@@ -172,7 +180,7 @@
                         </p>
                         
                         <div class="mt-4 text-cyan-450 font-semibold text-sm flex items-center">
-                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
                         </div>
                     </div>
                 </div>
@@ -191,7 +199,7 @@
                         </p>
                         
                         <div class="mt-4 text-blue-500 font-semibold text-sm flex items-center">
-                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
                         </div>
                     </div>
                 </div>
@@ -210,7 +218,7 @@
                         </p>
                         
                         <div class="mt-4 text-purple-500 font-semibold text-sm flex items-center">
-                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
                         </div>
                     </div>
                 </div>
@@ -229,7 +237,7 @@
                         </p>
                         
                         <div class="mt-4 text-green-500 font-semibold text-sm flex items-center">
-                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
                         </div>
                     </div>
                 </div>
@@ -248,7 +256,7 @@
                         </p>
                         
                         <div class="mt-4 text-orange-500 font-semibold text-sm flex items-center">
-                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
                         </div>
                     </div>
                 </div>
@@ -267,7 +275,7 @@
                         </p>
                         
                         <div class="mt-4 text-yellow-500 font-semibold text-sm flex items-center">
-                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
                         </div>
                     </div>
                 </div>
@@ -286,7 +294,7 @@
                         </p>
                         
                         <div class="mt-4 text-indigo-500 font-semibold text-sm flex items-center">
-                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
                         </div>
                     </div>
                 </div>
@@ -305,7 +313,7 @@
                         </p>
                         
                         <div class="mt-4 text-teal-500 font-semibold text-sm flex items-center">
-                            Click to view approach & code <i class="fa-solid fa-arrow-right ml-2"></i>
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
                         </div>
                     </div>
                 </div>
@@ -333,9 +341,14 @@
                         
                         <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Solution Approach / Documentation</h4>
                         <p id="modalApproach" class="text-gray-700 dark:text-gray-300 leading-relaxed"></p>
+
+                        <h4 class="data-preview-header uppercase text-xs tracking-wider">Sample Dataset Preview (.CSV)</h4>
+                        <div class="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm">
+                            <pre><code id="modalDataPreview" class="language-csv hljs"></code></pre>
+                        </div>
                     </div>
                     <div>
-                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Implementation Code</h4>
+                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Implementation Code (C++)</h4>
                         <div class="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm">
                             <pre><code id="modalCode" class="language-cpp hljs"></code></pre>
                         </div>
@@ -344,6 +357,7 @@
             </div>
         </div>
     </div>
+
 
     <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-800 dark:text-white py-8 mt-auto transition-colors">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
@@ -363,7 +377,7 @@
     </footer>
 
     <script>
-        // Theme Toggle
+        // --- Theme Toggle Logic ---
         function toggleTheme() {
             const html = document.documentElement;
             const icon = document.getElementById('theme-icon');
@@ -388,7 +402,7 @@
             }
         }
 
-        // Initialize Theme
+        // --- Initialize Theme ---
         if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
             document.documentElement.classList.remove('dark');
             const icon = document.getElementById('theme-icon');
@@ -408,7 +422,8 @@
             menu.classList.toggle('hidden');
         }
 
-        // Modal Functionality
+        // --- Modal Logic ---
+
         function openModal(caseId) {
             const caseInfo = caseData[caseId];
             if (!caseInfo) return;
@@ -416,16 +431,18 @@
             document.getElementById('modalTitle').innerText = caseInfo.title;
             document.getElementById('modalProblem').innerText = caseInfo.problem;
             
-            // Format the approach text to include the efficiency analysis
+            // Format the approach text (Efficiency Analysis and bolding)
             let approachHtml = caseInfo.approach
                 .replace(/\n/g, '<br>')
-                .replace(/(\*\*(.*?)\*\*)/g, '<span class="text-cyan-450 font-bold">$2</span>');
+                .replace(/(\*\*(.*?)\*\*)/g, '<span class="text-cyan-450 font-bold">$2</span>')
+                .replace(/O\((.*?)\)/g, '<span class="text-cyan-450 font-bold">O($1)</span>');
 
             document.getElementById('modalApproach').innerHTML = approachHtml;
             
             document.getElementById('modalCode').textContent = caseInfo.code; 
+            document.getElementById('modalDataPreview').textContent = caseInfo.dataset; // Insert Dataset Content
 
-            // Highlight the newly inserted code
+            // Highlight the newly inserted code and dataset preview
             hljs.highlightAll();
 
             document.getElementById('caseModal').classList.add('active');
@@ -436,12 +453,12 @@
         }
 
 
-        // Case Data Database
+        // Case Data Database (RESTORED C++ Code + Efficiency Analysis + INLINE DATASET)
         const caseData = {
             1: {
                 title: "Road Hierarchy Classification System",
                 problem: "Cities without proper road classification face traffic congestion, inefficient transport systems, and safety issues. Agarta needs a structured road hierarchy (V1-V6) to support intercity freight, public buses, local traffic, and pedestrian movement efficiently.",
-                approach: "We implement a Graph-based road classification system where each road type (V1-V6) has specific attributes (speed limits, access controls, permitted vehicles). The system uses Dijkstra's algorithm for optimal routing and BFS for connectivity verification across road types.\n\n" +
+                approach: "We implement a **Graph-based road classification system** where each road type (V1-V6) has specific attributes (speed limits, access controls, permitted vehicles). The system uses Dijkstra's algorithm for optimal routing and BFS for connectivity verification across road types.\n\n" +
                           "**Documentation:** The hierarchy allows speed control, traffic segregation, and emergency routing.\n" +
                           "**Efficiency Analysis:** Dijkstra's algorithm runs in **O(E + V log V)** with a Priority Queue, ensuring fast pathfinding across the city road network (Graph G=(V, E)).",
                 code: `// Road Hierarchy Graph System
@@ -524,7 +541,16 @@ int main() {
     cout << endl;
     
     return 0;
-}`
+}`,
+                dataset: `RoadID,StartNode,EndNode,Length_km,SpeedLimit_kph,RoadClass,TrafficFactor
+101,A01,B05,12.5,120,V1,0.9
+102,B05,C10,8.2,100,V2,1.2
+211,C10,D15,3.1,60,V3,1.5
+305,D15,E22,0.8,40,V4,1.8
+401,A01,G01,15.0,120,V1,1.0
+520,E22,F03,0.3,20,V5,2.0
+601,F03,F04,0.1,10,V6,1.0
+602,G01,G02,1.5,10,V6,1.2`
             },
             2: {
                 title: "Sewage Network Monitoring System",
@@ -634,6 +660,12 @@ int main() {
     
     return 0;
 }`
+                ,
+                dataset: `PipeID,SensorLocation,Capacity_m3,CurrentLevel_m3,FlowRate_L_s
+1001,NW-Sector-1A,1000,850,550
+1002,NW-Sector-1B,1000,920,480
+1003,NW-Sector-1C,1000,650,700
+2001,NE-Sector-5A,1500,1250,600`
             },
             3: {
                 title: "Population Forecasting Centre",
@@ -755,6 +787,12 @@ int main() {
     
     return 0;
 }`
+                ,
+                dataset: `Year,ZoneID,Population,Births,MigrationBalance
+2020,1,80000,1050,200
+2021,1,81500,1100,250
+2024,2,95000,1300,400
+2024,3,105000,1400,500`
             },
             4: {
                 title: "Drone Parcel Delivery Network",
@@ -902,13 +940,22 @@ int main() {
     
     return 0;
 }`
+                ,
+                dataset: `HubID,X_Coord,Y_Coord,Type,DeliveryRadius_m
+1,0,0,Hospital,5000
+2,10000,5000,Commercial,8000
+3,20000,10000,Residential,6000
+4,15000,15000,Industrial,7000
+DeliveryID,SourceHub,DestHub,Priority
+D101,1,3,3
+D102,1,4,1`
             },
             5: {
                 title: "Housing Allocation System",
                 problem: "Fair housing distribution is critical for social equity. This initiative supports SDG 11.1 (Access to Adequate, Safe and Affordable Housing) and SDG 9.1 (Resilient Infrastructure) by ensuring a structured, fair, and data-driven housing allocation mechanism for Agartha.",
-                approach: "The city follows a Four-Tier Housing Model to serve different income groups while maintaining equality, accessibility, and sustainability. Type-1: Affordable Housing (700–900 sq.ft); Type-2: Standard Apartments (900–1200 sq.ft); Type-3: Premium Apartments (1200–2000 sq.ft); Type-4: Luxury Villas (2000+ sq.ft). Allocation is prioritized based on **score**, which is a weighted sum of income eligibility, family size, and proximity to the work zone.\n\n" +
+                approach: "The city follows a Four-Tier Housing Model to serve different income groups. Allocation is prioritized based on **score**, which is a weighted sum of income eligibility, family size, and proximity to the work zone.\n\n" +
                           "**Documentation:** The system uses sorting (Merge/Quick Sort variant) to prioritize applicants based on their calculated score. Location preference is handled by finding the nearest zone.\n" +
-                          "**Efficiency Analysis:** The primary allocation bottleneck is sorting the applicants, resulting in a complexity of **O(A log A)**, where A is the total number of applicants. Lookup/matching is essentially linear in the number of available houses, O(H).",
+                          "**Efficiency Analysis:** The primary bottleneck is sorting the applicants, resulting in a complexity of **O(A log A)**, where A is the total number of applicants. Lookup/matching is essentially linear in the number of available houses, O(H).",
                 code: `// Housing Allocation System
 #include <iostream>
 #include <vector>
@@ -1071,7 +1118,14 @@ int main() {
     allocator.generateReport();
     
     return 0;
-}`
+`,
+                dataset: `ApplicantID,FamilySize,Income_kINR,WorkZoneID,Preference,Score
+A001,4,35,5,AFFORDABLE,100
+A002,3,75,8,STANDARD,85
+A004,5,40,6,AFFORDABLE,110
+HouseID,Type,Zone,SqFt,Allocated
+H101,AFFORDABLE,5,800,FALSE
+H103,STANDARD,8,1100,FALSE`
             },
             6: {
                 title: "Bus Traffic Management System",
@@ -1231,7 +1285,13 @@ int main() {
     bms.generateReport();
     
     return 0;
-}`
+`,
+                dataset: `BusID,CurrentStop,Capacity,Passengers,BusType
+101,1,80,45,BRT
+102,2,80,60,BRT
+StopID,StopName,WaitingPassengers,AvgInterval_min
+1,Central Station,80,10
+2,Tech Park,120,5`
             },
             7: {
                 title: "Revenue Transparency System",
@@ -1382,8 +1442,11 @@ int main() {
     system.generateReport();
 
     return 0;
-}
-`
+`,
+                dataset: `TransactionID,Type,Category,Amount_Cr,Timestamp
+1,REVENUE,PROPERTY_TAX,75.5,2025-01-10
+4,EXPENSE,INFRASTRUCTURE,150.8,2025-01-11
+6,REVENUE,UTILITIES,95.0,2025-01-11`
             },
             8: {
                 title: "House Number Allocation & Smart Addressing System",
@@ -1521,7 +1584,11 @@ int main() {
     system.demonstrateEmergencyRouting(addr3);
     
     return 0;
-}`
+`,
+                dataset: `SmartCode,Direction,SectorType,SectorNo,StreetNo,BuildingNo
+NWSR-05-02-0145,NW,SR,5,2,145
+SESC-12-07-0089,SE,SC,12,7,89
+NESI-08-03-0234,NE,SI,8,3,234`
             }
         };
 
