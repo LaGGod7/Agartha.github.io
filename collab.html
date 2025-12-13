@@ -79,13 +79,11 @@
                 <span class="brand-font text-xl font-bold text-gray-900 dark:text-white tracking-tight">Agartha City</span>
             </div>
             <div class="flex items-center space-x-6">
-             <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Home</a>
+                <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Home</a>
                 <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">About</a>
                 <a href="gd.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Goureesh</a>
-                <a href="yashwant.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Yashwant</a>
-                 <a href="Aditya.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Aditya</a>
-                  <a href="Ashu.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Ashutosh</a>
-                <a href="collab.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Collab</a>
+                <a href="Ashu.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 font-medium transition">Ashutosh</a>
+                <a href="collab.html" class="text-cyan-450 dark:text-cyan-450 font-medium transition">Collab</a>
                 <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition focus:outline-none">
                     <i id="theme-icon" class="fa-solid fa-moon text-gray-600 dark:text-yellow-500 text-xl"></i>
                 </button>
@@ -109,12 +107,12 @@
                 <i class="fa-solid fa-building mr-3"></i> Foundational Planning Context
             </h2>
             <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                The city is structured on **3x3 blocks forming a Sector**. Each block is a fundamental unit with a 340m x 340m grid, accommodating 1700-2000 residents. The blocks contain small supermarkets, shops, offices, apartments, or bungalows. The blocks are categorized into four types of housing (Type 1 to Type 4) based on square footage (e.g., 700 sq ft to 1200 sq ft).
+                The city is structured on **3x3 blocks forming a Sector**. Each block is a fundamental unit with a 340m x 340m grid, designed to accommodate 1700-2000 residents. The blocks contain small supermarkets, shops, offices, apartments, or bungalows. The blocks are categorized into four types of housing (Type 1 to Type 4) based on square footage (e.g., 700 sq ft to 1200 sq ft).
             </p>
             <p class="text-sm text-gray-600 dark:text-gray-400">
-                This grid system is the basis for the following algorithmic solutions, ensuring that every placement and route is computationally optimized.
+                This rigid grid system is the basis for the following algorithmic solutions, ensuring that every placement and route is computationally optimized.
             </p>
-                    </section>
+        </section>
 
         <section>
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 border-l-4 border-cyan-450 pl-4">Key Collaborative Solutions</h2>
@@ -159,7 +157,7 @@
                         <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Problem Statement</h4>
                         <p id="modalProblem" class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"></p>
                         
-                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Solution Approach</h4>
+                        <h4 class="text-cyan-450 font-bold mb-2 uppercase text-xs tracking-wider">Solution Approach / Documentation</h4>
                         <p id="modalApproach" class="text-gray-700 dark:text-gray-300 leading-relaxed"></p>
                     </div>
                     <div>
@@ -186,7 +184,7 @@
     </footer>
 
     <script>
-        // --- Theme Toggle Logic (Copied from previous fixes) ---
+        // --- Theme Toggle Logic ---
         function toggleTheme() {
             const html = document.documentElement;
             const icon = document.getElementById('theme-icon');
@@ -231,7 +229,15 @@
 
             document.getElementById('modalTitle').innerText = caseInfo.title;
             document.getElementById('modalProblem').innerText = caseInfo.problem;
-            document.getElementById('modalApproach').innerText = caseInfo.approach;
+            
+            // Format the approach text to include the efficiency analysis
+            let approachHtml = caseInfo.approach
+                .replace(/\n/g, '<br>')
+                .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>') // Basic bolding for visual hierarchy
+                .replace(/O\((.*?)\)/g, '<span class="text-cyan-450 font-bold">O($1)</span>'); // Highlight O(n) notation
+
+            document.getElementById('modalApproach').innerHTML = approachHtml;
+            
             document.getElementById('modalCode').textContent = caseInfo.code; 
 
             // Highlight the newly inserted code
@@ -250,7 +256,8 @@
             1: {
                 title: "Municipal Vehicle Allocation & Optimization",
                 problem: "The city has 10 municipal vehicles (ambulances, sanitation trucks) that need to be allocated based on live event queues (e.g., high severity traffic accidents, overflowing waste bins). We must assign the closest *available* and *correct type* of vehicle to the highest priority event.",
-                approach: "We use a Priority Queue (Max-Heap) to store all outstanding events, prioritized by severity. We use a Greedy approach to allocate the vehicle: for the highest-priority event, we find the closest available vehicle of the correct type (using Dijkstra's algorithm for distance) and dispatch it. This ensures fast response to critical incidents.",
+                approach: "We use a **Priority Queue (Max-Heap)** to store all outstanding events, prioritized by severity. We use a **Greedy approach** to allocate the vehicle: for the highest-priority event, we find the closest available vehicle of the correct type (using distance calculation) and dispatch it. This ensures fast response to critical incidents.\n\n" +
+                          "**Efficiency Analysis:** The event prioritization (Max-Heap operation) takes **O(log E)** time. The matching/dispatch loop involves iterating over the entire fleet, leading to a complexity of **O(F)** per event cycle, where F is the size of the vehicle fleet and E is the number of queued events.",
                 code: `// Municipal Vehicle Allocation (Greedy/Priority Queue)
 #include <iostream>
 #include <queue>
@@ -308,6 +315,8 @@ void dispatchVehicle(priority_queue<Event>& events, vector<Vehicle>& fleet) {
 
     if (bestVehicleId != -1) {
         // Dispatch the vehicle
+        // Note: The actual fleet modification requires using the index or a map key,
+        // here we use the ID which should correspond to the vector index for simplicity.
         fleet[bestVehicleId].isAvailable = false;
         cout << "DISPATCHED: Vehicle " << bestVehicleId 
              << " (" << (currentEvent.type == AMBULANCE ? "AMBULANCE" : "SANITATION")
@@ -318,8 +327,6 @@ void dispatchVehicle(priority_queue<Event>& events, vector<Vehicle>& fleet) {
         cout << "ALERT: No available vehicle of type " 
              << (currentEvent.type == AMBULANCE ? "AMBULANCE" : "SANITATION")
              << " for Event " << currentEvent.id << ".\n";
-        // Re-push event to queue for next cycle if resources are low
-        // events.push(currentEvent); 
     }
 }
 
@@ -352,7 +359,9 @@ int main() {
             2: {
                 title: "Sector-wise Construction Planning & Coordination",
                 problem: "Construction tasks within a 3x3 sector (like laying water lines, building vertical housing, final road paving) have strict dependencies. Starting a dependent task too early leads to cost overruns and delays. We need a valid sequence of tasks.",
-                approach: "We model the construction process as a Directed Acyclic Graph (DAG) where nodes are tasks and edges represent dependencies ('Task A must finish before Task B starts'). Topological Sort provides a valid linear ordering of tasks in O(V + E) time.",
+                approach: "We model the construction process as a **Directed Acyclic Graph (DAG)** where nodes are tasks and edges represent dependencies ('Task A must finish before Task B starts'). **Topological Sort (Kahn's Algorithm)** provides a valid linear ordering of tasks.\n\n" +
+                          "**Documentation:** This ensures the sequence adheres to engineering requirements (e.g., utilities must be laid before road paving). If the sort fails, a cycle (circular dependency) is detected.\n" +
+                          "**Efficiency Analysis:** Topological Sort using Kahn's Algorithm runs in **O(V + E)**, where V is the number of tasks and E is the number of dependencies, making it highly efficient for complex multi-stage projects.",
                 code: `// Sector Construction Planning (Topological Sort - Kahn's Algorithm)
 #include <iostream>
 #include <vector>
@@ -370,42 +379,24 @@ vector<string> TaskNames = {
 
 void addDependency(unordered_map<int, vector<int>>& adj, vector<int>& in_degree, int u, int v) {
     adj[u].push_back(v);
-    in_degree[v]++;
+    // Note: We don't increment in_degree here, but recalculate in the sort function
 }
 
 vector<int> topologicalSort(int V, unordered_map<int, vector<int>>& adj) {
     vector<int> in_degree(V, 0);
+    
+    // Calculate initial in-degrees
     for (auto const& [u, neighbors] : adj) {
         for (int v : neighbors) {
-            in_degree[v]++;
+            // Only increment for existing nodes up to V
+            if (v < V) in_degree[v]++;
         }
     }
 
     queue<int> q;
     for (int i = 0; i < V; i++) {
-        // Re-calculate in_degree based on adjacency map
-        int current_in_degree = 0;
-        for (auto const& [u, neighbors] : adj) {
-            for (int v : neighbors) {
-                if (v == i) current_in_degree++;
-            }
-        }
-        if (current_in_degree == 0) q.push(i);
-    }
-    
-    // Recalculate in_degree properly based on the map structure:
-    in_degree.assign(V, 0);
-    for (auto const& [u, neighbors] : adj) {
-        for (int v : neighbors) {
-            in_degree[v]++;
-        }
-    }
-    
-    q = queue<int>(); // Reset queue
-    for (int i = 0; i < V; i++) {
         if (in_degree[i] == 0) q.push(i);
     }
-
 
     vector<int> result;
     while (!q.empty()) {
@@ -430,27 +421,28 @@ vector<int> topologicalSort(int V, unordered_map<int, vector<int>>& adj) {
 int main() {
     int V = TaskNames.size();
     unordered_map<int, vector<int>> adj;
-    vector<int> in_degree(V, 0);
-
+    
     // Dependencies: U -> V means U must finish before V starts
+    // Vector for a simplified initial state (not strictly needed for Kahn's setup)
+    vector<int> initial_in_degree(V, 0); 
     
     // 1. Road Grading (0) must precede Utility Lines (1)
-    addDependency(adj, in_degree, 0, 1);
+    addDependency(adj, initial_in_degree, 0, 1);
     
     // 2. Utility Lines (1) must precede Housing Foundations (2)
-    addDependency(adj, in_degree, 1, 2);
+    addDependency(adj, initial_in_degree, 1, 2);
     
     // 3. Foundations (2) must precede Vertical Construction (3)
-    addDependency(adj, in_degree, 2, 3);
+    addDependency(adj, initial_in_degree, 2, 3);
     
     // 4. Vertical Construction (3) must precede Interior Finishing (4)
-    addDependency(adj, in_degree, 3, 4);
+    addDependency(adj, initial_in_degree, 3, 4);
 
     // 5. Utility Lines (1) must precede Road Paving (5)
-    addDependency(adj, in_degree, 1, 5);
+    addDependency(adj, initial_in_degree, 1, 5);
     
     // 6. Vertical Construction (3) must precede Road Paving (5) (for heavy machinery)
-    addDependency(adj, in_degree, 3, 5);
+    addDependency(adj, initial_in_degree, 3, 5);
 
     vector<int> order = topologicalSort(V, adj);
 
