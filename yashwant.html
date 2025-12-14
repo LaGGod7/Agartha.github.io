@@ -1,358 +1,1442 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yashwant Patil - Sustainable City Initiatives</title>
+    <title>Yashwant Patil | Sustainable City Portfolio (Agartha)</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyan: { 450: '#00d4ff' }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a1628 0%, #1a2940 100%);
-            color: #e0e0e0;
-            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
-
-        nav {
-            background-color: rgba(10, 22, 40, 0.95);
-            padding: 20px 0;
-            border-bottom: 2px solid #00a8cc;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        h1, h2, h3, .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
         }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap;
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
         }
-
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 500;
-            transition: color 0.3s ease;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        nav a:hover {
-            color: #00d4ff;
+        .initiative-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
         }
-
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(180deg, rgba(10, 22, 40, 0.8) 0%, rgba(26, 41, 64, 0.6) 100%);
+        .initiative-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
         }
-
-        .hero h1 {
-            font-size: 48px;
-            color: #00d4ff;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        html.dark .initiative-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
         }
-
-        .hero-divider {
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
-            margin: 30px auto;
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        .content-container {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
+        ::-webkit-scrollbar-track {
+            background: #f3f4f6;
         }
-
-        .main-card {
-            background: rgba(30, 45, 70, 0.6);
-            border-radius: 20px;
-            padding: 60px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 168, 204, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        html.dark ::-webkit-scrollbar-track {
+            background: #111827;
         }
-
-        .section-title {
-            font-size: 36px;
-            color: #00d4ff;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .title-divider {
-            width: 60px;
-            height: 3px;
+        ::-webkit-scrollbar-thumb {
             background: #00d4ff;
-            margin: 0 auto 40px;
+            border-radius: 4px;
         }
-
-        .initiative {
-            margin-bottom: 50px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid rgba(0, 168, 204, 0.2);
+        .modal {
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
         }
-
-        .initiative:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
         }
-
-        .initiative h3 {
-            font-size: 28px;
+        /* FIX: Ensures code wraps while retaining indentation */
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-x: auto;
+        }
+        /* New style for data headers in modal */
+        .modal-header {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
             color: #00d4ff;
-            margin-bottom: 20px;
         }
-
-        .initiative p {
-            color: #b8c5d6;
-            line-height: 1.8;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-
-        .initiative ul {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .initiative li {
-            color: #b8c5d6;
-            padding-left: 30px;
-            margin-bottom: 12px;
-            position: relative;
-            line-height: 1.8;
-        }
-
-        .initiative li:before {
-            content: "•";
+        /* Class for emphasis in approach/documentation */
+        .emphasis {
             color: #00d4ff;
-            font-size: 24px;
-            position: absolute;
-            left: 10px;
-            top: -2px;
+            font-weight: 700;
         }
-
-        .sdg-tag {
-            display: inline-block;
-            background: rgba(0, 212, 255, 0.1);
-            color: #00d4ff;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            border: 1px solid rgba(0, 212, 255, 0.3);
+        /* Custom grid for 5 rows, 2 columns */
+        .grid-5x2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8rem; /* Use the gap variable */
         }
-
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 32px;
+            .grid-5x2 {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
             }
-
-            .main-card {
-                padding: 30px 20px;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-
-            nav ul {
-                gap: 20px;
-            }
-
-            nav a {
-                font-size: 16px;
-            }
+        }
+        /* Style for embedded SVG flowcharts */
+        .flowchart-container {
+            width: 100%;
+            height: 300px; /* Fixed height for consistency */
+            margin: 0 auto;
+            border: 1px solid #374151; /* Match background box style */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="javascript:history.back()">← Back</a></li>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
+
+    <nav class="bg-white/90 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-city text-cyan-450 text-2xl mr-2"></i>
+                    <span class="brand-font text-xl font-bold text-gray-900 dark:text-white tracking-tight">Agartha City</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="javascript:history.back()" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 dark:hover:text-cyan-450 font-medium transition">← Back</a>
+                    <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 dark:hover:text-cyan-450 font-medium transition">Home</a>
+                    <a href="about.html" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450 dark:hover:text-cyan-450 font-medium transition">About</a>
+                    
+                    <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition focus:outline-none">
+                        <i id="theme-icon" class="fa-solid fa-sun text-yellow-500 text-xl"></i>
+                    </button>
+                </div>
+
+                <div class="flex items-center md:hidden space-x-4">
+                    <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <i id="mobile-theme-icon" class="fa-solid fa-sun text-yellow-500 text-xl"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 dark:text-gray-300 hover:text-cyan-450">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4 space-y-2 shadow-lg">
+            <a href="javascript:history.back()" class="block w-full text-left py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium rounded">← Back</a>
+            <a href="index.html" class="block w-full text-left py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium rounded">Home</a>
+            <a href="about.html" class="block w-full text-left py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium rounded">About</a>
+        </div>
     </nav>
 
-    <div class="content-container">
-        <div class="main-card">
-            <h2 class="section-title">Building Sustainable future 🏙️</h2>
-            <div class="title-divider"></div>
+    <main class="flex-grow relative fade-in">
+        <div class="relative bg-white dark:bg-gray-900 overflow-hidden border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+            <div class="absolute inset-0 opacity-10">
+                <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path d="M0 100 C 20 0 50 0 100 100 Z" fill="#00d4ff"></path>
+                </svg>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-br from-cyan-100/40 via-white to-white dark:from-cyan-900/20 dark:via-gray-900 dark:to-gray-900"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">Comprehensive Sustainable City Initiatives</h1>
+                <div class="w-24 h-1 bg-cyan-450 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-10">
+                    Hi, I am <span class="text-cyan-450 font-semibold">Yashwant Patil</span>. This document outlines the full scope of business cases developed for <span class="font-semibold">Agartha City</span> — a new, self-sufficient, and sustainable city located between Pune and Nashik, near the banks of the river Pravara.
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="bg-cyan-50 dark:bg-gray-800 rounded-xl p-8 border-l-4 border-cyan-450 shadow-lg mb-12">
+                <h3 class="text-2xl font-bold text-cyan-450 mb-6 flex items-center">
+                    <i class="fa-solid fa-lightbulb mr-3"></i>
+                    10 Key Business Cases
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700 dark:text-gray-300">
+                    <ol class="space-y-3 list-decimal ml-6">
+                        <li>EV Charging Network Optimization</li>
+                        <li>Smart Waste Collection & Management</li>
+                        <li>Dynamic Car Parking Management</li>
+                        <li>Smart Street Lighting System</li>
+                        <li>Emergency Response Optimization System</li>
+                        
+                    </ol>
+                    <ol class="space-y-3 list-decimal ml-6" start="6">
+                        <li>Advertisement Billboard Management</li>
+                        <li>Industrial Worker Support Hub</li>
+                        <li>Urban Green Parks Management</li>
+                        <li>Mobile Network Connectivity Optimization</li>
+                        <li>Gas Distribution Pipeline Integrity Monitoring</li>
+                    </ol>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 mt-6 italic">Click on any initiative below to view the detailed approach, efficiency analysis, code, and sample dataset.</p>
+            </div>
+
+            <h2 class="text-3xl font-bold text-cyan-450 mb-8 text-center">Detailed Initiatives</h2>
             
-            <p style="color: #b8c5d6; line-height: 1.8; font-size: 16px; margin-bottom: 40px; text-align: center;">
-                Hi, I am Yashwant. I am responsible for conceptualizing and developing the following business cases for Agartha — a new, self-sufficient, and sustainable city with a population of 4 million, located between Pune and Nashik near the banks of the Pravara River. These ideas are designed to support Agartha's long-term growth, improve quality of life, and align with global development goals.
-            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                
+                <div onclick="openModal(1)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-green-450 to-teal-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">1. EV Charging Network Optimization</h3>
+                            <i class="fa-solid fa-charging-station text-teal-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 7.3 & SDG 13.2</span>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Optimal placement and real-time load balancing of charging stations using clustering and graph algorithms.
+                        </p>
+                        <div class="mt-4 text-teal-500 font-semibold text-sm flex items-center">
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
 
-            <div style="background: rgba(0, 212, 255, 0.05); border-left: 4px solid #00d4ff; padding: 30px; margin-bottom: 50px; border-radius: 10px;">
-                <h3 style="color: #00d4ff; font-size: 24px; margin-bottom: 20px;">Business cases :</h3>
-                <ol style="color: #b8c5d6; line-height: 2; font-size: 16px; padding-left: 25px;">
-                    <li>EV Charging Network</li>
-                    <li>Waste Collection and Management System</li>
-                    <li>Car Parking and Management Solutions</li>
-                    <li>Smart Street Lighting System</li>
-                    <li>Emergency Response and Safety Infrastructure</li>
-                    <li>Digital and Eco-Friendly Advertisement Billboards</li>
-                    <li>Industrial Worker Support Hub</li>
-                    <li>Urban Green Parks and Riverfront Development</li>
-                    <li>Mobile Network and City-Wide Connectivity Infrastructure</li>
-                    <li>Gas Distribution Through Pipeline Network</li>
-                </ol>
-                <p style="color: #b8c5d6; margin-top: 20px; font-style: italic;">Each of these ideas contributes to building a modern, sustainable, efficient, and inclusive urban ecosystem for the future of Agartha.</p>
+                <div onclick="openModal(2)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-yellow-450 to-orange-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">2. Smart Waste Collection & Management</h3>
+                            <i class="fa-solid fa-trash-can text-orange-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 11.6 & SDG 12.5</span>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Minimizing collection routes based on bin fill-level data using the Traveling Salesperson Problem (TSP) approximation.
+                        </p>
+                        <div class="mt-4 text-orange-500 font-semibold text-sm flex items-center">
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="openModal(3)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-indigo-450 to-blue-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">3. Dynamic Car Parking Management</h3>
+                            <i class="fa-solid fa-square-parking text-blue-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 9.1 & SDG 11.2</span>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Real-time space reservation and predictive occupancy modeling using hash maps for quick lookups.
+                        </p>
+                        <div class="mt-4 text-blue-500 font-semibold text-sm flex items-center">
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="openModal(4)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-cyan-450 to-purple-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">4. Smart Street Lighting System</h3>
+                            <i class="fa-solid fa-lightbulb text-purple-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 7.3 & SDG 11.a</span>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Motion-activated dimming and failure detection using a segmented array for efficient control and power saving.
+                        </p>
+                        <div class="mt-4 text-purple-500 font-semibold text-sm flex items-center">
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="openModal(5)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-red-450 to-pink-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">5. Emergency Response Optimization System</h3>
+                            <i class="fa-solid fa-truck-medical text-pink-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-pink-100 dark:bg-pink-900/30 text-pink-800 dark:text-pink-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 3.8 & SDG 16.6</span>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Dispatching the closest and most appropriate unit using a K-d Tree for spatial nearest-neighbor search.
+                        </p>
+                        <div class="mt-4 text-pink-500 font-semibold text-sm flex items-center">
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="openModal(6)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-lime-450 to-emerald-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">6. Advertisement Billboard Management</h3>
+                            <i class="fa-solid fa-rectangle-ad text-emerald-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 8.2 & SDG 9.1</span>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Optimal placement for maximum visibility using location-based utility scoring and dynamic programming.
+                        </p>
+                        <div class="mt-4 text-emerald-500 font-semibold text-sm flex items-center">
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="openModal(7)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-gray-450 to-slate-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">7. Industrial Worker Support Hub</h3>
+                            <i class="fa-solid fa-helmet-safety text-slate-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-slate-100 dark:bg-slate-900/30 text-slate-800 dark:text-slate-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 8.8 & SDG 10.2</span>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Matching skilled workers to temporary job demand using the Hungarian Algorithm (Assignment Problem).
+                        </p>
+                        <div class="mt-4 text-slate-500 font-semibold text-sm flex items-center">
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="openModal(8)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-pink-450 to-fuchsia-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">8. Urban Green Parks Management</h3>
+                            <i class="fa-solid fa-tree text-fuchsia-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-fuchsia-100 dark:bg-fuchsia-900/30 text-fuchsia-800 dark:text-fuchsia-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 11.7 & SDG 15.1</span>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Dynamic irrigation scheduling and health monitoring using a Spanning Tree structure for network efficiency.
+                        </p>
+                        <div class="mt-4 text-fuchsia-500 font-semibold text-sm flex items-center">
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="openModal(9)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-rose-450 to-red-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">9. Mobile Network Connectivity Optimization</h3>
+                            <i class="fa-solid fa-signal text-red-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 9.c & SDG 9.1</span>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Real-time load balancing between cell towers using the Maximum Flow / Minimum Cut theory.
+                        </p>
+                        <div class="mt-4 text-red-500 font-semibold text-sm flex items-center">
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="openModal(10)" class="initiative-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-blue-450 to-cyan-500"></div>
+                    <div class="p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">10. Gas Distribution Pipeline Monitoring</h3>
+                            <i class="fa-solid fa-fire text-cyan-500 text-3xl"></i>
+                        </div>
+                        <span class="inline-block bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-300 px-3 py-1 rounded-full text-sm font-semibold mb-4">SDG 7.1 & SDG 9.1</span>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                            Leak detection and pressure management using a Disjoint Set Union (DSU) structure for network integrity.
+                        </p>
+                        <div class="mt-4 text-cyan-500 font-semibold text-sm flex items-center">
+                            Click for Analysis & Code <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+        </div>
+    </main>
 
-            <div class="initiative">
-                <h3>1. EV Charging Network</h3>
-                <span class="sdg-tag">SDG 11.2</span>
-                <p>EV charging networks align with SDG 11.2, which focuses on providing access to safe, affordable, and sustainable transport systems for all.</p>
-                <p>Given that the city has a population of around 4 million and is located between Pune and Nashik—two rapidly developing EV corridors—establishing a city-wide EV charging network becomes essential.</p>
-                <p>EV charging networks contribute to this goal by:</p>
-                <ul>
-                    <li>Promoting clean mobility for residents and intercity commuters.</li>
-                    <li>Reducing air pollution around the Pravara River and nearby residential zones.</li>
-                    <li>Supporting efficient transportation in a fast-growing metropolitan region.</li>
-                    <li>Ensuring equitable access to EV charging across dense and newly developing areas.</li>
-                </ul>
+    <div id="caseModal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative z-10 transition-colors">
+            
+            <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                <h3 id="modalTitle" class="text-2xl font-bold text-gray-900 dark:text-white font-mono"></h3>
+                <button onclick="closeModal()" class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
             </div>
+            
+            <div class="p-6 overflow-y-auto bg-gray-50 dark:bg-gray-900/50">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="modal-header uppercase text-xs tracking-wider">Flowchart / System Diagram</h4>
+                        <div class="flowchart-container">
+                            <img id="modalFlowchart" src="" alt="Flowchart Diagram" style="width:100%; height:100%;"/>
+                        </div>
+                        
 
-            <div class="initiative">
-                <h3>2. Waste Collection and Management System</h3>
-                <span class="sdg-tag">SDG 11.6</span>
-                <p>Waste management aligns with SDG 11.6, which aims to reduce the adverse environmental impact of cities, particularly in the areas of solid waste and air pollution.</p>
-                <p>For a city with 4 million people, especially one located near the Pravara River, sustainable waste collection and processing is crucial.</p>
-                <p>This contributes by:</p>
-                <ul>
-                    <li>Preventing river pollution during monsoons through controlled waste disposal.</li>
-                    <li>Reducing landfill usage by promoting segregation and recycling.</li>
-                    <li>Ensuring cleaner neighborhoods and healthier living conditions.</li>
-                    <li>Supporting environmentally responsible urban expansion along the Pune–Nashik corridor.</li>
-                </ul>
-            </div>
+                        <h4 class="modal-header uppercase text-xs tracking-wider">Problem Statement</h4>
+                        <p id="modalProblem" class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"></p>
+                        
+                        <h4 class="modal-header uppercase text-xs tracking-wider">Solution Approach / Documentation</h4>
+                        <p id="modalApproach" class="text-gray-700 dark:text-gray-300 leading-relaxed"></p>
 
-            <div class="initiative">
-                <h3>3. Car Parking and Management Solutions</h3>
-                <span class="sdg-tag">SDG 11.2</span>
-                <p>Car parking and management systems align with SDG 11.2, which emphasizes providing sustainable and efficient transport access for all.</p>
-                <p>With large daily traffic flow between Pune and Nashik, and a growing internal vehicular population, the city requires organized parking systems.</p>
-                <p>These solutions support sustainable mobility by:</p>
-                <ul>
-                    <li>Reducing congestion in business districts and riverfront commercial areas.</li>
-                    <li>Minimizing fuel wastage caused by searching for parking.</li>
-                    <li>Enhancing safety and reducing illegal roadside parking.</li>
-                    <li>Supporting planned growth in rapidly developing neighborhoods.</li>
-                </ul>
-            </div>
-
-            <div class="initiative">
-                <h3>4. Smart Street Lighting System</h3>
-                <span class="sdg-tag">SDG 11.7</span>
-                <p>Smart street lighting aligns with SDG 11.7, which promotes safe, inclusive, and accessible public spaces.</p>
-                <p>As the city expands along the Pravara River and its suburbs, modern lighting is essential.</p>
-                <p>Smart lighting contributes to sustainable development by:</p>
-                <ul>
-                    <li>Improving safety during night hours in residential, commercial, and riverfront areas.</li>
-                    <li>Reducing electricity consumption through sensor-based control and automation.</li>
-                    <li>Lowering carbon emissions by adopting solar-powered or energy-efficient LED lights.</li>
-                    <li>Ensuring uniform illumination across both high-density and rural–urban transition zones.</li>
-                </ul>
-            </div>
-
-            <div class="initiative">
-                <h3>5. Emergency Response and Safety Infrastructure</h3>
-                <span class="sdg-tag">SDG 11.5</span>
-                <p>Emergency response infrastructure aligns with SDG 11.5, which focuses on reducing deaths, injuries, and economic losses caused by disasters.</p>
-                <p>Being located near a river and between two major traffic-heavy cities, the region is prone to flood risks and highway accidents.</p>
-                <p>A strong emergency response system supports sustainability by:</p>
-                <ul>
-                    <li>Ensuring quick reaction to floods, fires, industrial incidents, and accidents.</li>
-                    <li>Improving access to medical and rescue services for the entire 4-million population.</li>
-                    <li>Reducing damage and casualties through early warning systems and sensor networks.</li>
-                    <li>Strengthening city resilience to environmental and man-made challenges.</li>
-                </ul>
-            </div>
-
-            <div class="initiative">
-                <h3>6. Digital and Eco-Friendly Advertisement Billboards</h3>
-                <span class="sdg-tag">SDG 11.3</span>
-                <p>Digital and eco-friendly billboards align with SDG 11.3, which promotes sustainable urban planning and better-organized city spaces.</p>
-                <p>For a city that sits on a major intercity route, digital billboards can modernize communication and reduce visual clutter.</p>
-                <p>These billboards contribute by:</p>
-                <ul>
-                    <li>Eliminating waste generated by old-style paper posters.</li>
-                    <li>Reducing visual pollution and organizing public spaces.</li>
-                    <li>Using solar-powered or low-energy digital screens to minimize environmental impact.</li>
-                    <li>Providing a clean and professional advertising system for local businesses and commuters traveling between Pune and Nashik.</li>
-                </ul>
-            </div>
-
-            <div class="initiative">
-                <h3>7. Industrial Worker Support Hub</h3>
-                <span class="sdg-tag">SDG 11.1</span>
-                <p>Industrial Worker Support Hubs align with SDG 11.1, which focuses on ensuring access to basic services and adequate living conditions.</p>
-                <p>Due to the city's strategic location, industrial growth is expected along the Pune–Nashik corridor, increasing the need for worker welfare infrastructure.</p>
-                <p>Such hubs support sustainable development by:</p>
-                <ul>
-                    <li>Providing essential services like healthcare, groceries, childcare, and digital services.</li>
-                    <li>Supporting migrant and low-income workers living in industrial settlements near the Pravara River.</li>
-                    <li>Enhancing quality of life and productivity among the workforce.</li>
-                    <li>Contributing to inclusive and equitable urban development for all population groups.</li>
-                </ul>
-            </div>
-
-            <div class="initiative">
-                <h3>8. Urban Green Parks & Riverfront Development</h3>
-                <span class="sdg-tag">SDG 11.7</span>
-                <p>Urban green parks and riverfront development align with SDG 11.7, which focuses on providing universal access to safe, inclusive, and accessible green public spaces.</p>
-                <p>For a city located along the Pravara River, creating well-planned riverfront parks and natural recreational zones is essential.</p>
-                <p>Urban green spaces support sustainable development by:</p>
-                <ul>
-                    <li>Improving air quality and reducing the urban heat effect for a large 4-million population.</li>
-                    <li>Preserving the ecological balance around the Pravara River.</li>
-                    <li>Providing safe recreational spaces for families, children, and elderly residents.</li>
-                    <li>Enhancing the city's aesthetic appeal and attracting tourism between Pune and Nashik.</li>
-                </ul>
-            </div>
-
-            <div class="initiative">
-                <h3>9. Mobile Network and City-Wide Connectivity Infrastructure</h3>
-                <span class="sdg-tag">SDG 9 & SDG 11</span>
-                <p>Mobile network and connectivity infrastructure align with SDG 9 (Industry, Innovation, and Infrastructure) and SDG 11 (Sustainable Cities and Communities), which focus on developing resilient infrastructure and ensuring access to inclusive and sustainable urban services.</p>
-                <p>For Agartha—a rapidly growing 4-million-population city located between Pune and Nashik—reliable connectivity is essential for both citizens and industries.</p>
-                <p>This system contributes to sustainable development by:</p>
-                <ul>
-                    <li>Ensuring uninterrupted 4G/5G coverage across all neighborhoods, including newly developing areas along the Pravara River.</li>
-                    <li>Supporting digital education, online healthcare facilities, e-governance, and remote working opportunities.</li>
-                    <li>Enabling smart city technologies such as IoT-based streetlights, emergency response systems, surveillance networks, and environmental sensors.</li>
-                    <li>Strengthening business communication, logistics coordination, and industrial productivity across Agartha.</li>
-                </ul>
-            </div>
-
-            <div class="initiative">
-                <h3>10. Gas Distribution Through Pipeline Network</h3>
-                <span class="sdg-tag">SDG 11.1 & SDG 11.6</span>
-                <p>The gas distribution network aligns with SDG 11.1 (Access to Basic Services) and SDG 11.6 (Environmental Impact Reduction), which emphasize safe, affordable utilities and reducing pollution in urban environments.</p>
-                <p>In Agartha, a piped gas supply system is particularly beneficial due to the city's expanding residential and industrial zones near the Pravara River.</p>
-                <p>A gas pipeline network contributes to sustainable city development by:</p>
-                <ul>
-                    <li>Providing households and industries with clean, reliable, and cost-effective energy.</li>
-                    <li>Reducing road congestion and pollution by eliminating the need for LPG cylinder transportation.</li>
-                    <li>Enhancing safety through monitored, high-quality pipelines equipped with leak-detection systems.</li>
-                    <li>Supporting planned urban expansion by delivering energy efficiently to new communities and industrial clusters along the Pune–Nashik corridor.</li>
-                </ul>
+                        <h4 class="modal-header uppercase text-xs tracking-wider">Sample Dataset Preview (.CSV)</h4>
+                        <div class="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm">
+                            <pre><code id="modalDataPreview" class="language-csv hljs"></code></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="modal-header uppercase text-xs tracking-wider">C++ Implementation & Efficiency Analysis</h4>
+                        <div class="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm">
+                            <pre><code id="modalCode" class="language-cpp hljs"></code></pre>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 text-gray-800 dark:text-white py-8 mt-auto transition-colors">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="brand-font text-lg font-bold">Agartha Sustainable City</span>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">Building a sustainable future, one initiative at a time.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-cyan-450 dark:hover:text-cyan-450 transition"><i class="fa-brands fa-github text-xl"></i></a>
+                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-cyan-450 dark:hover:text-cyan-450 transition"><i class="fa-brands fa-linkedin text-xl"></i></a>
+                <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-cyan-450 dark:hover:text-cyan-450 transition"><i class="fa-brands fa-twitter text-xl"></i></a>
+            </div>
+        </div>
+        <div class="text-center mt-8 text-gray-500 dark:text-gray-600 text-xs">
+            © 2025 Agartha City Project by Yashwant Patil. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        // --- Theme Toggle Logic ---
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            const mobileIcon = document.getElementById('mobile-theme-icon');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                icon.classList.remove('fa-sun', 'text-yellow-500');
+                icon.classList.add('fa-moon', 'text-gray-600');
+                
+                mobileIcon.classList.remove('fa-sun', 'text-yellow-500');
+                mobileIcon.classList.add('fa-moon', 'text-gray-600');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                icon.classList.remove('fa-moon', 'text-gray-600');
+                icon.classList.add('fa-sun', 'text-yellow-500');
+                
+                mobileIcon.classList.remove('fa-moon', 'text-gray-600');
+                mobileIcon.classList.add('fa-sun', 'text-yellow-500');
+            }
+        }
+
+        // --- Initialize Theme ---
+        if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            document.documentElement.classList.remove('dark');
+            const icon = document.getElementById('theme-icon');
+            const mobileIcon = document.getElementById('mobile-theme-icon');
+            if (icon) {
+                icon.classList.remove('fa-sun', 'text-yellow-500');
+                icon.classList.add('fa-moon', 'text-gray-600');
+            }
+            if (mobileIcon) {
+                mobileIcon.classList.remove('fa-sun', 'text-yellow-500');
+                mobileIcon.classList.add('fa-moon', 'text-gray-600');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // --- Modal Logic ---
+
+        function openModal(caseId) {
+            const caseInfo = caseData[caseId];
+            if (!caseInfo) return;
+
+            document.getElementById('modalTitle').innerText = caseInfo.title;
+            document.getElementById('modalProblem').innerText = caseInfo.problem;
+            
+            // Flowchart/Diagram Insertion using data URI
+            document.getElementById('modalFlowchart').src = caseInfo.flowchart;
+            
+            // Format the approach text: replace \n with <br>, and emphasize algorithm names and complexity measures.
+            let approachHtml = caseInfo.approach
+                .replace(/\n/g, '<br>')
+                .replace(/(K-Means Clustering Algorithm|Greedy Approximation Algorithm|Hash Maps|Bitmask\/Segmented Array|K-d Tree|Dynamic Programming \(Knapsack Problem\)|Hungarian Algorithm|Kruskal's Algorithm|Maximum Flow Min-Cut Theorem|Disjoint Set Union \(DSU\))/g, '<span class="emphasis">$&</span>')
+                .replace(/(O\([^)]+\))/g, '<span class="emphasis">$&</span>'); // Emphasis for O(...)
+
+            document.getElementById('modalApproach').innerHTML = approachHtml;
+            
+            document.getElementById('modalCode').textContent = caseInfo.code; 
+            document.getElementById('modalDataPreview').textContent = caseInfo.dataset; // Insert Dataset Content
+
+            // Highlight the newly inserted code and dataset preview
+            hljs.highlightAll();
+
+            document.getElementById('caseModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('caseModal').classList.remove('active');
+        }
+
+
+        // Case Data Database (All 10 cases defined with updated formatting)
+        const caseData = {
+            1: {
+                title: "EV Charging Network Optimization",
+                problem: "To support the city's transition to electric vehicles, the placement of charging stations must be strategically optimized for maximum convenience and minimum energy distribution strain. Poor placement leads to queues and grid instability.",
+                flowchart: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3Cmarker id='arrow' markerWidth='10' markerHeight='10' refX='9' refY='3' orient='auto' markerUnits='strokeWidth'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%2322d3ee'/%3E%3C/marker%3E%3C/defs%3E%3Crect width='400' height='300' fill='%231a202c'/%3E%3Ctext x='200' y='30' text-anchor='middle' fill='%2322d3ee' font-size='16' font-weight='bold'%3EEV Charging Flow%3C/text%3E%3Crect x='140' y='50' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='75' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3ERequest Charging%3C/text%3E%3Cpath d='M200 90 L200 110' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='110' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='135' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EK-Means Clustering%3C/text%3E%3Cpath d='M200 150 L200 170' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='170' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='195' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EOptimal Centroids%3C/text%3E%3Cpath d='M200 210 L200 230' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='230' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='255' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EDeploy Charger%3C/text%3E%3C/svg%3E",
+                approach: "We use the K-Means Clustering Algorithm to group high-demand areas (based on residential density, commercial zones, and major routes) and place charging stations at the centroid of each cluster. This minimizes the average distance a user must travel to charge.\n\n" +
+                            "Documentation: Clustering ensures equitable distribution, while real-time data is used to adjust dynamic pricing (a form of Load Balancing).\n" +
+                            "Efficiency Analysis: K-Means clustering is typically O(I * K * N * D), where I is iterations, K is clusters, N is data points (locations), and D is dimensions, providing efficient spatial analysis.",
+                code: `// K-Means Clustering for EV Charger Placement
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <limits>
+#include <numeric>
+#include <algorithm>
+
+using namespace std;
+
+struct Point {
+    double x, y; // Represents coordinates (e.g., Lat/Lon)
+};
+
+double distance(const Point& p1, const Point& p2) {
+    return sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
+}
+
+// Simplified K-Means implementation
+vector<Point> kmeans(const vector<Point>& data, int k, int max_iterations) {
+    if (data.empty() || k > data.size()) return {};
+    
+    vector<Point> centroids(k);
+    // 1. Initialization (Select first K points as initial centroids)
+    for (int i = 0; i < k; ++i) {
+        centroids[i] = data[i];
+    }
+    
+    vector<int> assignments(data.size());
+
+    for (int iter = 0; iter < max_iterations; ++iter) {
+        // 2. Assignment Step: Assign each data point to the nearest centroid
+        for (size_t i = 0; i < data.size(); ++i) {
+            double min_dist = numeric_limits<double>::max();
+            int best_centroid = -1;
+            for (int j = 0; j < k; ++j) {
+                double dist = distance(data[i], centroids[j]);
+                if (dist < min_dist) {
+                    min_dist = dist;
+                    best_centroid = j;
+                }
+            }
+            assignments[i] = best_centroid;
+        }
+
+        // 3. Update Step: Recalculate centroids
+        vector<Point> new_centroids(k, {0.0, 0.0});
+        vector<int> counts(k, 0);
+        
+        for (size_t i = 0; i < data.size(); ++i) {
+            new_centroids[assignments[i]].x += data[i].x;
+            new_centroids[assignments[i]].y += data[i].y;
+            counts[assignments[i]]++;
+        }
+        
+        bool changed = false;
+        for (int j = 0; j < k; ++j) {
+            if (counts[j] > 0) {
+                new_centroids[j].x /= counts[j];
+                new_centroids[j].y /= counts[j];
+                if (distance(centroids[j], new_centroids[j]) > 1e-4) {
+                    changed = true;
+                }
+                centroids[j] = new_centroids[j];
+            }
+        }
+        
+        // 4. Convergence check
+        if (!changed) break;
+    }
+
+    return centroids;
+}
+
+int main() {
+    // High-demand locations (normalized coordinates/density centers)
+    vector<Point> demand_points = {
+        {10.0, 5.0}, {11.0, 5.5}, {9.5, 4.8},  // Cluster A
+        {25.0, 15.0}, {26.0, 14.5}, {24.5, 15.5}, // Cluster B
+        {5.0, 30.0}, {5.2, 29.8} // Cluster C
+    };
+    int num_chargers = 3;
+    
+    vector<Point> placements = kmeans(demand_points, num_chargers, 100);
+
+    cout << "Optimal EV Charger Placement Coordinates (Centroids):\n";
+    for (size_t i = 0; i < placements.size(); ++i) {
+        cout << "Charger " << i+1 << ": (" << placements[i].x << ", " << placements[i].y << ")\n";
+    }
+
+    return 0;
+}`,
+                dataset: `LocationID,Latitude,Longitude,DemandScore,ZoneType,GridCapacity_kW
+L001,18.520,73.856,5.2,Residential,300
+L002,18.522,73.858,8.1,Commercial,500
+L003,18.515,73.850,2.5,Residential,200
+L004,18.530,73.865,6.0,Major Route,400
+L005,18.540,73.870,7.5,Commercial,600
+L006,18.510,73.855,3.0,Residential,300`
+            },
+            2: {
+                title: "Smart Waste Collection & Management",
+                problem: "Inefficient waste collection (fixed routes) wastes fuel and labor, while overfilled bins create public health issues. Agartha requires dynamic route optimization based on real-time bin fill levels.",
+                flowchart: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3Cmarker id='arrow' markerWidth='10' markerHeight='10' refX='9' refY='3' orient='auto' markerUnits='strokeWidth'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%22%2322d3ee'/%3E%3C/marker%3E%3C/defs%3E%3Crect width='400' height='300' fill='%231a202c'/%3E%3Ctext x='200' y='30' text-anchor='middle' fill='%2322d3ee' font-size='16' font-weight='bold'%3EWaste Collection TSP%3C/text%3E%3Crect x='140' y='50' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='75' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EStart at Depot%3C/text%3E%3Cpath d='M200 90 L200 110' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Cpolygon points='200,110 260,135 200,160 140,135' fill='%234b5563' stroke='%2322d3ee' stroke-width='2'/%3E%3Ctext x='200' y='135' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EUncollected & %3E85\% Full%3C/text%3E%3Cpath d='M200 160 L200 180' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='180' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='205' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EFind Nearest Bin (Greedy)%3C/text%3E%3Cpath d='M200 220 L200 240' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='240' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='265' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3ECollect & Update Route%3C/text%3E%3Cpath d='M260 260 L280 260 L280 135 L260 135' stroke='%2322d3ee' stroke-width='2'/%3E%3Cpath d='M260 260 L280 260 L280 135 L260 135' stroke='%2322d3ee' stroke-width='2'/%3E%3Cpath d='M260 260 L280 260 L280 135 L260 135' stroke='%2322d3ee' stroke-width='2'/%3E%3Cpath d='M280 135 L260 135' stroke='%2322d3ee' marker-end='url(%23arrow)'/%3E%3C/svg%3E",
+                approach: "We use a Greedy Approximation Algorithm for the Traveling Salesperson Problem (TSP), prioritizing the nearest highly-filled bins first. This minimizes total travel distance by dynamically sequencing collection points only when they reach a certain threshold.\n\n" +
+                            "Documentation: The greedy approach (nearest neighbor) provides a fast, near-optimal solution for the NP-hard TSP, reducing the length of daily collection routes by an estimated 20%.\n" +
+                            "Efficiency Analysis: The Nearest Neighbor Heuristic for TSP is O(N^2), where N is the number of bins, making it suitable for quick route calculation on large datasets of sensor-enabled bins.",
+                code: `// Waste Collection Route Optimization (Nearest Neighbor TSP Approximation)
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <algorithm>
+#include <limits>
+#include <numeric>
+
+using namespace std;
+
+struct Bin {
+    int id;
+    double x, y;
+    int fillLevel;
+    bool collected;
+};
+
+double calculateDistance(const Bin& b1, const Bin& b2) {
+    return sqrt(pow(b1.x - b2.x, 2) + pow(b1.y - b2.y, 2));
+}
+
+// Finds the nearest uncollected bin from the current bin
+int findNearestUncollected(int current_index, vector<Bin>& bins, double threshold) {
+    double min_dist = numeric_limits<double>::max();
+    int nearest_index = -1;
+
+    for (size_t i = 0; i < bins.size(); ++i) {
+        if (!bins[i].collected && bins[i].fillLevel >= threshold) {
+            double dist = calculateDistance(bins[current_index], bins[i]);
+            if (dist < min_dist) {
+                min_dist = dist;
+                nearest_index = i;
+            }
+        }
+    }
+    return nearest_index;
+}
+
+vector<int> generateCollectionRoute(vector<Bin>& bins, int start_index, double threshold) {
+    vector<int> route;
+    int current_index = start_index;
+    bins[current_index].collected = true; // Start point is considered 'collected' for routing purposes
+
+    // Add starting point only if it meets threshold or is the depot
+    if (bins[start_index].fillLevel >= threshold || bins[start_index].id == 0) {
+        route.push_back(bins[start_index].id);
+    } else {
+        // If starting point is not high priority, find the first high-priority bin
+        int first_bin = findNearestUncollected(current_index, bins, threshold);
+        if (first_bin != -1) {
+            current_index = first_bin;
+            bins[current_index].collected = true;
+            route.push_back(bins[current_index].id);
+        } else {
+            return {}; // No urgent bins to collect
+        }
+    }
+
+    int next_index;
+    do {
+        next_index = findNearestUncollected(current_index, bins, threshold);
+        if (next_index != -1) {
+            current_index = next_index;
+            bins[current_index].collected = true;
+            route.push_back(bins[current_index].id);
+        }
+    } while (next_index != -1);
+    
+    // Optional: Return to the depot (index 0)
+    route.push_back(0); 
+    
+    return route;
+}
+
+int main() {
+    // 0: Depot (Start/End), 1-5: Bins
+    vector<Bin> city_bins = {
+        {0, 0.0, 0.0, 0, false}, // Depot
+        {1, 5.0, 1.0, 95, false}, // High priority
+        {2, 2.0, 8.0, 50, false}, // Low priority
+        {3, 8.0, 3.0, 88, false}, // High priority
+        {4, 1.0, 10.0, 40, false}, // Low priority
+        {5, 10.0, 0.0, 91, false} // High priority
+    };
+    double collection_threshold = 85.0; // Collect bins > 85% full
+
+    vector<int> optimized_route = generateCollectionRoute(city_bins, 0, collection_threshold);
+
+    cout << "Optimized Waste Collection Route (Threshold " << collection_threshold << "%):\n";
+    for (int bin_id : optimized_route) {
+        cout << (bin_id == 0 ? "Depot" : "Bin " + to_string(bin_id)) << " -> ";
+    }
+    cout << "End" << endl;
+
+    return 0;
+}`,
+                dataset: `BinID,Latitude,Longitude,FillLevel_perc,LastEmptied_h,Zone,BinType
+B001,18.520,73.856,95,48,Residential,Dry
+B002,18.525,73.859,50,24,Residential,Wet
+B003,18.515,73.850,88,72,Commercial,Dry
+B004,18.530,73.865,40,48,Industrial,Mixed
+B005,18.540,73.870,91,24,Residential,Wet
+B006,18.510,73.855,75,96,Commercial,Dry`
+            },
+            3: {
+                title: "Dynamic Car Parking Management",
+                problem: "Searching for parking is a major source of urban congestion and emissions. Agartha needs a system for real-time occupancy monitoring, efficient space allocation, and predictive guidance.",
+                flowchart: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3Cmarker id='arrow' markerWidth='10' markerHeight='10' refX='9' refY='3' orient='auto' markerUnits='strokeWidth'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%2322d3ee'/%3E%3C/marker%3E%3C/defs%3E%3Crect width='400' height='300' fill='%231a202c'/%3E%3Ctext x='200' y='30' text-anchor='middle' fill='%2322d3ee' font-size='16' font-weight='bold'%3EParking Hashing Flow%3C/text%3E%3Crect x='140' y='50' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='75' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EInput: Spot ID / Status%3C/text%3E%3Cpath d='M200 90 L200 110' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='110' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='135' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EHash Key (Spot ID)%3C/text%3E%3Cpath d='M200 150 L200 170' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='170' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='195' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3ELookup Status (O(1))%3C/text%3E%3Cpath d='M200 210 L200 230' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='230' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='255' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EOutput: Reserve / Guide%3C/text%3E%3C/svg%3E",
+                approach: "We use Hash Maps (Unordered Maps) for O(1) average time complexity for real-time lookups (checking if a spot is free, reserving a spot). The key is the spot ID, and the value is the current status (Available, Occupied, Reserved).\n\n" +
+                            "Documentation: This ensures the fastest possible response time for millions of concurrent parking requests/updates, crucial for a high-traffic city application.\n" +
+                            "Efficiency Analysis: Insertion, Deletion, and Lookup in an average-case scenario for a Hash Map are O(1), providing high scalability for the city's entire inventory of parking spots.",
+                code: `// Dynamic Car Parking Management (Hash Map)
+#include <iostream>
+#include <unordered_map>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+enum Status { AVAILABLE, OCCUPIED, RESERVED };
+
+class ParkingManager {
+private:
+    // Key: Spot ID (e.g., "P1-A-005"), Value: Current Status
+    unordered_map<string, Status> spot_status;
+    // For quick reservation tracking
+    unordered_map<string, string> reservation_map; // Key: Spot ID, Value: User ID
+
+public:
+    ParkingManager(const vector<string>& all_spots) {
+        for (const string& spot : all_spots) {
+            spot_status[spot] = AVAILABLE;
+        }
+    }
+
+    Status getStatus(const string& spot_id) const {
+        if (spot_status.count(spot_id)) {
+            return spot_status.at(spot_id);
+        }
+        return (Status)-1; // Not found
+    }
+
+    bool reserveSpot(const string& spot_id, const string& user_id) {
+        if (spot_status.count(spot_id) && spot_status[spot_id] == AVAILABLE) {
+            spot_status[spot_id] = RESERVED;
+            reservation_map[spot_id] = user_id;
+            return true;
+        }
+        return false;
+    }
+
+    bool occupySpot(const string& spot_id) {
+        if (spot_status.count(spot_id) && spot_status[spot_id] != OCCUPIED) {
+            spot_status[spot_id] = OCCUPIED;
+            // Clear reservation if it was reserved
+            if (reservation_map.count(spot_id)) {
+                reservation_map.erase(spot_id);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    int getAvailableCount() const {
+        int count = 0;
+        for (const auto& pair : spot_status) {
+            if (pair.second == AVAILABLE) {
+                count++;
+            }
+        }
+        return count;
+    }
+};
+
+int main() {
+    vector<string> spots = {"P1-A-001", "P1-A-002", "P1-B-010", "P1-B-011"};
+    ParkingManager manager(spots);
+
+    cout << "Initial available spots: " << manager.getAvailableCount() << endl;
+
+    manager.reserveSpot("P1-A-002", "User123");
+    manager.occupySpot("P1-B-010");
+
+    cout << "Status of P1-A-002: " << (manager.getStatus("P1-A-002") == RESERVED ? "Reserved" : "Other") << endl;
+    cout << "Status of P1-B-010: " << (manager.getStatus("P1-B-010") == OCCUPIED ? "Occupied" : "Other") << endl;
+    cout << "Available spots after transactions: " << manager.getAvailableCount() << endl;
+
+    return 0;
+}`,
+                dataset: `SpotID,Area,OccupancyStatus,SensorOK,LastOccupiedTime,PriceZone
+P1-A-001,Central,AVAILABLE,TRUE,08:15:00,Premium
+P1-A-002,Central,OCCUPIED,TRUE,07:30:15,Premium
+P1-B-010,North,AVAILABLE,TRUE,08:00:00,Standard
+P1-B-011,North,RESERVED,TRUE,08:25:00,Standard
+P2-C-020,East,OCCUPIED,FALSE,06:45:30,Budget`
+            },
+            4: {
+                title: "Smart Street Lighting System",
+                problem: "Traditional street lighting accounts for significant energy consumption. The system must switch to adaptive lighting (dimming when no one is present) and automatically detect lamp failures for prompt maintenance.",
+                flowchart: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3Cmarker id='arrow' markerWidth='10' markerHeight='10' refX='9' refY='3' orient='auto' markerUnits='strokeWidth'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%2322d3ee'/%3E%3C/marker%3E%3C/defs%3E%3Crect width='400' height='300' fill='%231a202c'/%3E%3Ctext x='200' y='30' text-anchor='middle' fill='%2322d3ee' font-size='16' font-weight='bold'%3ESmart Lighting Bitmask%3C/text%3E%3Crect x='140' y='50' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='75' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EMotion Sensor Input%3C/text%3E%3Cpath d='M200 90 L200 110' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Cpolygon points='200,110 260,135 200,160 140,135' fill='%234b5563' stroke='%2322d3ee' stroke-width='2'/%3E%3Ctext x='200' y='135' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3ELamp ID Change?%3C/text%3E%3Cpath d='M200 160 L200 180' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='180' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='205' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3ECalculate Bit Position%3C/text%3E%3Cpath d='M200 220 L200 240' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='240' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='265' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EUpdate Bit (O(1))%3C/text%3E%3C/svg%3E",
+                approach: "We use a Bitmask/Segmented Array where each bit or segment represents a street lamp. Motion sensor data triggers updates to the array. Failure reports are managed by simple bitwise checks and range updates.\n\n" +
+                            "Documentation: This extremely space-efficient structure allows for millions of lamps to be managed with minimal memory footprint and fast state transitions (dimming/full light).\n" +
+                            "Efficiency Analysis: Setting or checking the state of a single lamp (bit) or a small group (segment) is an O(1) operation (or near-constant time with bitwise arithmetic), providing unparalleled speed.",
+                code: `// Smart Street Lighting (Segmented Bitmask)
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <stdexcept>
+
+using namespace std;
+
+// Each long long (64 bits) can represent 64 street lamps
+using LightSegment = unsigned long long;
+
+class SmartLighting {
+private:
+    vector<LightSegment> segments;
+    int total_lamps;
+    const int BITS_PER_SEGMENT = 64;
+
+    // Calculates which segment (array index) and bit offset a lamp falls into
+    pair<int, int> getPosition(int lamp_id) const {
+        if (lamp_id < 0 || lamp_id >= total_lamps) {
+            throw out_of_range("Invalid Lamp ID");
+        }
+        int segment_index = lamp_id / BITS_PER_SEGMENT;
+        int bit_offset = lamp_id % BITS_PER_SEGMENT;
+        return {segment_index, bit_offset};
+    }
+
+public:
+    SmartLighting(int num_lamps) : total_lamps(num_lamps) {
+        int num_segments = (num_lamps + BITS_PER_SEGMENT - 1) / BITS_PER_SEGMENT;
+        segments.resize(num_segments, 0xFFFFFFFFFFFFFFFFULL); // Initialize all ON (1)
+    }
+
+    // Turns a lamp OFF (dimming/motion inactive)
+    void turnOff(int lamp_id) {
+        auto [idx, offset] = getPosition(lamp_id);
+        segments[idx] &= ~(1ULL << offset); // Clear the bit
+    }
+
+    // Turns a lamp ON (full light/motion detected)
+    void turnOn(int lamp_id) {
+        auto [idx, offset] = getPosition(lamp_id);
+        segments[idx] |= (1ULL << offset); // Set the bit
+    }
+
+    // Checks the status of a lamp
+    bool isLightOn(int lamp_id) const {
+        auto [idx, offset] = getPosition(lamp_id);
+        return (segments[idx] >> offset) & 1ULL;
+    }
+
+    // Check for a segment failure (e.g., all 64 lamps in a segment are dark)
+    bool checkSegmentFailure(int segment_index) const {
+        if (segment_index < 0 || segment_index >= segments.size()) return false;
+        return segments[segment_index] == 0;
+    }
+};
+
+int main() {
+    SmartLighting city_lights(100); // Manage 100 street lamps
+
+    // Simulate motion in front of lamp 10, turning it ON
+    city_lights.turnOn(10); 
+    // Simulate motion stopping at lamp 50, turning it OFF (dimming)
+    city_lights.turnOff(50); 
+    // Simulate a failure of lamp 65 (which is in segment 1)
+    city_lights.turnOff(65); 
+    city_lights.turnOff(66);
+
+    cout << "Lamp 10 Status (ON): " << (city_lights.isLightOn(10) ? "Active" : "Dimmed") << endl;
+    cout << "Lamp 50 Status (OFF): " << (city_lights.isLightOn(50) ? "Active" : "Dimmed") << endl;
+
+    // Check Segment 1 (lamps 64-127) for bulk failure
+    cout << "Segment 1 Failure Check: " << (city_lights.checkSegmentFailure(1) ? "FAIL" : "OK") << endl; 
+
+    return 0;
+}`,
+                dataset: `LampID,Latitude,Longitude,SegmentID,MotionDetected_h,PowerStatus,DimLevel_perc
+L-101,18.520,73.856,1,0.5,ON,100
+L-102,18.522,73.858,1,5.0,OFF,30
+L-201,18.515,73.850,2,0.0,ON,100
+L-301,18.530,73.865,3,10.0,OFF,30
+L-302,18.532,73.867,3,2.0,ON,100`
+            },
+            5: {
+                title: "Emergency Response Optimization System",
+                problem: "Delay in dispatching the closest and most appropriate emergency unit (ambulance, fire, police) severely impacts outcomes. The system must find the nearest resource in 2D space quickly.",
+                flowchart: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3Cmarker id='arrow' markerWidth='10' markerHeight='10' refX='9' refY='3' orient='auto' markerUnits='strokeWidth'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%2322d3ee'/%3E%3C/marker%3E%3C/defs%3E%3Crect width='400' height='300' fill='%231a202c'/%3E%3Ctext x='200' y='30' text-anchor='middle' fill='%2322d3ee' font-size='16' font-weight='bold'%3EEmergency K-d Tree Search%3C/text%3E%3Crect x='140' y='50' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='75' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EQuery Location (Lat/Lon)%3C/text%3E%3Cpath d='M200 90 L200 110' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='110' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='135' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3ETraverse K-d Tree (Log N)%3C/text%3E%3Cpath d='M200 150 L200 170' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Cpolygon points='200,170 260,195 200,220 140,195' fill='%234b5563' stroke='%2322d3ee' stroke-width='2'/%3E%3Ctext x='200' y='195' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3ECheck Hyperplane?%3C/text%3E%3Cpath d='M200 220 L200 240' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='240' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='265' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EDispatch Nearest Unit%3C/text%3E%3Cpath d='M260 195 L280 195 L280 110 L260 110' stroke='%2322d3ee' stroke-width='2'/%3E%3Cpath d='M260 195 L280 195 L280 110 L260 110' stroke='%2322d3ee'/%3E%3C/svg%3E",
+                approach: "We use a K-d Tree (K-dimensional Tree), a spatial data partitioning structure, to organize the location of all available emergency units. This allows for extremely fast Nearest Neighbor Search.\n\n" +
+                            "Documentation: The K-d tree splits the 2D space recursively, drastically reducing the number of units that need to be checked for distance, unlike a linear search.\n" +
+                            "Efficiency Analysis: Nearest neighbor search in a balanced K-d tree is typically O(log N) on average, where N is the number of units, providing sub-second response times for life-critical dispatches.",
+                code: `// Emergency Response Optimization (K-d Tree for Nearest Neighbor)
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <algorithm>
+#include <limits>
+
+using namespace std;
+
+const int K = 2; // 2D (Latitude, Longitude)
+
+struct Unit {
+    int id;
+    double coords[K]; // [0] = Latitude, [1] = Longitude
+};
+
+struct Node {
+    Unit unit;
+    Node *left = nullptr, *right = nullptr;
+};
+
+Node* buildKdTree(vector<Unit>& units, int depth) {
+    if (units.empty()) return nullptr;
+
+    int axis = depth % K;
+
+    // Sort the units by the current axis
+    sort(units.begin(), units.end(), [&](const Unit& a, const Unit& b) {
+        return a.coords[axis] < b.coords[axis];
+    });
+
+    int median_index = units.size() / 2;
+    Unit median_unit = units[median_index];
+
+    Node* node = new Node{median_unit};
+
+    // Recursively build left and right subtrees
+    vector<Unit> left_units(units.begin(), units.begin() + median_index);
+    node->left = buildKdTree(left_units, depth + 1);
+
+    vector<Unit> right_units(units.begin() + median_index + 1, units.end());
+    node->right = buildKdTree(right_units, depth + 1);
+
+    return node;
+}
+
+double distSq(const Unit& u1, const double query[K]) {
+    return pow(u1.coords[0] - query[0], 2) + pow(u1.coords[1] - query[1], 2);
+}
+
+void nearestNeighborSearch(Node* root, const double query[K], Unit& best_unit, double& min_dist_sq, int depth) {
+    if (root == nullptr) return;
+
+    // 1. Check distance to current node
+    double d_sq = distSq(root->unit, query);
+    if (d_sq < min_dist_sq) {
+        min_dist_sq = d_sq;
+        best_unit = root->unit;
+    }
+
+    int axis = depth % K;
+    Node *near = (query[axis] < root->unit.coords[axis]) ? root->left : root->right;
+    Node *far = (query[axis] < root->unit.coords[axis]) ? root->right : root->left;
+
+    // 2. Recurse down the preferred side
+    nearestNeighborSearch(near, query, best_unit, min_dist_sq, depth + 1);
+
+    // 3. Check if the "other" side might contain a closer point (hyperplane check)
+    if (pow(query[axis] - root->unit.coords[axis], 2) < min_dist_sq) {
+        nearestNeighborSearch(far, query, best_unit, min_dist_sq, depth + 1);
+    }
+}
+
+Unit findNearestUnit(Node* root, const double query[K]) {
+    Unit best_unit = {0};
+    double min_dist_sq = numeric_limits<double>::max();
+    
+    nearestNeighborSearch(root, query, best_unit, min_dist_sq, 0);
+    return best_unit;
+}
+
+int main() {
+    // Available Ambulance Units (ID, Lat, Lon)
+    vector<Unit> units = {
+        {101, {18.51, 73.85}}, {102, {18.55, 73.88}}, {103, {18.52, 73.82}}, 
+        {104, {18.50, 73.87}}, {105, {18.53, 73.86}}
+    };
+    
+    Node* tree = buildKdTree(units, 0);
+
+    // Emergency location query (Lat, Lon)
+    double query_location[K] = {18.525, 73.855}; 
+
+    Unit nearest = findNearestUnit(tree, query_location);
+
+    cout << "Emergency at: (" << query_location[0] << ", " << query_location[1] << ")\n";
+    cout << "Nearest Unit ID: " << nearest.id << endl;
+
+    return 0;
+}`,
+                dataset: `UnitID,UnitType,Latitude,Longitude,CurrentStatus,ResponsePriority
+A-101,Ambulance,18.510,73.850,Available,High
+F-205,FireTruck,18.550,73.880,Available,Medium
+P-310,PoliceCar,18.520,73.820,Engaged,Low
+A-102,Ambulance,18.500,73.870,Available,High
+F-206,FireTruck,18.530,73.860,Available,Medium`
+            },
+            6: {
+                title: "Advertisement Billboard Management",
+                problem: "Maximizing city revenue from digital advertisement billboards requires optimizing their placement based on predicted exposure (traffic, pedestrian flow) while adhering to strict urban planning visibility rules.",
+                flowchart: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3Cmarker id='arrow' markerWidth='10' markerHeight='10' refX='9' refY='3' orient='auto' markerUnits='strokeWidth'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%2322d3ee'/%3E%3C/marker%3E%3C/defs%3E%3Crect width='400' height='300' fill='%231a202c'/%3E%3Ctext x='200' y='30' text-anchor='middle' fill='%2322d3ee' font-size='16' font-weight='bold'%3EKnapsack DP for Billboards%3C/text%3E%3Crect x='100' y='50' width='200' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='75' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EInitialize DP Table (Max Revenue vs Impact)%3C/text%3E%3Cpath d='M200 90 L200 110' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='110' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='135' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EIterate Through Billboards (i)%3C/text%3E%3Cpath d='M200 150 L200 170' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Cpolygon points='200,170 260,195 200,220 140,195' fill='%234b5563' stroke='%2322d3ee' stroke-width='2'/%3E%3Ctext x='200' y='195' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3ECurrent Impact <= Limit?%3C/text%3E%3Cpath d='M200 220 L200 240' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='120' y='240' width='160' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='265' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EDP[i, w] = MAX(Exclude, Include)%3C/text%3E%3C/svg%3E",
+                approach: "We use Dynamic Programming (Knapsack Problem) to select the set of billboards to license/build that maximizes the total predicted revenue (value) while keeping the total visual impact (volume) below the city's regulatory limit.\n\n" +
+                            "Documentation: Each potential billboard is an 'item' with a 'value' (expected revenue) and a 'weight' (visual distraction score). DP finds the optimal subset.\n" +
+                            "Efficiency Analysis: The 0/1 Knapsack DP solution is O(N * W), where N is the number of available sites and W is the capacity (regulatory limit), ensuring optimal revenue generation within compliance.",
+                code: `// Billboard Management (0/1 Knapsack Dynamic Programming)
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// Solves the 0/1 Knapsack problem: Maximize revenue (value) without exceeding visual impact (weight)
+int knapsack(int W, const vector<int>& weights, const vector<int>& values, int n) {
+    // DP table: dp[i][w] stores max value with first i items and weight capacity w
+    vector<vector<int>> dp(n + 1, vector<int>(W + 1, 0));
+
+    for (int i = 1; i <= n; ++i) {
+        // Current item's weight and value
+        int weight = weights[i - 1];
+        int value = values[i - 1];
+
+        for (int w = 1; w <= W; ++w) {
+            // Case 1: Billboard (item) i is NOT included
+            dp[i][w] = dp[i - 1][w];
+
+            // Case 2: Billboard (item) i IS included (if it fits)
+            if (weight <= w) {
+                dp[i][w] = max(dp[i][w], value + dp[i - 1][w - weight]);
+            }
+        }
+    }
+
+    return dp[n][W];
+}
+
+int main() {
+    // Potential Billboards: 
+    // Revenue (Value): Estimated annual revenue (in lakhs INR)
+    vector<int> revenue = {10, 15, 6, 20, 12}; 
+    // Visual Impact (Weight): Score from 1 (low) to 10 (high)
+    vector<int> impact = {5, 7, 3, 9, 6}; 
+    int num_sites = revenue.size();
+
+    // City's Visual Impact Capacity Limit
+    int max_visual_impact = 25; 
+
+    int max_revenue = knapsack(max_visual_impact, impact, revenue, num_sites);
+
+    cout << "Maximum allowed visual impact: " << max_visual_impact << endl;
+    cout << "Maximum achievable annual revenue (lakhs INR): " << max_revenue << endl;
+
+    return 0;
+}`,
+                dataset: `SiteID,LocationType,EstimatedRevenue_Lakhs,VisualImpactScore,TrafficIndex,RegulatoryStatus
+B101,Commercial,10,5,8.5,Approved
+B102,Major Route,15,7,9.2,Approved
+B103,Residential,6,3,6.0,Approved
+B104,Highway Exit,20,9,9.5,Approved
+B105,Industrial,12,6,7.0,Approved`
+            },
+            7: {
+                title: "Industrial Worker Support Hub",
+                problem: "Efficiently matching temporary or seasonal industrial workers with available job shifts and skills gaps is complex and time-consuming, leading to high unemployment and understaffing.",
+                flowchart: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3Cmarker id='arrow' markerWidth='10' markerHeight='10' refX='9' refY='3' orient='auto' markerUnits='strokeWidth'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%2322d3ee'/%3E%3C/marker%3E%3C/defs%3E%3Crect width='400' height='300' fill='%231a202c'/%3E%3Ctext x='200' y='30' text-anchor='middle' fill='%2322d3ee' font-size='16' font-weight='bold'%3EHungarian Assignment Flow%3C/text%3E%3Crect x='100' y='50' width='200' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='75' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3ECreate Worker-Job Cost Matrix%3C/text%3E%3Cpath d='M200 90 L200 110' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='100' y='110' width='200' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='135' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EReduce Rows/Columns to Min Cost%3C/text%3E%3Cpath d='M200 150 L200 170' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Cpolygon points='200,170 260,195 200,220 140,195' fill='%234b5563' stroke='%2322d3ee' stroke-width='2'/%3E%3Ctext x='200' y='195' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EOptimal Cover Found?%3C/text%3E%3Cpath d='M200 220 L200 240' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='120' y='240' width='160' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='265' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EOutput Optimal Match (O(N^3))%3C/text%3E%3C/svg%3E",
+                approach: "We use the Hungarian Algorithm (Optimal Assignment Problem) to find the most cost-effective one-to-one match between a pool of available workers (supply) and open job shifts (demand), minimizing mismatch cost/time.\n\n" +
+                            "Documentation: The matching algorithm guarantees the best possible fit, maximizing worker utilization and filling critical city labor needs efficiently.\n" +
+                            "Efficiency Analysis: The Hungarian Algorithm solves the Assignment Problem in O(N^3), where N is the number of workers/jobs, which is practical for daily matching operations.",
+                code: `// Industrial Worker Support Hub (Optimal Bipartite Matching - Conceptual)
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <limits>
+
+using namespace std;
+
+// This provides a conceptual cost matrix used by the Hungarian Algorithm
+// A full implementation of the Hungarian Algorithm is complex and omitted for brevity.
+
+// Cost matrix: cost[i][j] is the 'mismatch cost' of assigning Worker i to Job j
+int calculateMinCost(const vector<vector<int>>& cost_matrix) {
+    if (cost_matrix.empty()) return 0;
+    int N = cost_matrix.size();
+    
+    // Simplification: Solve for a small 2x2 matrix to demonstrate concept
+    if (N == 2) {
+        int cost1 = cost_matrix[0][0] + cost_matrix[1][1]; // W1->J1, W2->J2
+        int cost2 = cost_matrix[0][1] + cost_matrix[1][0]; // W1->J2, W2->J1
+        return min(cost1, cost2);
+    }
+    
+    // In a real application, the full Hungarian Algorithm implementation would go here (O(N^3))
+    
+    return -1; // Placeholder for larger problems
+}
+
+int main() {
+    // Worker skills vs Job requirements mismatch costs (lower is better match)
+    // Rows: Workers (W1, W2), Columns: Jobs (J1, J2)
+    vector<vector<int>> cost_matrix = {
+        {10, 5},  // W1 is a good match for J2 (cost 5)
+        {8, 12}   // W2 is a good match for J1 (cost 8)
+    };
+
+    int min_cost = calculateMinCost(cost_matrix);
+
+    if (min_cost != -1) {
+        cout << "Minimum Mismatch Cost for 2 Workers/Jobs (Optimal Assignment): " << min_cost << endl;
+        // The optimal assignment here is W1->J2 and W2->J1, total cost 5 + 8 = 13.
+    } else {
+        cout << "Demonstration of conceptual cost calculation only." << endl;
+    }
+
+    return 0;
+}`,
+                dataset: `WorkerID,PrimarySkill,AvailabilityScore,JobPreference,Cost_to_J1,Cost_to_J2
+W101,Electrician,9.5,Construction,10,5
+W102,Plumber,7.0,Maintenance,8,12
+W103,Welder,8.8,Construction,7,11
+W104,HVAC,6.2,Maintenance,15,6
+JobID,SkillRequired,Duration_Days,Location,BasePay
+J1,Construction,30,Zone A,50000
+J2,Maintenance,14,Zone B,35000`
+            },
+            8: {
+                title: "Urban Green Parks Management",
+                problem: "Maintaining the health and efficient irrigation of numerous urban green parks is crucial but resource-intensive. Optimal water distribution and rapid fault detection are needed.",
+                flowchart: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3Cmarker id='arrow' markerWidth='10' markerHeight='10' refX='9' refY='3' orient='auto' markerUnits='strokeWidth'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%2322d3ee'/%3E%3C/marker%3E%3C/defs%3E%3Crect width='400' height='300' fill='%231a202c'/%3E%3Ctext x='200' y='30' text-anchor='middle' fill='%2322d3ee' font-size='16' font-weight='bold'%3EKruskal's MST Flow%3C/text%3E%3Crect x='100' y='50' width='200' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='75' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EStart: Sort All Edges (Pipes) by Cost%3C/text%3E%3Cpath d='M200 90 L200 110' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='110' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='135' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EIterate Next Lowest Edge%3C/text%3E%3Cpath d='M200 150 L200 170' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Cpolygon points='200,170 260,195 200,220 140,195' fill='%234b5563' stroke='%2322d3ee' stroke-width='2'/%3E%3Ctext x='200' y='195' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EDoes Edge Form Cycle (DSU)?%3C/text%3E%3Cpath d='M200 220 L200 240' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='120' y='240' width='160' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='265' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EIf No: Add Edge to MST & Union Sets%3C/text%3E%3C/svg%3E",
+                approach: "We model the park's irrigation system as a graph and use Kruskal's Algorithm (Minimum Spanning Tree) to find the most cost-effective pipeline network for delivering water from a single source to all zones.\n\n" +
+                            "Documentation: MST ensures that all zones are connected using the minimum total length of piping/least cost infrastructure, optimizing construction and operational efficiency.\n" +
+                            "Efficiency Analysis: Kruskal's algorithm is efficient for sparse graphs, running in O(E log E) or O(E log V), where E is the number of possible pipe segments and V is the number of zones/nodes.",
+                code: `// Urban Green Parks Management (Kruskal's MST for Irrigation)
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <numeric>
+
+using namespace std;
+
+struct Edge {
+    int u, v;
+    int weight; // Cost/Length of the pipeline segment
+};
+
+bool compareEdges(const Edge& a, const Edge& b) {
+    return a.weight < b.weight;
+}
+
+// Disjoint Set Union (DSU) structure for cycle detection
+struct DSU {
+    vector<int> parent;
+    DSU(int n) {
+        parent.resize(n);
+        iota(parent.begin(), parent.end(), 0);
+    }
+    int find(int i) {
+        if (parent[i] == i) return i;
+        return parent[i] = find(parent[i]);
+    }
+    void unite(int i, int j) {
+        int root_i = find(i);
+        int root_j = find(j);
+        if (root_i != root_j) {
+            parent[root_i] = root_j;
+        }
+    }
+};
+
+int kruskalsMST(int V, vector<Edge>& edges) {
+    // 1. Sort all edges by weight
+    sort(edges.begin(), edges.end(), compareEdges);
+
+    DSU dsu(V);
+    int mst_weight = 0;
+    
+    // 2. Iterate through sorted edges, adding if no cycle is formed
+    for (const auto& edge : edges) {
+        if (dsu.find(edge.u) != dsu.find(edge.v)) {
+            dsu.unite(edge.u, edge.v);
+            mst_weight += edge.weight;
+        }
+    }
+    return mst_weight;
+}
+
+int main() {
+    // V = 5 zones (0 to 4) in the park
+    int V = 5; 
+    // Possible pipeline segments (u, v, cost)
+    vector<Edge> possible_pipelines = {
+        {0, 1, 10}, {0, 2, 6}, {0, 3, 5},
+        {1, 3, 15}, {2, 3, 4}, {2, 4, 8},
+        {3, 4, 12}
+    };
+
+    int min_cost = kruskalsMST(V, possible_pipelines);
+
+    cout << "Minimum Cost to connect all 5 park zones (MST Weight): " << min_cost << " units" << endl;
+
+    return 0;
+}`,
+                dataset: `ZoneID,SegmentStart,SegmentEnd,Cost_PipeLength_m,WaterDemand_LPH,SensorStatus
+Z0,WaterSource,Z1,100,0,OK
+Z1,ZoneA,ZoneB,60,500,OK
+Z2,ZoneA,ZoneC,150,800,OK
+Z3,ZoneB,ZoneD,80,300,OK
+Z4,ZoneC,ZoneD,40,700,OK
+Z5,ZoneD,Z_Fountain,20,100,OK`
+            },
+            9: {
+                title: "Mobile Network Connectivity Optimization",
+                problem: "Congestion in specific cell sectors during peak hours degrades service quality (dropped calls, slow data). The network needs dynamic load balancing between neighboring towers.",
+                flowchart: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3Cmarker id='arrow' markerWidth='10' markerHeight='10' refX='9' refY='3' orient='auto' markerUnits='strokeWidth'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%2322d3ee'/%3E%3C/marker%3E%3C/defs%3E%3Crect width='400' height='300' fill='%231a202c'/%3E%3Ctext x='200' y='30' text-anchor='middle' fill='%2322d3ee' font-size='16' font-weight='bold'%3EMax-Flow Load Balancing%3C/text%3E%3Crect x='100' y='50' width='200' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='75' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EModel Network as Flow Graph (Source to Sink)%3C/text%3E%3Cpath d='M200 90 L200 110' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='110' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='135' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EFind Augmenting Path (BFS)%3C/text%3E%3Cpath d='M200 150 L200 170' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Cpolygon points='200,170 260,195 200,220 140,195' fill='%234b5563' stroke='%2322d3ee' stroke-width='2'/%3E%3Ctext x='200' y='195' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EPath Found?%3C/text%3E%3Cpath d='M200 220 L200 240' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='120' y='240' width='160' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='265' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EUpdate Flow and Residual Graph%3C/text%3E%3C/svg%3E",
+                approach: "We model the network as a flow graph where the source is the network core, the sink is user capacity, and edges are tower links with capacity limits. We use the Maximum Flow Min-Cut Theorem (e.g., Ford-Fulkerson) to prevent bottlenecking and optimize cell tower load.\n\n" +
+                            "Documentation: Max-Flow calculates the maximum data throughput possible. The Min-Cut identifies the minimal set of links (towers/backhaul) that, if removed, would disconnect the system, pinpointing weak links.\n" +
+                            "Efficiency Analysis: Max Flow algorithms like Edmonds-Karp O(V * E^2), or Dinic's O(V^2 * E), allow the core network to dynamically reroute traffic across the city's towers in real-time.",
+                code: `// Mobile Network Optimization (Max-Flow/Min-Cut - Conceptual)
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
+
+using namespace std;
+
+// BFS to find an augmenting path in the residual graph (helper for Edmonds-Karp)
+int bfs(const vector<vector<int>>& rGraph, int s, int t, vector<int>& parent) {
+    fill(parent.begin(), parent.end(), -1);
+    int V = rGraph.size();
+    queue<pair<int, int>> q;
+    q.push({s, numeric_limits<int>::max()});
+    parent[s] = -2;
+
+    while (!q.empty()) {
+        int u = q.front().first;
+        int flow = q.front().second;
+        q.pop();
+
+        for (int v = 0; v < V; v++) {
+            if (parent[v] == -1 && rGraph[u][v] > 0) {
+                parent[v] = u;
+                int new_flow = min(flow, rGraph[u][v]);
+                if (v == t)
+                    return new_flow;
+                q.push({v, new_flow});
+            }
+        }
+    }
+    return 0;
+}
+
+// Edmonds-Karp algorithm
+int edmondsKarp(vector<vector<int>> graph, int s, int t) {
+    int max_flow = 0;
+    int V = graph.size();
+    vector<int> parent(V);
+    int path_flow;
+
+    while (path_flow = bfs(graph, s, t, parent)) {
+        max_flow += path_flow;
+        int v = t;
+        while (v != s) {
+            int u = parent[v];
+            graph[u][v] -= path_flow; // Reduce forward capacity
+            graph[v][u] += path_flow; // Increase backward capacity
+            v = u;
+        }
+    }
+    return max_flow;
+}
+
+int main() {
+    // Capacity matrix (Source to Tower 1, Tower 2 to Sink/Users)
+    // Nodes: 0=Source, 1=Tower A, 2=Tower B, 3=Tower C, 4=Sink (User Demand)
+    vector<vector<int>> capacity = {
+        {0, 100, 80, 0, 0},
+        {0, 0, 10, 50, 0},
+        {0, 0, 0, 30, 40},
+        {0, 0, 0, 0, 70},
+        {0, 0, 0, 0, 0}
+    };
+    int source = 0;
+    int sink = 4;
+
+    int flow = edmondsKarp(capacity, source, sink);
+    cout << "Maximum achievable data flow (Max-Flow): " << flow << " Mbps" << endl;
+
+    return 0;
+}`,
+                dataset: `TowerID,GeoLocation,BackhaulCapacity_Mbps,CurrentLoad_Mbps,TrafficFactor,ConnectedUsers
+T101,18.520,73.856,100,95,0.9,5000
+T102,18.525,73.859,80,40,1.5,3000
+T103,18.515,73.850,150,140,0.8,7000
+T104,18.530,73.865,70,30,1.2,2500`
+            },
+            10: {
+                title: "Gas Distribution Pipeline Integrity Monitoring",
+                problem: "Gas pipelines are prone to leaks or breaks due to aging or seismic activity, posing high safety and environmental risks. Real-time integrity monitoring is critical.",
+                flowchart: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3Cmarker id='arrow' markerWidth='10' markerHeight='10' refX='9' refY='3' orient='auto' markerUnits='strokeWidth'%3E%3Cpath d='M0,0 L0,6 L9,3 z' fill='%2322d3ee'/%3E%3C/marker%3E%3C/defs%3E%3Crect width='400' height='300' fill='%231a202c'/%3E%3Ctext x='200' y='30' text-anchor='middle' fill='%2322d3ee' font-size='16' font-weight='bold'%3EDSU Network Integrity Flow%3C/text%3E%3Crect x='100' y='50' width='200' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='75' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EInitialize DSU: Each Zone is a Set%3C/text%3E%3Cpath d='M200 90 L200 110' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='140' y='110' width='120' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='135' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EAdd Pipe Segment (UNION)%3C/text%3E%3Cpath d='M200 150 L200 170' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Cpolygon points='200,170 260,195 200,220 140,195' fill='%234b5563' stroke='%2322d3ee' stroke-width='2'/%3E%3Ctext x='200' y='195' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3EPressure Drop Detected?%3C/text%3E%3Cpath d='M200 220 L200 240' stroke='%2322d3ee' stroke-width='2' marker-end='url(%23arrow)'/%3E%3Crect x='110' y='240' width='180' height='40' fill='%23374151' stroke='%2322d3ee' stroke-width='2' rx='5'/%3E%3Ctext x='200' y='265' text-anchor='middle' fill='%23e5e7eb' font-size='12'%3ECheck FIND(Zone) == FIND(Source)%3C/text%3E%3C/svg%3E",
+                approach: "We use a Disjoint Set Union (DSU) structure to maintain and query the connected components of the gas network. A leak or planned segment isolation is modeled as a 'disunion' event, allowing instant verification if key zones are still connected to the gas source.\n\n" +
+                            "Documentation: DSU (Union-Find) is ideal for checking connectivity. If find(zone1) != find(source), a critical failure has occurred between the zone and the source.\n" +
+                            "Efficiency Analysis: Union-Find with path compression and union by rank/size achieves near-constant time O(alpha(N)) for both find and union operations, where alpha is the inverse Ackermann function, ensuring extremely fast integrity checks.",
+                code: `// Gas Distribution Pipeline (DSU for Integrity)
+#include <iostream>
+#include <vector>
+#include <numeric>
+
+using namespace std;
+
+class GasNetworkDSU {
+private:
+    vector<int> parent; // Parent array for DSU
+    int components;
+
+public:
+    GasNetworkDSU(int n) : components(n) {
+        parent.resize(n);
+        iota(parent.begin(), parent.end(), 0); // Initialize: parent[i] = i
+    }
+
+    // Find operation with path compression
+    int find(int i) {
+        if (parent[i] == i)
+            return i;
+        return parent[i] = find(parent[i]);
+    }
+
+    // Union operation (merges two sets)
+    void connect(int i, int j) {
+        int root_i = find(i);
+        int root_j = find(j);
+        if (root_i != root_j) {
+            parent[root_i] = root_j;
+            components--;
+        }
+    }
+
+    // Simulates a leak/disconnection
+    void disconnect(int segment_u, int segment_v) {
+        // In a real system, disconnection is complex. 
+        // Here, we simulate by checking if connection still exists
+        // and relying on external data to rebuild the DSU after repair.
+        cout << "Simulating disconnection between " << segment_u << " and " << segment_v << ". Integrity check required." << endl;
+    }
+
+    // Check if a zone is still connected to the main source (assumed node 0)
+    bool isConnectedToSource(int zone) {
+        return find(zone) == find(0);
+    }
+};
+
+int main() {
+    // 5 nodes: 0=Main Source, 1=Industrial Zone, 2=Residential A, 3=Residential B, 4=Commercial
+    int V = 5; 
+    GasNetworkDSU network(V);
+
+    // Initial connections (pipelines are laid)
+    network.connect(0, 1);
+    network.connect(1, 2);
+    network.connect(2, 3);
+    network.connect(1, 4);
+
+    cout << "Is Zone 3 connected to Source? " << (network.isConnectedToSource(3) ? "YES" : "NO") << endl;
+    cout << "Is Zone 4 connected to Source? " << (network.isConnectedToSource(4) ? "YES" : "NO") << endl;
+
+    // Simulate a major break/failure isolating a part of the network (e.g., between 1 and 2)
+    // For DSU, we must rebuild the connections without the failed link (conceptual disconnect)
+    // A simplified check: if find(1) != find(2) before the failure was true, something went wrong.
+
+    // We demonstrate integrity check assuming all connections are live:
+    if (network.isConnectedToSource(2)) {
+        cout << "Network integrity OK for Zone 2." << endl;
+    }
+    
+    return 0;
+}`,
+                dataset: `PipeID,SegmentStart,SegmentEnd,Pressure_kPa,FlowRate_m3/hr,Material,LastInspection_Days
+P001,Source,Zone1,500,1200,Steel,365
+P002,Zone1,Zone2,480,900,Steel,180
+P003,Zone2,Zone3,450,500,PE,90
+P004,Zone1,Zone4,470,300,Steel,270
+P005,Zone4,Zone5,460,150,PE,45`
+            }
+        };
+        
+        // This is a common pattern for initial load where a user might prefer dark mode
+        // if no preference is set, mirroring the initial class='dark' in <html>
+        window.onload = function() {
+             if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                // Do nothing, the initial HTML class='dark' handles it
+            } else {
+                // If light mode is preferred or set, update the icons
+                document.documentElement.classList.remove('dark');
+                const icon = document.getElementById('theme-icon');
+                const mobileIcon = document.getElementById('mobile-theme-icon');
+                if (icon) {
+                    icon.classList.remove('fa-sun', 'text-yellow-500');
+                    icon.classList.add('fa-moon', 'text-gray-600');
+                }
+                if (mobileIcon) {
+                    mobileIcon.classList.remove('fa-sun', 'text-yellow-500');
+                    mobileIcon.classList.add('fa-moon', 'text-gray-600');
+                }
+            }
+        }
+    </script>
 </body>
 </html>
