@@ -1,1 +1,319 @@
-Work in progress
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Agartha City – Sustainable Initiatives</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --bg:#f8fafc;
+  --card:rgba(255,255,255,0.85);
+  --text:#0f172a;
+  --muted:#475569;
+  --accent:#06b6d4;
+}
+body.dark{
+  --bg:#020617;
+  --card:rgba(15,23,42,0.85);
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui;
+  background:var(--bg);
+  color:var(--text);
+  transition:.4s;
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 50px;
+}
+.brand{
+  font-size:20px;
+  font-weight:700;
+}
+.toggle{
+  cursor:pointer;
+  font-size:22px;
+}
+.hero{
+  text-align:center;
+  padding:90px 20px 70px;
+}
+.hero h1{
+  font-size:48px;
+}
+.hero p{
+  max-width:760px;
+  margin:22px auto;
+  font-size:18px;
+  color:var(--muted);
+}
+.hero span{
+  color:var(--accent);
+  font-weight:700;
+}
+.container{
+  max-width:1150px;
+  margin:auto;
+  padding:40px 24px;
+}
+.glass{
+  background:var(--card);
+  border-radius:22px;
+  padding:36px;
+  box-shadow:0 25px 50px rgba(0,0,0,.12);
+}
+.list-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:18px;
+}
+.list-item{
+  padding:18px 22px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#ecfeff,#f0fdfa);
+  font-weight:600;
+}
+.section-title{
+  text-align:center;
+  font-size:34px;
+  margin-bottom:40px;
+  color:var(--accent);
+}
+.card{
+  background:var(--card);
+  border-radius:22px;
+  padding:30px;
+  margin-bottom:28px;
+  box-shadow:0 20px 40px rgba(0,0,0,.1);
+  transition:.3s;
+}
+.card:hover{ transform:translateY(-6px); }
+.card-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.sdg{
+  display:inline-block;
+  margin:14px 0;
+  background:#cffafe;
+  color:#0369a1;
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:13px;
+}
+.details{ display:none; margin-top:22px; }
+button.link{
+  background:none;
+  border:none;
+  color:var(--accent);
+  font-weight:700;
+  cursor:pointer;
+}
+pre{
+  background:#020617;
+  color:#e5e7eb;
+  padding:18px;
+  border-radius:14px;
+  overflow:auto;
+}
+footer{
+  text-align:center;
+  padding:40px;
+  opacity:.7;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">🏙️ Agartha City</div>
+  <div class="toggle" onclick="toggleTheme()">🌙</div>
+</header>
+
+<section class="hero">
+  <h1>Comprehensive Sustainable City Initiatives</h1>
+  <p>
+    Hi, I am <span>ADITYA GH</span>.  
+    This document presents algorithm-driven infrastructure systems for Agartha City.
+  </p>
+</section>
+
+<section class="container">
+  <div class="glass">
+    <h2 style="text-align:center">7 Key Business Cases</h2>
+    <div class="list-grid">
+      <div class="list-item">✈️ Air Traffic Control System</div>
+      <div class="list-item">🌬️ AQI Monitoring System</div>
+      <div class="list-item">🏭 Cement Production & Emission Control</div>
+      <div class="list-item">🌾 Farm Land & Solar Allocation</div>
+      <div class="list-item">🏪 Small Scale Industries Enablement</div>
+      <div class="list-item">🌳 National Park & Wildlife Maintenance</div>
+      <div class="list-item">💻 Tech Park Space Allocation</div>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+<h2 class="section-title">Detailed Initiatives</h2>
+
+<!-- 1 -->
+<div class="card">
+<div class="card-head"><h3>1. Air Traffic Control System</h3><span>✈️</span></div>
+<div class="sdg">SDG 9.1 & SDG 11.2</div>
+<p>Manages civilian, cargo, and emergency air traffic using conflict-free scheduling.</p>
+<button class="link" onclick="toggle(1)">View Algorithm →</button>
+<div class="details" id="d1">
+<pre>
+Input: Aircraft list A with position, speed, altitude
+Sort A by time-to-intersection
+For each aircraft i:
+  For each aircraft j > i:
+    if distance(i,j) < safety_threshold:
+       adjust altitude or delay time
+Use priority queue for emergency flights
+Time Complexity: O(N log N)
+</pre>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="card">
+<div class="card-head"><h3>2. Air Quality Index Monitoring</h3><span>🌬️</span></div>
+<div class="sdg">SDG 3.9 & SDG 11.6</div>
+<p>Real-time AQI computation with automated response triggers.</p>
+<button class="link" onclick="toggle(2)">View Algorithm →</button>
+<div class="details" id="d2">
+<pre>
+Sensors collect PM2.5, PM10, NO2, SO2
+For each zone:
+  AQI = max(subIndex(pollutant))
+If AQI > threshold:
+  restrict industries
+  alert hospitals
+Time Complexity: O(N)
+</pre>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="card">
+<div class="card-head"><h3>3. Cement Production & Emission Control</h3><span>🏭</span></div>
+<div class="sdg">SDG 9.4 & SDG 12.2</div>
+<p>Balances cement demand with emission ceilings.</p>
+<button class="link" onclick="toggle(3)">View Algorithm →</button>
+<div class="details" id="d3">
+<pre>
+Input: Demand D, Emission Limit E
+For each batch:
+  calculate emission e
+  if total_e + e <= E:
+     approve batch
+  else:
+     delay or reduce batch
+Greedy optimization
+O(N)
+</pre>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="card">
+<div class="card-head"><h3>4. Farm Land & Solar Allocation</h3><span>🌾</span></div>
+<div class="sdg">SDG 7.2 & SDG 15.1</div>
+<p>Optimizes land usage between agriculture and renewable energy.</p>
+<button class="link" onclick="toggle(4)">View Algorithm →</button>
+<div class="details" id="d4">
+<pre>
+For each land parcel:
+  compute soil_score
+  compute solar_score
+If soil_score > solar_score:
+  allocate farming
+Else:
+  allocate solar
+Dynamic programming
+O(N)
+</pre>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="card">
+<div class="card-head"><h3>5. Small Scale Industries Enablement</h3><span>🏪</span></div>
+<div class="sdg">SDG 8.3 & SDG 9.3</div>
+<p>Cluster-based growth of MSMEs.</p>
+<button class="link" onclick="toggle(5)">View Algorithm →</button>
+<div class="details" id="d5">
+<pre>
+Cluster industries by resource need
+Allocate power, water, logistics
+Monitor output & employment
+Graph clustering
+O(V + E)
+</pre>
+</div>
+</div>
+
+<!-- 6 -->
+<div class="card">
+<div class="card-head"><h3>6. National Park & Wildlife Maintenance</h3><span>🌳</span></div>
+<div class="sdg">SDG 15.1 & SDG 11.4</div>
+<p>Ensures biodiversity conservation and sustainable tourism.</p>
+<button class="link" onclick="toggle(6)">View Algorithm →</button>
+<div class="details" id="d6">
+<pre>
+Track animal population using sensor data
+If population drops below threshold:
+  restrict human access
+  increase ranger patrol
+Allocate resources using priority queues
+Time Complexity: O(N log N)
+</pre>
+</div>
+</div>
+
+<!-- 7 -->
+<div class="card">
+<div class="card-head"><h3>7. Tech Park Space Allocation</h3><span>💻</span></div>
+<div class="sdg">SDG 9.5 & SDG 8.2</div>
+<p>Optimized space allocation for startups and tech enterprises.</p>
+<button class="link" onclick="toggle(7)">View Algorithm →</button>
+<div class="details" id="d7">
+<pre>
+Input: Company size, growth rate, resource needs
+Sort companies by growth score
+Allocate office space accordingly
+Rebalance quarterly
+Greedy + sorting
+O(N log N)
+</pre>
+</div>
+</div>
+
+</section>
+
+<footer>
+© 2025 Agartha City Project • <b>ADITYA GH</b>
+</footer>
+
+<script>
+function toggleTheme(){
+  document.body.classList.toggle("dark");
+}
+function toggle(n){
+  const d=document.getElementById("d"+n);
+  d.style.display = d.style.display === "block" ? "none" : "block";
+}
+</script>
+
+</body>
+</html>
